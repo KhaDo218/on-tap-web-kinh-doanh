@@ -16,7 +16,9 @@
     8: "08-Javascript phần 1",
     9: "09-Javascript phần 2",
     10: "10-XML và Mô hình DOM",
-    11: "11-JSon"
+    11: "11-JSon",
+    12: "12-Ôn bảo vệ đồ án RoomCraft: Kiến trúc & công nghệ",
+    13: "13-Ôn bảo vệ đồ án RoomCraft: Vận hành, kiểm thử, bảo mật & nghiệp vụ"
   };
   const DIFF = { 1: "Dễ", 2: "Trung bình", 3: "Khó" };
   const SOURCE = { bo1: "Theo chương", quiz: "Quiz của thầy", bosung: "Bổ sung" };

@@ -8,7 +8,7 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 const BANK_DIR = path.join(ROOT, "bank");
 const OUT_FILE = path.join(ROOT, "data", "questions.js");
-const CHAPTERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const CHAPTERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
 // Thứ tự gộp: ngân hàng theo chương (c1..c11) -> quiz của thầy -> bổ sung
 const files = fs.readdirSync(BANK_DIR).filter((f) => f.endsWith(".js")).sort((a, b) => {
