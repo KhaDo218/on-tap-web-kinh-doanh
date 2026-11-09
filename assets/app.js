@@ -21,10 +21,44 @@
     13: "13-Ôn bảo vệ đồ án RoomCraft: Vận hành, kiểm thử, bảo mật & nghiệp vụ"
   };
   const DIFF = { 1: "Dễ", 2: "Trung bình", 3: "Khó" };
-  const SOURCE = { bo1: "Theo chương", quiz: "Quiz của thầy", bosung: "Bổ sung" };
+  const SOURCE = { bv: "Bộ câu hỏi bảo vệ", nw: "Bổ sung theo báo cáo", bo1: "Theo chương", quiz: "Quiz của thầy", bosung: "Bổ sung" };
   const LETTERS = "ABCD";
   const PAGE_SIZE = 20;
   const STORE_KEY = "ptweb_onthi_v1";
+
+  const TOPIC_NAMES = {
+    kt: "Kiến trúc & thiết kế", uiux: "UI/UX", code: "Cách coding", data: "Dữ liệu & CSDL",
+    feat: "Tính năng", ai: "AI & Chatbot", search: "Tìm kiếm & bộ lọc", test: "Kiểm thử",
+    deploy: "Triển khai & vận hành", sec: "Bảo mật & hạn chế", pm: "Quản lý dự án", biz: "Nghiệp vụ & định hướng"
+  };
+
+  // GIF phản hồi đúng/sai — danh sách ảnh nằm ở gifs/gif_dung.js và gifs/gif_sai.js (nạp trước app.js trong index.html)
+  const CORRECT_GIFS = Array.isArray(window.CORRECT_GIFS) ? window.CORRECT_GIFS.filter(Boolean) : [];
+  const WRONG_GIFS = Array.isArray(window.WRONG_GIFS) ? window.WRONG_GIFS.filter(Boolean) : [];
+  const lastGif = { right: -1, wrong: -1 };
+  const narrowScreen = window.matchMedia ? window.matchMedia("(max-width: 850px)") : { matches: false };
+  function pickGif(isCorrect) {
+    const list = isCorrect ? CORRECT_GIFS : WRONG_GIFS;
+    if (!list.length) return null;
+    const key = isCorrect ? "right" : "wrong";
+    let i = Math.floor(Math.random() * list.length);
+    if (list.length > 1 && i === lastGif[key]) i = (i + 1) % list.length;
+    lastGif[key] = i;
+    return list[i];
+  }
+  function showReaction(isCorrect, targetElement) {
+    const url = pickGif(isCorrect);
+    if (!url) return;
+    const floating = narrowScreen.matches || !targetElement;
+    if (floating) document.querySelectorAll(".reaction-gif.floating").forEach((g) => g.remove());
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = "";
+    img.className = "reaction-gif" + (floating ? " floating" : "") + (isCorrect ? " is-right" : " is-wrong");
+    img.addEventListener("error", () => img.remove());
+    (floating ? document.body : targetElement).appendChild(img);
+    setTimeout(() => img.remove(), 3000);
+  }
 
   const $ = (s, c) => (c || document).querySelector(s);
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
@@ -100,6 +134,7 @@
 
     const meta = el("div", "q-meta");
     meta.append(el("span", "tag", "Chương " + q.chapter));
+    if (q.topic && TOPIC_NAMES[q.topic]) meta.append(el("span", "tag", TOPIC_NAMES[q.topic]));
     meta.append(el("span", "tag d" + q.difficulty, DIFF[q.difficulty]));
     if (q.type === "multiple") meta.append(el("span", "tag multi", "Nhiều đáp án"));
     meta.append(el("span", "tag", SOURCE[q.source] || ""));
@@ -149,6 +184,7 @@
     function reveal(sel) {
       const ok = sameSet(sel, q.correct);
       card.classList.add("locked", ok ? "is-right" : "is-wrong");
+      showReaction(ok, card);
       $$("input", opts).forEach((i) => (i.disabled = true));
       $$(".option", opts).forEach((o) => {
         const orig = +o.dataset.orig;
@@ -203,17 +239,28 @@
   });
   $("#brand-sub").textContent = QUESTIONS.length + " câu hỏi · " + Object.keys(CHAPTERS_PRESENT()).length + " chương";
 
+  // Bộ lọc Mục nội dung (topic) — chỉ hiện các topic đang có câu
+  const topicSel = $("#f-topic");
+  const presentTopics = [...new Set(QUESTIONS.map((q) => q.topic).filter(Boolean))];
+  topicSel.append(new Option("Tất cả mục (" + QUESTIONS.length + " câu)", "all"));
+  presentTopics.forEach((t) => {
+    if (!TOPIC_NAMES[t]) return;
+    const n = QUESTIONS.filter((q) => q.topic === t).length;
+    topicSel.append(new Option(TOPIC_NAMES[t] + " (" + n + ")", t));
+  });
+
   let practiceList = [];
   let practicePage = 0;
   let shuffledOrder = null;
 
   function filtered() {
-    const ch = chSel.value, d = $("#f-diff").value, src = $("#f-source").value, st = $("#f-status").value;
+    const ch = chSel.value, d = $("#f-diff").value, src = $("#f-source").value, st = $("#f-status").value, tp = $("#f-topic").value;
     const kw = normalize($("#f-search").value.trim());
     return QUESTIONS.filter((q) =>
       (ch === "all" || String(q.chapter) === ch) &&
       (d === "all" || String(q.difficulty) === d) &&
       (src === "all" || q.source === src) &&
+      (tp === "all" || q.topic === tp) &&
       (st === "all" || (st === "todo" && !(q.id in store.answered)) ||
         (st === "wrong" && store.answered[q.id] === false) || (st === "right" && store.answered[q.id] === true)) &&
       (!kw || searchIndex.get(q.id).includes(kw))
@@ -264,7 +311,7 @@
       (done ? " (" + Math.round((right / done) * 100) + "%)" : "");
     $("#practice-bar").style.width = ids.length ? (done / ids.length) * 100 + "%" : "0";
   }
-  ["#f-chapter", "#f-diff", "#f-source", "#f-status", "#f-shuffle"].forEach((s) => $(s).addEventListener("change", applyFilters));
+  ["#f-chapter", "#f-diff", "#f-source", "#f-status", "#f-topic", "#f-shuffle"].forEach((s) => $(s).addEventListener("change", applyFilters));
   let searchTimer;
   $("#f-search").addEventListener("input", () => { clearTimeout(searchTimer); searchTimer = setTimeout(applyFilters, 250); });
   $("#reset-practice-btn").addEventListener("click", () => {

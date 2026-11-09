@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ôn tập Web Kinh doanh</title>
-<meta name="description" content="Ngân hàng câu hỏi trắc nghiệm ôn tập môn Phát triển Web Kinh doanh (UEL): HTML, CSS, Form, JavaScript, DOM, XML, AJAX, JSON.">
+<title>Ôn bảo vệ đồ án RoomCraft</title>
+<meta name="description" content="Ngân hàng 476 câu hỏi ôn bảo vệ đồ án RoomCraft — Nhóm 7, môn Phát triển Web Kinh doanh (UEL): kiến trúc, UI/UX, coding, dữ liệu, AI chatbot, kiểm thử, bảo mật.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -12,9 +12,9 @@
 <header class="app-header">
   <div class="wrap header-inner">
     <div class="brand">
-      <div class="brand-mark">WB</div>
+      <div class="brand-mark">RC</div>
       <div>
-        <h1>Phát triển Web Kinh doanh</h1>
+        <h1>RoomCraft — Ôn bảo vệ đồ án</h1>
         <p id="brand-sub">Ngân hàng câu hỏi ôn tập</p>
       </div>
     </div>
@@ -46,10 +46,12 @@
         <label>Nguồn
           <select id="f-source">
             <option value="all">Tất cả</option>
-            <option value="bo1">Ngân hàng theo chương</option>
-            <option value="quiz">Quiz trên lớp của thầy</option>
-            <option value="bosung">Bổ sung: code &amp; bài tập thực tế</option>
+            <option value="bv">Bộ câu hỏi bảo vệ</option>
+            <option value="nw">Bổ sung theo báo cáo</option>
           </select>
+        </label>
+        <label>Mục nội dung
+          <select id="f-topic"></select>
         </label>
         <label>Trạng thái
           <select id="f-status">
@@ -132,10 +134,12 @@
 </main>
 
 <footer class="app-footer wrap">
-  Tổng hợp từ slide bài giảng môn Phát triển Web Kinh doanh (TS. Trần Duy Thanh, Khoa HTTT - UEL), các bài quiz trên lớp và bài tập thực hành.
+  Tổng hợp từ đồ án RoomCraft (Nhóm 7 — Phát triển Web Kinh doanh, UEL): báo cáo final, tài liệu phân tích thiết kế, kết quả kiểm thử và toàn bộ source code. Soạn & audit bằng 2 model AI (DeepSeek + GLM).
 </footer>
 
 <script src="data/questions.js"></script>
+<script src="gifs/gif_dung.js"></script>
+<script src="gifs/gif_sai.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

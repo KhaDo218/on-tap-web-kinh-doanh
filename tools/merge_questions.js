@@ -47,7 +47,7 @@ for (const f of files) {
   if (!Array.isArray(arr)) { errors.push(`${f}: không export ra mảng`); continue; }
   // Mọi file trong bank/ đều đặt đáp án đúng ở đầu mảng -> xáo cố định theo id
   const needShuffle = true;
-  const source = /^questions_c\d+\.js$/.test(f) ? "bo1" : f.startsWith("questions_quiz") ? "quiz" : "bosung";
+  const source = /^questions_c\d+\.js$/.test(f) ? "bo1" : f.startsWith("questions_quiz") ? "quiz" : /^questions_bv\d+\.js$/.test(f) ? "bv" : /^questions_nw\d+\.js$/.test(f) ? "nw" : "bosung";
   console.log(`${f}: ${arr.length} câu`);
   all = all.concat(arr.map((q) => ({ ...(needShuffle ? shuffleOptions(q) : q), source })));
 }
