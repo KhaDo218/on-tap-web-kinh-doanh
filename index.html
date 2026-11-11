@@ -133,14 +133,42 @@ svg .ev.err{stroke:#8C3B2D}
 .qg h3{margin-top:28px}
 @media (max-width:1000px){.tcs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:700px){.tcs{grid-template-columns:1fr}}
+.sss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.ss{background:var(--card);border:1px solid var(--line);padding:14px 16px}
+.ss-h{display:flex;align-items:center;gap:10px;border-bottom:1px solid #EEEEEC;padding-bottom:8px;margin-bottom:8px}
+.ss-h b{flex:1;font-size:14.5px}
+.sc{background:var(--ink);color:#F7F7F5;font-family:ui-monospace,Consolas,monospace;font-size:12px;padding:2px 8px}
+.sk{font-size:12px;color:var(--acc);font-weight:600;white-space:nowrap}
+.sp{margin:0 0 6px;font-size:13.5px;color:#444}
+.sl{margin:0 0 2px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);font-weight:600}
+.ss ul{margin:0;padding-left:18px;font-size:13.5px}.ss li{margin:3px 0}
+.sn{margin:8px 0 0;font-size:12.5px;color:var(--mut);font-style:italic}
+@media (max-width:700px){.sss{grid-template-columns:1fr}}
+.deep{border-top:1px dashed var(--line);margin-top:30px;padding-top:6px}
+.deep h3{font-size:26px}
+.chips2{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.chip{background:var(--card);border:1px solid var(--acc);color:var(--ink);text-decoration:none;padding:6px 12px;font-size:13px}
+.chip:hover{background:var(--accbg)}
+main a{color:#7A6038}
+.lead ul,ul.lead{padding-left:20px}
+.kcs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+.kc{background:var(--card);border:1px solid var(--line);padding:14px 16px}
+.kc p{margin:6px 0 0;font-size:13.8px}
+.kc-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;border-bottom:1px solid #EEEEEC;padding-bottom:6px}
+.kc-h b{font-size:14.5px}
+.kw code{font-size:12px}
+.kq{background:var(--accbg);padding:6px 10px;font-size:13px !important}
+.lv{font-size:11px;font-weight:600;padding:2px 8px;white-space:nowrap;border:1px solid}
+.lv1{background:#202020;color:#fff;border-color:#202020}.lv2{background:#F4ECDF;color:#7A6038;border-color:#B18A52}.lv3{background:#fff;color:#686868;border-color:#BDBDB8}
+@media (max-width:700px){.kcs{grid-template-columns:1fr}}
 </style></head>
 <body>
 <header class="top"><div class="brand">ROOMCRAFT</div><p>Tài liệu ôn bảo vệ — Nhóm 7 · Phát triển Web Kinh Doanh</p></header>
 <div class="wrap">
-<nav class="side"><a href="#cach-on">0. Cách ôn cả nhóm</a><a href="#tong-quan">1. Tổng quan & pain point</a><a href="#quy-trinh">2. Quy trình & làm việc nhóm</a><a href="#du-lieu-3d">3. Dữ liệu nguồn & 3D</a><a href="#kien-truc">4. Kiến trúc & cách chạy</a><a href="#local">5. localStorage chi tiết</a><a href="#thiet-ke">6. Thiết kế hệ thống</a><a href="#rang-buoc">7. Ràng buộc nghiệp vụ</a><a href="#luong">8. Các luồng chính</a><a href="#code">9. Code tiêu biểu</a><a href="#kiem-thu">10. Kiểm thử</a><a href="#ket-qua">11. Kết quả & hướng phát triển</a><a href="#kien-thuc">12. Kiến thức môn học</a><a href="#cau-hoi">13. Ngân hàng câu hỏi</a></nav>
+<nav class="side"><a href="#cach-on">0. Cách ôn cả nhóm</a><a href="#tong-quan">1. Tổng quan & pain point</a><a href="#quy-trinh">2. Quy trình & làm việc nhóm</a><a href="#du-lieu-3d">3. Dữ liệu nguồn & 3D</a><a href="#kien-truc">4. Kiến trúc & cách chạy</a><a href="#local">5. localStorage chi tiết</a><a href="#thiet-ke">6. Thiết kế hệ thống</a><a href="#rang-buoc">7. Ràng buộc nghiệp vụ</a><a href="#luong">8. Các luồng chính</a><a href="#code">9. Code tiêu biểu</a><a href="#kiem-thu">10. Kiểm thử</a><a href="#ket-qua">11. Kết quả & hướng phát triển</a><a href="#kien-thuc">12. Kiến thức môn học</a><a href="#giai-thich">13. Giải thích sâu (10 điểm)</a><a href="#kien-thuc-an">14. Kỹ thuật dễ "chưa thật hiểu"</a><a href="#cau-hoi">15. Ngân hàng câu hỏi</a></nav>
 <main>
 <div class="intro"><h1>Hiểu cả đồ án qua sơ đồ</h1>
-<p>14 phần, 20 sơ đồ, 52 câu hỏi có gợi ý. Đọc theo thứ tự: vì sao làm → làm thế nào → dữ liệu → kiến trúc → thiết kế → luật → luồng → code → kiểm thử → kết quả → kiến thức môn → tự kiểm tra.</p></div>
+<p>16 phần, hơn 30 sơ đồ, 52 câu hỏi có gợi ý. Đọc theo thứ tự: vì sao làm → làm thế nào → dữ liệu → kiến trúc → thiết kế → luật → luồng → code → kiểm thử → kết quả → kiến thức môn → tự kiểm tra.</p></div>
 
 <section id="cach-on">
 <p class="ov">Phần 0</p><h2>Cách ôn cả nhóm</h2>
@@ -495,6 +523,7 @@ tests/         13 phiên Playwright</pre></div>
 <polyline class="ar" points="220,198 266,198" marker-end="url(#ah)"/>
 <polyline class="ar" points="570,198 616,198" marker-end="url(#ah)"/>
 </svg><figcaption>Ba cách chạy dự án. Phải chạy qua HTTP (không mở file trực tiếp) vì trình duyệt cần tải JSON bằng XHR.</figcaption></figure>
+<p class="lead">→ Cơ chế <b>DATA_VERSION</b> (vì sao sửa JSON phải tăng số phiên bản) giải thích kỹ ở <a href="#gs-dv">phần 13.1</a>; chatbot 2 tầng ở <a href="#gs-chat">phần 13.2</a>.</p>
 <p class="say"><span>Nói miệng</span>Toàn bộ nghiệp vụ chạy ở trình duyệt. server.js chỉ là proxy để giấu API key của chatbot, nó không lưu và không xử lý dữ liệu bán hàng.</p>
 </section>
 <section id="local">
@@ -577,6 +606,7 @@ function isLocalRow(dong){
     return t.charAt(t.length - 1) == &quot;Z&quot;;
 }</code></pre></div>
 </div>
+<p class="lead">→ Tăng DATA_VERSION ảnh hưởng gì tới cả nhóm: xem <a href="#gs-dv">phần 13.1</a>.</p>
 <figure class="dg"><svg viewBox="0 0 960 170" role="img" aria-label="Gộp giỏ khách vào tài khoản: trùng món thì cộng số lượng, rồi chặn không vượt tồn kho. Đây là ca kiểm thử s05 và kịch bản E2E số 10." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
 <rect class="bx" x="20" y="26" width="270" height="104"/>
 <text class="tt" x="155.0" y="57.0" font-size="13" text-anchor="middle">rc_carts — TRƯỚC khi đăng nhập</text>
@@ -847,6 +877,7 @@ function isLocalRow(dong){
 </section>
 <section id="rang-buoc">
 <p class="ov">Phần 7</p><h2>Ràng buộc nghiệp vụ</h2>
+<p class="lead">→ Giải thích từng giá trị biên kèm ví dụ tính tiền: <a href="#gs-bien">phần 13.4</a>.</p>
 <p class="lead">Không có backend nên luật được kiểm trong <b>JS (services)</b>; CSDL thiết kế thêm UNIQUE/CHECK/khoá ngoại làm lớp thứ hai khi có server thật.</p>
 <figure class="dg"><svg viewBox="0 0 960 240" role="img" aria-label="Vòng đời đơn hàng theo code. Không còn trạng thái Pending: đặt xong là Confirmed. Từ Shipping trở đi không huỷ được." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
 <rect class="bx" x="20" y="40" width="160" height="56"/>
@@ -1043,6 +1074,7 @@ if(checkMobilePhone(sdt) == false)
 </section>
 <section id="kiem-thu">
 <p class="ov">Phần 10</p><h2>Kiểm thử</h2>
+<p class="lead">→ Hộp đen và 4 kỹ thuật có ví dụ: <a href="#gs-hd">13.5</a> · công cụ chạy test: <a href="#gs-tool">13.6</a> · "0 hồi quy": <a href="#gs-hq">13.7</a>.</p>
 <figure class="dg"><svg viewBox="0 0 960 172" role="img" aria-label="Bốn đợt kiểm thử. Lỗi nghiêm trọng duy nhất (BUG-01) là bố cục tràn ngang trên điện thoại → sửa trước vì kéo theo hàng loạt ca mobile." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
 <line class="ar" x1="40" y1="70" x2="920" y2="70"/>
 <circle class="dot" cx="110" cy="70" r="9"/>
@@ -1076,7 +1108,7 @@ if(checkMobilePhone(sdt) == false)
 <li><b>Mức lỗi:</b> Nghiêm trọng (chặn hành trình mua) · Trung bình · Nhẹ.</li>
 <li><b>Số hồi quy phải = 0</b> mới coi vòng sửa là an toàn.</li></ul></div>
 </div>
-<div class="tw"><table class="map"><tr><th>Phiên</th><th>Nội dung</th><th>Số ca</th></tr><tr><td>s00</td><td>Mở toàn bộ trang: không lỗi JS, không 404, không cuộn ngang ở 4 bề rộng</td><td>40</td></tr><tr><td>s01</td><td>Tài khoản: đăng ký, OTP, đăng nhập, quên MK, hồ sơ, đăng xuất</td><td>32</td></tr><tr><td>s02</td><td>Trang chủ, phòng, hotspot, thêm trọn bộ</td><td>30</td></tr><tr><td>s03</td><td>Sản phẩm, bộ lọc, tìm không dấu, chi tiết, yêu thích</td><td>30</td></tr><tr><td>s04</td><td>Đồ cũ</td><td>30</td></tr><tr><td>s05</td><td>Giỏ &amp; thanh toán: gộp giỏ, phí giao, COD 10tr, cọc 30%, coupon, Luhn</td><td>30</td></tr><tr><td>s06</td><td>Đơn hàng &amp; đánh giá: huỷ, hoàn kho, chỉ đánh giá khi Delivered</td><td>30</td></tr><tr><td>s07</td><td>Quản trị SP, danh mục, phòng, đồ cũ</td><td>30</td></tr><tr><td>s08</td><td>Quản trị đơn, Dashboard, khoá user, ẩn đánh giá</td><td>30</td></tr><tr><td>s09</td><td>Chatbot (AI chỉ khi chạy server.js)</td><td>30</td></tr><tr><td>s10</td><td>Phi chức năng: responsive, mất mạng, tăng DATA_VERSION giữ tài khoản</td><td>30</td></tr><tr><td>s11</td><td>22 kịch bản đầu–cuối (E2E) qua nhiều phân hệ</td><td>22</td></tr><tr><td>s12</td><td>Audit: leo quyền, XSS, khả năng tiếp cận, hiệu năng, SEO, toàn vẹn dữ liệu</td><td>30</td></tr></table></div>
+<h3>Tiêu chí của 14 phiên kiểm thử (s00–s13)</h3><div class="card"><h4>Tiêu chí chung cho mọi ca</h4><ul><li>Một ca <b>Đạt</b> khi toàn bộ kết quả quan sát khớp kết quả mong đợi; ca nhiều bước sai 1 bước vẫn là Không đạt.</li><li>Ca giao diện còn phải: thao tác được ở bề rộng đang kiểm, không cuộn ngang ngoài chủ đích, không lỗi Console trong luồng đang kiểm.</li><li>Mỗi lần chạy bắt đầu từ dữ liệu sạch (nạp lại data/json), chặn Internet, mỗi ca có ảnh minh chứng đặt tên theo mã TC.</li><li>Bộ chính dùng cho P0–P3: 13 phiên s00–s12, 394 ca = 40 + 32 + 9 × 30 + 22 + 30. Phiên s13 (12 ca) bổ sung sau P3 cho trang Về RoomCraft.</li></ul></div><div class="sss"><div class="ss"><div class="ss-h"><span class="sc">s00</span><b>Khởi động – mở toàn bộ trang</b><span class="sk">40 ca</span></div><p class="sp">Mở đủ 25 trang (khách, user, admin) trên máy tính và điện thoại.</p><p class="sl">Tiêu chí đạt</p><ul><li>Không có lỗi JavaScript trong Console</li><li>Không có tài nguyên lỗi 404 (ảnh, CSS, JS, model)</li><li>Không cuộn ngang ở 4 bề rộng màn hình</li></ul><p class="sn">Luôn chạy đầu tiên sau mỗi lần cập nhật code; bắt được BUG-01 (tràn ngang trang chủ).</p></div><div class="ss"><div class="ss-h"><span class="sc">s01</span><b>Tài khoản</b><span class="sk">32 ca</span></div><p class="sp">Đăng ký, OTP, đăng nhập, quên mật khẩu, hồ sơ, đăng xuất.</p><p class="sl">Tiêu chí đạt</p><ul><li>Mỗi ô trống/sai định dạng đều bị chặn kèm thông báo đúng</li><li>Email trùng, SĐT trùng, mật khẩu thiếu quy tắc, nhập lại không khớp → từ chối</li><li>OTP sai → từ chối; OTP đúng → tạo tài khoản và tự đăng nhập</li><li>Sai mật khẩu, tài khoản bị khoá → không vào được; user → trang chủ, admin → Dashboard, hỗ trợ ?redirect=</li><li>Đặt lại mật khẩu xong thì mật khẩu cũ bị từ chối</li></ul><p class="sn">Phân vùng tương đương cho từng ô nhập.</p></div><div class="ss"><div class="ss-h"><span class="sc">s02</span><b>Trang chủ, Không gian mẫu, Chi tiết phòng</b><span class="sk">30 ca</span></div><p class="sp">Lọc phòng, mở phòng, hotspot, thêm vào giỏ từ phòng.</p><p class="sl">Tiêu chí đạt</p><ul><li>Lọc theo phong cách ra đúng số phòng như dữ liệu</li><li>Bấm hotspot hiện đúng sản phẩm gắn với điểm đó</li><li>Thêm trọn bộ: bỏ món hết hàng và báo đúng số món đã thêm</li><li>Chuyển góc ảnh, xem 3D, phòng tương tự hoạt động</li></ul><p class="sn">Kiểm tính năng đặc trưng Shop the Room.</p></div><div class="ss"><div class="ss-h"><span class="sc">s03</span><b>Sản phẩm, Chi tiết, Yêu thích</b><span class="sk">30 ca</span></div><p class="sp">Bộ lọc, tìm kiếm, sắp xếp, phân trang, chi tiết, nút tim.</p><p class="sl">Tiêu chí đạt</p><ul><li>Từng bộ lọc (5 mức giá, danh mục cha/con, chất liệu, màu, thương hiệu, còn hàng) và lọc kết hợp: số kết quả khớp dữ liệu</li><li>Tìm không dấu: gõ &quot;ghe&quot; ra &quot;ghế&quot;</li><li>Tải lại trang vẫn giữ bộ lọc (qua URL); không có kết quả → hiện gợi ý</li><li>Hết hàng thì khoá nút mua; số lượng không vượt tồn kho; gợi ý không có món hết hàng</li><li>Tim: thêm/bỏ đúng, số trên header cập nhật</li></ul><p class="sn">Phân vùng tương đương cho bộ lọc.</p></div><div class="ss"><div class="ss-h"><span class="sc">s04</span><b>Đồ cũ</b><span class="sk">30 ca</span></div><p class="sp">Trang Đồ cũ và chi tiết đồ cũ.</p><p class="sl">Tiêu chí đạt</p><ul><li>Chỉ hiện sản phẩm đồ cũ, không lẫn hàng mới</li><li>Lọc tình trạng Like New / Good / Fair kết hợp giá đúng</li><li>Món đã bán hiện &quot;Đã bán&quot; và không thêm giỏ được</li><li>Chi tiết hiện tình trạng, thời gian đã dùng</li></ul></div><div class="ss"><div class="ss-h"><span class="sc">s05</span><b>Giỏ hàng &amp; Thanh toán</b><span class="sk">30 ca</span></div><p class="sp">Giỏ, gộp giỏ, form thanh toán, phí giao, phương thức trả tiền, mã giảm giá.</p><p class="sl">Tiêu chí đạt</p><ul><li>Thêm vượt tồn kho bị chặn; giỏ khách gộp đúng khi đăng nhập</li><li>Mỗi ô bắt buộc: thông báo đúng nguyên văn và focus vào ô sai</li><li>Phí giao đúng theo đồ nhỏ/đồ lớn × nội thành/lân cận/tỉnh xa; giao nhanh chỉ nội thành</li><li>Biên: COD 10.000.000 ₫ được, 10.000.001 ₫ bị khoá; miễn phí giao từ 2tr (đồ nhỏ) / 15tr (đồ lớn nội thành); cọc 30% làm tròn lên nghìn</li><li>Mã giảm giá đủ/không đủ điều kiện; thẻ sai Luhn/hết hạn bị từ chối</li><li>Đặt thành công → tồn kho giảm, giỏ trống, trang thành công đúng số tiền</li></ul><p class="sn">Giá trị biên + bảng quyết định (phí giao).</p></div><div class="ss"><div class="ss-h"><span class="sc">s06</span><b>Đơn hàng &amp; Đánh giá</b><span class="sk">30 ca</span></div><p class="sp">Đơn của tôi, chi tiết đơn, huỷ đơn, đánh giá.</p><p class="sl">Tiêu chí đạt</p><ul><li>Danh sách và chi tiết đơn đúng số liệu</li><li>Huỷ ở Confirmed → hoàn tồn kho; đơn cọc ghi hoàn tiền</li><li>Đã Shipping thì không huỷ được</li><li>Chỉ đánh giá khi đơn Delivered; không đánh giá 2 lần</li><li>Chỉ chủ đơn hoặc Admin mới huỷ được (BUG-09)</li></ul><p class="sn">Kiểm thử chuyển trạng thái (vòng đời đơn).</p></div><div class="ss"><div class="ss-h"><span class="sc">s07</span><b>Quản trị sản phẩm, danh mục, phòng, đồ cũ</b><span class="sk">30 ca</span></div><p class="sp">Các trang admin quản lý catalog.</p><p class="sl">Tiêu chí đạt</p><ul><li>Thêm mới: thiếu ô bắt buộc hoặc giá ≤ 0 bị chặn</li><li>Sửa lưu đúng; ẩn sản phẩm → khách không còn thấy</li><li>Tìm kiếm, phân trang; xuất CSV/JSON</li><li>Thêm phòng, gắn hotspot; form đồ cũ kiểm tra đủ</li></ul></div><div class="ss"><div class="ss-h"><span class="sc">s08</span><b>Quản trị đơn, Dashboard, người dùng, đánh giá</b><span class="sk">30 ca</span></div><p class="sp">Admin xử lý đơn và theo dõi số liệu.</p><p class="sl">Tiêu chí đạt</p><ul><li>Đơn chuyển đúng Confirmed → Packing → Shipping → Delivered</li><li>Doanh thu chỉ tăng khi đơn Delivered; huỷ đơn không đổi doanh thu</li><li>Sắp hết hàng gồm cả tồn kho = 0 (BUG-03)</li><li>Khoá user → không đăng nhập được, đang đăng nhập bị đẩy ra</li><li>Ẩn đánh giá → khách không thấy</li></ul></div><div class="ss"><div class="ss-h"><span class="sc">s09</span><b>Chatbot</b><span class="sk">30 ca</span></div><p class="sp">Khung chat, câu trả lời mẫu, lọc sản phẩm, phần AI.</p><p class="sl">Tiêu chí đạt</p><ul><li>Mở/đóng, chào hỏi, câu ngoài phạm vi trả lời hợp lý</li><li>&quot;sofa dưới 10 triệu&quot; chỉ ra món ≤ 10tr; &quot;rẻ hơn&quot; ra món rẻ hơn; hỏi đồ cũ, mã giảm giá, phí giao theo tỉnh đúng</li><li>Tải lại trang vẫn giữ lịch sử chat (BUG-04)</li><li>Ngân sách viết đủ số vẫn hiểu (BUG-05)</li><li>Phần AI chỉ kiểm khi chạy server.js và cho phép mạng</li></ul></div><div class="ss"><div class="ss-h"><span class="sc">s10</span><b>Phi chức năng</b><span class="sk">30 ca</span></div><p class="sp">Responsive, mất mạng, phân quyền trang, dữ liệu.</p><p class="sl">Tiêu chí đạt</p><ul><li>Mọi trang ở 390 / 768 / 1440px không cuộn ngang</li><li>Mất mạng vẫn hiện font, icon, 3D, biểu đồ (thư viện tự host)</li><li>Ảnh/model lỗi có xử lý; không lỗi Console</li><li>Trang cần đăng nhập/admin chặn đúng người</li><li>Tăng DATA_VERSION vẫn giữ tài khoản tự đăng ký; đo thời gian mở trang</li></ul></div><div class="ss"><div class="ss-h"><span class="sc">s11</span><b>Nghiệp vụ đầu–cuối (E2E)</b><span class="sk">22 ca</span></div><p class="sp">22 kịch bản liên hoàn qua nhiều phân hệ, mô phỏng tình huống thật.</p><p class="sl">Tiêu chí đạt</p><ul><li>Đăng ký → mua COD → Admin chuyển tới Delivered → đánh giá: tồn kho, doanh thu, điểm trung bình đều khớp</li><li>Còn 1 món, 2 tab cùng thanh toán → chỉ 1 đơn thành công, tồn kho không âm</li><li>COD sát ngưỡng có mã giảm: đúng 10tr được, 10tr + 1đ bị khoá</li><li>Huỷ đơn cọc, Admin đổi giá/ẩn SP đang trong giỏ, gộp giỏ, khoá user có đơn…</li><li>Tổng tiền = tạm tính + phí giao − giảm giá, khớp ở 3 nơi (trang thành công, chi tiết đơn, Dashboard)</li></ul><p class="sn">Thêm vào từ P2 nên P1 có 342 ca, P2 có 394 ca.</p></div><div class="ss"><div class="ss-h"><span class="sc">s12</span><b>Audit chất lượng</b><span class="sk">30 ca</span></div><p class="sp">Bảo mật, khả năng tiếp cận, hiệu năng, SEO, toàn vẹn dữ liệu.</p><p class="sl">Tiêu chí đạt</p><ul><li>Bảo mật phân quyền: sửa rc_session thành Admin, user thường mở trang admin, phiên trỏ user không tồn tại, tài khoản bị khoá (BUG-02)</li><li>XSS lưu trữ qua họ tên, địa chỉ, tên người nhận, tên sản phẩm</li><li>Khả năng tiếp cận (axe-core) ở trang chủ, đăng nhập, giỏ hàng</li><li>Hiệu năng trang chủ: mở &lt; 3 giây, tổng &lt; 5MB, không ảnh &gt; 500KB (BUG-07)</li><li>SEO: có title, description, lang, đúng 1 thẻ h1 (BUG-08)</li><li>Toàn vẹn: id không trùng, tham chiếu user_id đúng, tổng tiền đơn đúng, giá và tồn kho không âm; không link hỏng</li></ul><p class="sn">Thêm vào từ P2.</p></div><div class="ss"><div class="ss-h"><span class="sc">s13</span><b>Về RoomCraft &amp; câu chuyện thương hiệu</b><span class="sk">12 ca</span></div><p class="sp">Trang about.html và khối câu chuyện thương hiệu trên trang chủ. Phiên bổ sung (07/11), sau đợt P3.</p><p class="sl">Tiêu chí đạt</p><ul><li>Mở trang: tiêu đề tab chứa &quot;Về RoomCraft&quot;, đúng 1 thẻ h1, html lang=&quot;vi&quot;</li><li>Menu header đánh dấu mục Về RoomCraft (active/aria-current); bấm từ trang chủ thì sang đúng trang; breadcrumb về trang chủ</li><li>Số liệu khối lời hứa khớp dữ liệu: số phòng, số phong cách, số sản phẩm đang bán (không tính đồ cũ) + &quot;+&quot;</li><li>Bốn tấm ảnh: ban đầu tấm 1 nổi bật; rê chuột/chạm/bấm/focus bàn phím tấm nào thì chỉ tấm đó nổi bật</li><li>Cuộn tới đâu nội dung hiện dần tới đó (mọi khối đều hiện); link &quot;Khám phá không gian mẫu&quot; dẫn tới rooms.html</li><li>Không cuộn ngang; có meta description, ảnh hero có alt</li><li>Trang chủ: khối câu chuyện thương hiệu có ≥ 2 tab, bấm tab đổi nội dung, thanh so sánh trước/sau bắt đầu ở 20%</li></ul><p class="sn">Thêm sau P3 nên không nằm trong 394 ca và tỉ lệ đạt của P0–P3. Kèm theo sửa 2 lỗi nhẹ: thêm meta description cho about.html; hiệu ứng mở màn của thanh so sánh dừng khi khách tự kéo.</p></div></div>
 <div class="two">
 <div class="tw"><table class="map"><tr><th>Cấu hình</th><th>Kích thước</th></tr><tr><td>Edge · Chrome · Firefox · Safari (WebKit)</td><td>1.440 × 900</td></tr><tr><td>iPhone 14 (giả lập)</td><td>390 × 844</td></tr><tr><td>Pixel 7 (giả lập)</td><td>412 × 915</td></tr><tr><td>iPad thế hệ 7 (giả lập)</td><td>810 × 1.080</td></tr><tr><td>+ máy thật P3</td><td>1 iPhone Safari + 1 Android Chrome, 25 hạng mục</td></tr></table></div>
 <div class="card"><h4>E2E tiêu biểu (nhớ 4–5 cái)</h4><ul>
@@ -1170,8 +1202,514 @@ if(checkMobilePhone(sdt) == false)
 <div><h4>Bảo mật cơ bản (XSS)</h4><p>Dữ liệu người dùng nhập (họ tên, địa chỉ, tên SP) không được chèn thẳng thành HTML; phiên s12 kiểm XSS lưu trữ qua các ô này. Nguyên tắc: ưu tiên <code>textContent</code> hơn <code>innerHTML</code>.</p></div>
 </div>
 </section>
+<section id="giai-thich">
+<p class="ov">Phần 13</p><h2>Giải thích sâu — 10 điểm hay bị hỏi</h2>
+<div class="chips2"><a class="chip" href="#gs-dv">DATA_VERSION</a><a class="chip" href="#gs-chat">Chatbot AI</a><a class="chip" href="#gs-bp">Điểm ngắt màn hình</a><a class="chip" href="#gs-bien">Giá trị biên</a><a class="chip" href="#gs-hd">Hộp đen & 4 kỹ thuật</a><a class="chip" href="#gs-tool">Công cụ chạy test</a><a class="chip" href="#gs-hq">Hồi quy = 0</a><a class="chip" href="#gs-sha">SHA-256 & salt</a><a class="chip" href="#gs-bug02">BUG-02 giả mạo phiên</a><a class="chip" href="#gs-bug07">BUG-07 ảnh nặng</a></div>
+
+<div class="deep" id="gs-dv"><h3>1. DATA_VERSION là gì, tăng lên thì sao?</h3>
+<p class="lead"><code>DATA_VERSION</code> là một biến trong <code>scripts/js/core/store.js</code>, hiện bằng <b>"16"</b>. Nó giống "số phiên bản" của bộ dữ liệu JSON. Mỗi máy đã mở web sẽ lưu lại số này trong localStorage ở khoá <code>rc_version</code>. Mỗi lần mở trang, <code>loadData()</code> so hai số:</p>
+<ul class="lead"><li><b>Bằng nhau</b> → máy đã có dữ liệu mới nhất → chỉ đọc localStorage (nhanh, không tải JSON).</li>
+<li><b>Khác nhau / chưa có</b> → tải lại 13 file JSON, ghi đè dữ liệu gốc, rồi ghi số mới vào <code>rc_version</code>.</li></ul>
+<figure class="dg"><svg viewBox="0 0 960 276" role="img" aria-label="DATA_VERSION là &quot;số phiên bản dữ liệu&quot;. Chỉ khi số này đổi, các máy đã từng mở web mới chịu nạp lại JSON; nạp lại nhưng vẫn giữ dữ liệu người dùng tự tạo." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="16" y="24" width="200" height="60"/>
+<text class="tt" x="116.0" y="50.0" font-size="13" text-anchor="middle">① Nhóm sửa data/json</text>
+<text class="ts" x="116.0" y="67.0" font-size="11.5" text-anchor="middle">thêm SP, đổi giá, sửa phòng…</text>
+<rect class="bx acc" x="256" y="24" width="210" height="60"/>
+<text class="tt" x="361.0" y="50.0" font-size="13" text-anchor="middle">② Tăng DATA_VERSION</text>
+<text class="ts" x="361.0" y="67.0" font-size="11.5" text-anchor="middle">&quot;16&quot; → &quot;17&quot; trong store.js</text>
+<rect class="bx" x="506" y="24" width="190" height="60"/>
+<text class="tt" x="601.0" y="50.0" font-size="13" text-anchor="middle">③ Push lên GitHub</text>
+<text class="ts" x="601.0" y="67.0" font-size="11.5" text-anchor="middle">mọi máy tải code mới</text>
+<rect class="bx dark" x="736" y="24" width="208" height="60"/>
+<text class="tt inv" x="840.0" y="50.0" font-size="13" text-anchor="middle">④ Máy người dùng mở web</text>
+<text class="ts inv" x="840.0" y="67.0" font-size="11.5" text-anchor="middle">rc_version = &quot;16&quot; ≠ &quot;17&quot;</text>
+<polyline class="ar" points="216,54 252,54" marker-end="url(#ah)"/>
+<polyline class="ar" points="466,54 502,54" marker-end="url(#ah)"/>
+<polyline class="ar" points="696,54 732,54" marker-end="url(#ah)"/>
+<polyline class="ar hl" points="840,84 840,112 480,112 480,128" marker-end="url(#ah2)"/>
+<text class="lbl" x="480" y="106" text-anchor="middle">⑤ loadData() nạp lại 13 file JSON → saveAllData() → keepLocalData()</text>
+<rect class="bx" x="16" y="132" width="300" height="100"/>
+<text class="tt" x="166.0" y="161.1" font-size="13" text-anchor="middle">GIỮ LẠI (keepLocalData)</text>
+<text class="ts" x="166.0" y="178.1" font-size="11.5" text-anchor="middle">tài khoản tự đăng ký</text>
+<text class="ts" x="166.0" y="195.1" font-size="11.5" text-anchor="middle">đơn hàng, đánh giá tạo trên máy</text>
+<text class="ts" x="166.0" y="212.1" font-size="11.5" text-anchor="middle">đơn mẫu Admin đã đổi trạng thái</text>
+<rect class="bx warn" x="330" y="132" width="300" height="100"/>
+<text class="tt" x="480.0" y="161.1" font-size="13" text-anchor="middle">THAY BẰNG BẢN JSON MỚI</text>
+<text class="ts" x="480.0" y="178.1" font-size="11.5" text-anchor="middle">sản phẩm, phòng, hotspot, coupon…</text>
+<text class="ts" x="480.0" y="195.1" font-size="11.5" text-anchor="middle">tồn kho bị đặt lại theo JSON</text>
+<text class="ts" x="480.0" y="212.1" font-size="11.5" text-anchor="middle">sửa của Admin trên máy bị mất</text>
+<rect class="bx acc" x="644" y="132" width="300" height="100"/>
+<text class="tt" x="794.0" y="161.1" font-size="13" text-anchor="middle">KHÔNG ĐỤNG TỚI</text>
+<text class="ts" x="794.0" y="178.1" font-size="11.5" text-anchor="middle">rc_carts, rc_wishlists</text>
+<text class="ts" x="794.0" y="195.1" font-size="11.5" text-anchor="middle">rc_session (vẫn đăng nhập)</text>
+<text class="ts" x="794.0" y="212.1" font-size="11.5" text-anchor="middle">rc_verification_codes, lịch sử chat</text>
+<text class="note" x="480" y="262" text-anchor="middle">Cuối cùng ghi rc_version = &quot;17&quot; → từ lần mở sau, máy này chỉ đọc localStorage như bình thường.</text>
+</svg><figcaption>DATA_VERSION là &quot;số phiên bản dữ liệu&quot;. Chỉ khi số này đổi, các máy đã từng mở web mới chịu nạp lại JSON; nạp lại nhưng vẫn giữ dữ liệu người dùng tự tạo.</figcaption></figure>
+<div class="two">
+<div class="card "><h4>Vì sao phải có nó?</h4><p>localStorage sống mãi trên máy. Nếu nhóm sửa <code>products.json</code> (thêm sản phẩm, đổi giá) mà không có cơ chế này, máy nào đã từng mở web sẽ <b>không bao giờ thấy dữ liệu mới</b>, vì web chỉ đọc localStorage. Tăng DATA_VERSION là cách "ra lệnh" cho mọi máy nạp lại một lần.</p></div>
+<div class="card "><h4>Không tăng thì sao?</h4><ul><li>Máy mới (chưa mở web lần nào): vẫn thấy dữ liệu mới.</li><li>Máy cũ: vẫn dùng bản cũ → mỗi người trong nhóm thấy một kiểu, test ra kết quả khác nhau.</li><li>Cách tạm cho riêng máy mình: <code>resetData()</code> hoặc xoá localStorage (mất dữ liệu tự tạo).</li></ul></div>
+</div>
+<div class="two">
+<div class="card warn"><h4>Ảnh hưởng tới cả nhóm</h4><ul><li>store.js là <b>file dùng chung</b>: một người tăng số là máy của cả 5 người cùng nạp lại.</li><li>Lúc đầu chưa có <code>keepLocalData()</code>: tăng số làm <b>mất tài khoản tự đăng ký</b> → test của người khác hỏng. Đây là 1 trong 3 vấn đề làm nhóm đã gặp.</li><li>Sau đó bổ sung keepLocalData: giữ tài khoản, đơn, đánh giá tạo trên máy (nhận ra nhờ <code>created_at</code> kết thúc bằng "Z").</li><li>Vẫn mất: sửa sản phẩm của Admin trên máy, tồn kho đã bị trừ do đặt hàng thử → quay về số trong JSON.</li></ul></div>
+<div class="card "><h4>Quy tắc nhóm đặt ra</h4><ul><li>Chỉ tăng khi <b>thật sự đổi file trong data/json</b>, và tăng đúng 1 đơn vị.</li><li>Tăng số đi kèm commit sửa JSON, báo cả nhóm, qua trưởng nhóm duyệt (file dùng chung).</li><li>Admin muốn mọi máy thấy thay đổi: <b>Xuất JSON</b> → chép vào data/json → tăng DATA_VERSION → push.</li><li>Bộ test luôn chạy từ dữ liệu sạch nên không bị ảnh hưởng; phiên s10 có ca "tăng DATA_VERSION vẫn giữ tài khoản tự đăng ký".</li></ul></div>
+</div>
+<p class="say"><span>Nói miệng</span>DATA_VERSION là số phiên bản dữ liệu. Web chỉ nạp lại JSON khi số này khác số đã lưu trên máy, nên mỗi lần sửa dữ liệu nhóm tăng nó lên để mọi máy cập nhật. Khi nạp lại, keepLocalData giữ tài khoản, đơn và đánh giá người dùng đã tạo; còn sản phẩm thì lấy theo bản JSON mới.</p>
+</div>
+<div class="deep" id="gs-chat"><h3>2. Chatbot AI được thiết kế thế nào?</h3>
+<p class="lead">Chatbot có <b>2 tầng</b>. Tầng 1 là bộ luật viết tay trong <code>scripts/components/chatbot.js</code> (khoảng 2.100 dòng), chạy ngay trong trình duyệt nên luôn dùng được. Tầng 2 là AI, chỉ được gọi khi câu hỏi vượt ra ngoài luật, và phải đi qua <code>server.js</code>.</p>
+<figure class="dg"><svg viewBox="0 0 960 256" role="img" aria-label="Tầng 1 – luật chạy ngay trong trình duyệt (chatbot.js). Chỉ 2 nhánh nét đứt mới cần gọi AI qua server.js; 3 nhánh còn lại luôn chạy được, kể cả trên GitHub Pages." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="16" y="96" width="140" height="60"/>
+<text class="tt" x="86.0" y="122.0" font-size="13" text-anchor="middle">Câu hỏi của khách</text>
+<text class="ts" x="86.0" y="139.1" font-size="11.5" text-anchor="middle">&quot;sofa xám dưới 10tr&quot;</text>
+<rect class="bx acc" x="186" y="80" width="200" height="92"/>
+<text class="tt" x="286.0" y="105.0" font-size="13" text-anchor="middle">Chuẩn hoá &amp; đọc ý</text>
+<text class="ts" x="286.0" y="122.0" font-size="11.5" text-anchor="middle">bỏ dấu · sửa gõ sai</text>
+<text class="ts" x="286.0" y="139.1" font-size="11.5" text-anchor="middle">đọc ngân sách, màu, chất liệu,</text>
+<text class="ts" x="286.0" y="156.1" font-size="11.5" text-anchor="middle">phong cách, phòng, loại đồ</text>
+<rect class="bx dark" x="416" y="96" width="150" height="60"/>
+<text class="tt inv" x="491.0" y="122.0" font-size="13" text-anchor="middle">chatDecideRoute()</text>
+<text class="ts inv" x="491.0" y="139.1" font-size="11.5" text-anchor="middle">chọn 1 trong 5 nhánh</text>
+<polyline class="ar" points="156,126 182,126" marker-end="url(#ah)"/>
+<polyline class="ar" points="386,126 412,126" marker-end="url(#ah)"/>
+<rect class="bx" x="640" y="10" width="304" height="40"/>
+<text class="tt" x="792.0" y="34.2" font-size="12" text-anchor="middle">greeting: Chào hỏi → trả lời ngay</text>
+<polyline class="ar" points="566,126 600,126 600,30 636,30" marker-end="url(#ah)"/>
+<rect class="bx" x="640" y="58" width="304" height="40"/>
+<text class="tt" x="792.0" y="82.2" font-size="12" text-anchor="middle">faq: Chính sách, ship, đổi trả → 20 câu mẫu</text>
+<polyline class="ar" points="566,126 600,126 600,78 636,78" marker-end="url(#ah)"/>
+<rect class="bx" x="640" y="106" width="304" height="40"/>
+<text class="tt" x="792.0" y="130.2" font-size="12" text-anchor="middle">products: Có tín hiệu lọc → lọc kho, tự nới</text>
+<polyline class="ar" points="566,126 600,126 600,126 636,126" marker-end="url(#ah)"/>
+<rect class="bx ext" x="640" y="154" width="304" height="40"/>
+<text class="tt" x="792.0" y="178.2" font-size="12" text-anchor="middle">advice: Tư vấn mở (bố trí phòng…) → AI</text>
+<polyline class="ar" points="566,126 600,126 600,174 636,174" marker-end="url(#ah)"/>
+<rect class="bx ext" x="640" y="202" width="304" height="40"/>
+<text class="tt" x="792.0" y="226.2" font-size="12" text-anchor="middle">api: Ngoài luật → AI (nếu có server)</text>
+<polyline class="ar" points="566,126 600,126 600,222 636,222" marker-end="url(#ah)"/>
+</svg><figcaption>Tầng 1 – luật chạy ngay trong trình duyệt (chatbot.js). Chỉ 2 nhánh nét đứt mới cần gọi AI qua server.js; 3 nhánh còn lại luôn chạy được, kể cả trên GitHub Pages.</figcaption></figure>
+<div class="two">
+<div class="card "><h4>Tầng 1 đọc câu hỏi thế nào?</h4><ul><li><b>Chuẩn hoá:</b> chữ thường, bỏ dấu ("Ghế" → "ghe").</li><li><b>Sửa gõ sai:</b> so với từ điển bằng khoảng cách <b>Levenshtein</b> (số ký tự phải sửa), "sopha" → "sofa".</li><li><b>Từ đồng nghĩa &amp; danh sách:</b> loại đồ, màu, chất liệu, 7 phong cách, loại phòng.</li><li><b>Đọc ngân sách:</b> "dưới 10 triệu", "500k", "10.000.001 đồng" (BUG-05).</li><li><b>Ngữ cảnh:</b> nhớ câu trước để hiểu "rẻ hơn", "xem thêm mẫu khác".</li></ul></div>
+<div class="card "><h4>Trả lời bằng luật ra sao?</h4><ul><li><b>Lọc kho:</b> tìm trong rc_products đang bán, chấm điểm, đưa tối đa vài thẻ sản phẩm bấm được.</li><li><b>Tự nới điều kiện</b> khi không có kết quả: màu → chất liệu → từ khoá → ngân sách, và <b>nói thật</b> là đã nới.</li><li><b>Câu quá ngắn</b> ("bàn") → gợi ý món bán chạy.</li><li><b>Hết mẫu</b> → báo "đây là toàn bộ mẫu trong kho", không bịa thêm.</li><li>Lưu tối đa <b>40 tin</b> trong <code>rc_chat_history</code>; có nút xoá hội thoại.</li></ul></div>
+</div>
+<div class="tw"><table class="map"><tr><th>Nhóm câu mẫu (chatbot_faqs.json)</th><th>Số câu</th><th>Ví dụ từ khoá</th></tr><tr><td>PRODUCT – sản phẩm</td><td>5</td><td>chất liệu, bảo hành, xem 3D, đồ cũ, kích thước</td></tr><tr><td>STYLE – phong cách</td><td>6</td><td>Coastal, Scandinavian, Mid-century, Bohemian, Farmhouse, chọn phong cách</td></tr><tr><td>POLICY – chính sách</td><td>3</td><td>thanh toán / COD, hoá đơn VAT, mã giảm giá</td></tr><tr><td>SHIPPING – giao hàng</td><td>3</td><td>phí ship, lắp đặt / khiêng lên lầu, theo dõi đơn</td></tr><tr><td>RETURN – đổi trả</td><td>3</td><td>chính sách đổi trả, điều kiện, hoàn tiền</td></tr></table></div>
+<figure class="dg"><svg viewBox="0 0 960 214" role="img" aria-label="Tầng 2 – server.js (Node.js, cổng 3000). Khoá API nằm trong file .env trên máy chạy server nên trình duyệt không bao giờ thấy khoá." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx acc" x="16" y="40" width="160" height="64"/>
+<text class="tt" x="96.0" y="59.5" font-size="13" text-anchor="middle">chatbot.js</text>
+<text class="ts" x="96.0" y="76.5" font-size="11.5" text-anchor="middle">POST localhost:3000</text>
+<text class="ts" x="96.0" y="93.5" font-size="11.5" text-anchor="middle">/api/chat</text>
+<rect class="bx" x="206" y="40" width="170" height="64"/>
+<text class="tt" x="291.0" y="59.5" font-size="13" text-anchor="middle">① Giới hạn lượt</text>
+<text class="ts" x="291.0" y="76.5" font-size="11.5" text-anchor="middle">30 câu / 60 giây / IP</text>
+<text class="ts" x="291.0" y="93.5" font-size="11.5" text-anchor="middle">vượt → báo đợi 1 phút</text>
+<rect class="bx" x="406" y="40" width="170" height="64"/>
+<text class="tt" x="491.0" y="59.5" font-size="13" text-anchor="middle">② Gom ngữ cảnh (RAG)</text>
+<text class="ts" x="491.0" y="76.5" font-size="11.5" text-anchor="middle">8 SP ứng viên + FAQ khớp</text>
+<text class="ts" x="491.0" y="93.5" font-size="11.5" text-anchor="middle">+ 4 câu chat gần nhất</text>
+<rect class="bx ext" x="606" y="40" width="160" height="64"/>
+<text class="tt" x="686.0" y="59.5" font-size="13" text-anchor="middle">③ Gọi DeepSeek</text>
+<text class="ts" x="686.0" y="76.5" font-size="11.5" text-anchor="middle">/chat/completions</text>
+<text class="ts" x="686.0" y="93.5" font-size="11.5" text-anchor="middle">thử 2 lần × 30 giây</text>
+<rect class="bx dark" x="796" y="40" width="148" height="64"/>
+<text class="tt inv" x="870.0" y="59.5" font-size="13" text-anchor="middle">④ sanitizeReply</text>
+<text class="ts inv" x="870.0" y="76.5" font-size="11.5" text-anchor="middle">giá lạ → thay</text>
+<text class="ts inv" x="870.0" y="93.5" font-size="11.5" text-anchor="middle">bằng câu chuẩn</text>
+<polyline class="ar" points="176,72 202,72" marker-end="url(#ah)"/>
+<polyline class="ar" points="376,72 402,72" marker-end="url(#ah)"/>
+<polyline class="ar" points="576,72 602,72" marker-end="url(#ah)"/>
+<polyline class="ar" points="766,72 792,72" marker-end="url(#ah)"/>
+<rect class="bx warn" x="406" y="150" width="360" height="50"/>
+<text class="tt" x="586.0" y="171.1" font-size="13" text-anchor="middle">Không có key trong .env → generateFallbackResponse()</text>
+<text class="ts" x="586.0" y="188.1" font-size="11.5" text-anchor="middle">trả lời từ dữ liệu, không gọi AI</text>
+<polyline class="ar" points="686,104 686,146" marker-end="url(#ah)"/>
+<text class="lbl" x="694" y="130" text-anchor="start">không có key</text>
+<rect class="bx warn" x="16" y="150" width="360" height="50"/>
+<text class="tt" x="196.0" y="171.1" font-size="13" text-anchor="middle">Server không chạy (status 0) → chatbot.js nghỉ 30 giây</text>
+<text class="ts" x="196.0" y="188.1" font-size="11.5" text-anchor="middle">dùng câu dự phòng, vẫn trả lời bằng luật</text>
+<polyline class="ar" points="96,104 96,146" marker-end="url(#ah)"/>
+<text class="lbl" x="104" y="130" text-anchor="start">lỗi kết nối</text>
+</svg><figcaption>Tầng 2 – server.js (Node.js, cổng 3000). Khoá API nằm trong file .env trên máy chạy server nên trình duyệt không bao giờ thấy khoá.</figcaption></figure>
+<div class="two">
+<div class="card "><h4>API nào? Gọi ra sao?</h4><ul><li>Mô hình <b>DeepSeek</b> (mặc định <code>deepseek-v4.1-flash</code>) qua một cổng (gateway) theo chuẩn OpenAI: gửi POST tới <code>…/chat/completions</code>.</li><li>Địa chỉ cổng, tên model và khoá đọc từ file <code>.env</code> cạnh server.js; <code>.env</code> không đưa lên GitHub.</li><li>Tin gửi đi gồm: <b>system prompt 17 quy tắc</b> (chỉ nói tiếng Việt, tối đa 3 sản phẩm, không bịa giá/tồn kho/khuyến mãi, chỉ nói về nội thất…) + dữ liệu sản phẩm liên quan + 4 câu chat gần nhất.</li><li>temperature 0,4 (ít "sáng tạo"), tối đa 800 token; lỗi thì thử lại 1 lần, đổi mức suy luận.</li><li>Hàm tên <code>callGemini</code> là tên cũ còn sót; code bên trong gọi DeepSeek.</li></ul></div>
+<div class="card "><h4>Khi nào AI thực sự chạy được?</h4><ul><li>Phải chạy <code>node server.js</code> trên chính máy đang mở web, có khoá trong .env, máy có Internet. chatbot.js gọi cứng <code>http://localhost:3000</code>.</li><li><b>Live Server / GitHub Pages:</b> không có server → gọi lỗi → chatbot nghỉ 30 giây, trả câu dự phòng; 3 nhánh luật vẫn chạy bình thường.</li><li>Có server nhưng không có khoá → server trả lời bằng dữ liệu nội bộ.</li><li><b>Bộ test tự động không kiểm phần AI</b> (chặn Internet); 30 ca của s09 kiểm phần luật. Phần AI chỉ kiểm tay khi demo.</li><li>Kiểm nhanh server: mở <code>localhost:3000/api/health</code> → báo đã có khoá hay chưa.</li></ul></div>
+</div>
+<div class="card warn"><h4>Vì sao không gọi AI thẳng từ trình duyệt?</h4><p>Nếu gọi từ chatbot.js thì khoá API phải nằm trong code trình duyệt → ai mở DevTools cũng lấy được và dùng tốn tiền của nhóm. server.js làm <b>proxy</b>: giữ khoá, giới hạn 30 câu/phút/IP, gom dữ liệu thật cho AI và lọc câu trả lời (<code>sanitizeReply</code> so mọi con số tiền với bảng giá thật + phí ship; số lạ → thay bằng câu chuẩn). Đây cũng là lý do "có server.js nhưng vẫn nói không có backend dữ liệu".</p></div>
+<p class="say"><span>Nói miệng</span>Chatbot có 2 tầng. Tầng luật trong trình duyệt xử lý chào hỏi, 20 câu chính sách và lọc sản phẩm theo ngân sách, màu, chất liệu, nên chạy được cả khi không có mạng. Câu tư vấn mở mới gửi sang server.js; server giữ khoá API, gom dữ liệu sản phẩm thật, gọi DeepSeek rồi lọc bỏ con số bịa trước khi trả về.</p>
+</div>
+<div class="deep" id="gs-bp"><h3>3. Điểm ngắt màn hình (breakpoint) xử lý thế nào?</h3>
+<p class="lead">Mọi trang có thẻ <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> để điện thoại hiển thị đúng bề rộng thật thay vì thu nhỏ cả trang máy tính. CSS viết <b>máy tính trước</b>: quy tắc gốc dành cho màn lớn, rồi các khối <code>@media (max-width: X)</code> (nghĩa là "từ X px trở xuống") đè lại dần khi màn hẹp đi.</p>
+<figure class="dg"><svg viewBox="0 0 960 166" role="img" aria-label="Các khoảng bề rộng và thiết bị kiểm thử. CSS viết theo kiểu &quot;máy tính trước&quot;: quy tắc gốc cho màn lớn, rồi @media (max-width: …) đè lại khi màn hẹp dần." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect x="20" y="40" width="260" height="60" fill="#F6E9E5" stroke="#202020" stroke-width="1"/>
+<text class="tt" x="149.88235294117646" y="66" text-anchor="middle" font-size="12">≤ 480px</text>
+<text class="ts" x="149.88235294117646" y="84" text-anchor="middle" font-size="11">Điện thoại nhỏ</text>
+<rect x="280" y="40" width="156" height="60" fill="#F4ECDF" stroke="#202020" stroke-width="1"/>
+<text class="tt" x="357.6941176470588" y="66" text-anchor="middle" font-size="12">481–768px</text>
+<text class="ts" x="357.6941176470588" y="84" text-anchor="middle" font-size="11">Điện thoại lớn / tablet dọc</text>
+<rect x="436" y="40" width="139" height="60" fill="#EEF2EA" stroke="#202020" stroke-width="1"/>
+<text class="tt" x="504.8941176470588" y="66" text-anchor="middle" font-size="12">769–1024px</text>
+<text class="ts" x="504.8941176470588" y="84" text-anchor="middle" font-size="11">Tablet ngang / laptop nhỏ</text>
+<rect x="574" y="40" width="225" height="60" fill="#FFFFFF" stroke="#202020" stroke-width="1"/>
+<text class="tt" x="686.7294117647059" y="66" text-anchor="middle" font-size="12">1025–1440px</text>
+<text class="ts" x="686.7294117647059" y="84" text-anchor="middle" font-size="11">Laptop / máy bàn</text>
+<rect x="799" y="40" width="141" height="60" fill="#EEEEEC" stroke="#202020" stroke-width="1"/>
+<text class="tt" x="869.6470588235294" y="66" text-anchor="middle" font-size="12">&gt; 1440px</text>
+<text class="ts" x="869.6470588235294" y="84" text-anchor="middle" font-size="11">Màn lớn</text>
+<line x1="231" y1="100" x2="231" y2="122" stroke="#B18A52" stroke-width="2"/>
+<text class="lbl" x="231.05882352941177" y="136" text-anchor="middle">iPhone 14 · 390</text>
+<line x1="243" y1="100" x2="243" y2="122" stroke="#B18A52" stroke-width="2"/>
+<text class="lbl" x="242.96470588235294" y="152" text-anchor="middle">Pixel 7 · 412</text>
+<line x1="458" y1="100" x2="458" y2="122" stroke="#B18A52" stroke-width="2"/>
+<text class="lbl" x="458.3529411764706" y="136" text-anchor="middle">iPad · 810</text>
+<line x1="799" y1="100" x2="799" y2="122" stroke="#B18A52" stroke-width="2"/>
+<text class="lbl" x="799.2941176470588" y="136" text-anchor="middle">Desktop test · 1440</text>
+<text class="hd" x="20" y="26" text-anchor="start">Bề rộng cửa sổ trình duyệt (px) →</text>
+</svg><figcaption>Các khoảng bề rộng và thiết bị kiểm thử. CSS viết theo kiểu &quot;máy tính trước&quot;: quy tắc gốc cho màn lớn, rồi @media (max-width: …) đè lại khi màn hẹp dần.</figcaption></figure>
+<div class="tw"><table class="map"><tr><th>Khoảng</th><th>Thiết bị điển hình</th><th>Web thay đổi gì (base.css + CSS từng trang)</th></tr><tr><td>&gt; 1440px</td><td>Màn lớn</td><td>Nội dung giữ tối đa 1440px, căn giữa (<code>.container</code>)</td></tr><tr><td>1025–1440px</td><td>Laptop, máy bàn</td><td>Bố cục đầy đủ: lề 2 bên 64px, lưới 4 cột, menu ngang</td></tr><tr><td>≤ 1024px</td><td>Tablet ngang, laptop nhỏ</td><td>Lề còn 40px; lưới 4 cột → 3 cột; chữ tiêu đề lớn nhỏ lại (56px); menu khít hơn; Shop the Room xếp 1 cột, slider nổi bật hiện 3 thẻ</td></tr><tr><td>≤ 768px</td><td>Tablet dọc, điện thoại lớn</td><td>Lề còn 20px; lưới 3–4 cột → 2 cột; khoảng cách section giảm; tiêu đề trang con 44px; bộ lọc sản phẩm thu vào nút "Bộ lọc"; slider hiện 2 thẻ</td></tr><tr><td>≤ 560 / 480px</td><td>Điện thoại</td><td>Một số khối còn 1 cột (quy tắc mật khẩu, câu chuyện thương hiệu…); slider nổi bật hiện 1 thẻ + hé thẻ sau, vuốt có nam châm (scroll-snap)</td></tr><tr><td>prefers-reduced-motion</td><td>Người bật giảm chuyển động</td><td>Tắt hiệu ứng chạy, hiện sẵn nội dung</td></tr></table></div>
+<div class="two">
+<div class="card "><h4>Kiểm tra thế nào?</h4><ul><li>Test tự động ở 4 bề rộng: <b>390</b> (iPhone 14), <b>412</b> (Pixel 7), <b>810</b> (iPad), <b>1440</b> (máy tính); tiêu chí: không cuộn ngang, thao tác được.</li><li>Đo bằng <code>document.documentElement.scrollWidth</code> so với bề rộng màn hình: lớn hơn tức là tràn ngang.</li><li>P3 thêm 25 hạng mục trên iPhone và Android thật (chạm, xoay máy, bàn phím ảo…).</li></ul></div>
+<div class="card "><h4>Lỗi thật đã gặp (BUG-01)</h4><p>Trang chủ rộng 622px trên màn 390px → cả trang lắc ngang. Nguyên nhân: dải sản phẩm nổi bật và lưới số liệu không co lại được. Sửa: <code>position: relative</code> cho dải cuộn, <code>minmax(0, 1fr)</code> cho cột lưới (cho phép cột nhỏ hơn nội dung), thêm media query đổi số cột trên màn nhỏ.</p></div>
+</div>
+</div>
+<div class="deep" id="gs-bien"><h3>4. Các giá trị biên trong thanh toán</h3>
+<p class="lead">"Giá trị biên" là con số nằm ngay ranh giới của một luật. Lỗi lập trình hay nằm ở đúng chỗ này (viết <code>&lt;</code> thay vì <code>&lt;=</code>), nên nhóm test <b>đúng ngưỡng</b> và <b>lệch 1 đồng</b> hai bên.</p>
+<figure class="dg"><svg viewBox="0 0 960 164" role="img" aria-label="Giá trị biên: kiểm ngay tại ngưỡng và lệch 1 đơn vị hai bên, vì lỗi thường nằm ở dấu so sánh." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<text class="hd" x="20" y="24" text-anchor="start">COD: điều kiện trong code là tongTien &lt;= 10.000.000</text>
+<line class="ar" x1="40" y1="70" x2="920" y2="70"/>
+<rect x="40" y="62" width="440" height="16" fill="#E8F3EB"/>
+<rect x="480" y="62" width="440" height="16" fill="#F6E9E5"/>
+<circle cx="120" cy="70" r="8" fill="#2C6B3F"/>
+<text class="tt" x="120" y="102" text-anchor="middle" font-size="13">9.999.999 ₫</text>
+<text class="lbl" x="120" y="120" text-anchor="middle">được COD</text>
+<circle cx="480" cy="70" r="8" fill="#2C6B3F"/>
+<text class="tt" x="480" y="102" text-anchor="middle" font-size="13">10.000.000 ₫</text>
+<text class="lbl" x="480" y="120" text-anchor="middle">được COD (đúng ngưỡng)</text>
+<circle cx="840" cy="70" r="8" fill="#8C3B2D"/>
+<text class="tt" x="840" y="102" text-anchor="middle" font-size="13">10.000.001 ₫</text>
+<text class="lbl" x="840" y="120" text-anchor="middle">khoá COD</text>
+<text class="note" x="480" y="150" text-anchor="middle">Lỗi hay gặp: lập trình viên viết &lt; thay vì &lt;= → đúng 10.000.000 ₫ bị khoá oan. Chỉ test ở ngay ranh giới mới bắt được.</text>
+</svg><figcaption>Giá trị biên: kiểm ngay tại ngưỡng và lệch 1 đơn vị hai bên, vì lỗi thường nằm ở dấu so sánh.</figcaption></figure>
+<div class="tw"><table class="map"><tr><th>Phương thức giao (shipping_methods.json)</th><th>Dùng cho</th><th>Phí</th><th>Miễn phí khi</th></tr><tr><td>Giao hàng tiêu chuẩn</td><td>Đồ nhỏ: trang trí, gối, đèn, thảm, rèm</td><td>35.000 ₫ nội thành · 50.000 ₫ tỉnh khác</td><td>Tạm tính ≥ 2.000.000 ₫</td></tr><tr><td>Giao hàng nhanh (1–2 ngày)</td><td>Đồ nhỏ, <b>chỉ nội thành</b> HCM, Hà Nội, Đà Nẵng</td><td>80.000 ₫</td><td>Không miễn phí</td></tr><tr><td>Giao và lắp đặt tận nơi</td><td>Nội thất lớn (cả đồ cũ): xe tải, 2 người khiêng, lắp đặt</td><td>300.000 nội thành · 600.000 tỉnh lân cận · 1.200.000 tỉnh xa</td><td>Tạm tính ≥ 15.000.000 ₫ <b>và</b> ở nội thành</td></tr></table></div>
+<div class="two">
+<div class="card "><h4>Đọc bảng biên cho dễ hiểu</h4><ul><li><b>Miễn phí giao đồ nhỏ:</b> giỏ đồ trang trí đúng 2.000.000 ₫ → phí 0. Giỏ 1.999.999 ₫ (thiếu 1 đồng) → phải trả 35.000 ₫ (nội thành) hoặc 50.000 ₫.</li><li><b>Miễn phí đồ lớn:</b> sofa 15.000.000 ₫ giao ở TP.HCM → 0 ₫. Sofa 14.999.999 ₫ → 300.000 ₫. Ở Hải Phòng (tỉnh lân cận) thì dù 20 triệu vẫn 600.000 ₫.</li><li><b>Giao nhanh</b> chọn tỉnh ngoài 3 thành phố → bị khoá.</li></ul></div>
+<div class="card "><h4>COD, đặt cọc, OTP</h4><ul><li><b>COD so với tổng cuối</b> (tiền hàng + phí giao − giảm giá), không so với tiền hàng. Ví dụ hàng 9.800.000 + giao 300.000 = 10.100.000 → <b>không được COD</b> dù tiền hàng dưới 10 triệu.</li><li>Có mã giảm: 10.500.000 − 500.000 = đúng 10.000.000 → được COD; thêm 1 đồng → khoá (kịch bản E2E số 8).</li><li><b>Cọc 30% làm tròn lên nghìn:</b> tổng 12.345.678 × 30% = 3.703.703,4 → cọc <b>3.704.000 ₫</b>.</li><li><b>OTP:</b> mã 6 số, hết hạn sau 5 phút, dùng 1 lần; nút gửi lại khoá 60 giây.</li><li><b>Dashboard:</b> tồn kho ≤ 3 là "sắp hết", gồm cả 0 (BUG-03).</li></ul></div>
+</div>
+</div>
+<div class="deep" id="gs-hd"><h3>5. Kiểm thử hộp đen và 4 kỹ thuật</h3>
+<figure class="dg"><svg viewBox="0 0 960 140" role="img" aria-label="Kiểm thử hộp đen: chỉ dựa vào đặc tả (&quot;nhập gì thì phải ra gì&quot;), không đọc mã nguồn khi thiết kế ca." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="40" width="200" height="70"/>
+<text class="tt" x="120.0" y="62.5" font-size="13" text-anchor="middle">ĐẦU VÀO</text>
+<text class="ts" x="120.0" y="79.5" font-size="11.5" text-anchor="middle">thao tác + dữ liệu nhập</text>
+<text class="ts" x="120.0" y="96.5" font-size="11.5" text-anchor="middle">vd: SĐT, giỏ hàng, tỉnh</text>
+<rect x="320" y="30" width="320" height="90" fill="#202020"/>
+<text class="tt inv" x="480" y="70" text-anchor="middle" font-size="15">WEBSITE</text>
+<text class="ts inv" x="480" y="92" text-anchor="middle" font-size="12">người test không nhìn code bên trong</text>
+<rect class="bx acc" x="740" y="40" width="200" height="70"/>
+<text class="tt" x="840.0" y="62.5" font-size="13" text-anchor="middle">ĐẦU RA</text>
+<text class="ts" x="840.0" y="79.5" font-size="11.5" text-anchor="middle">so với kết quả mong đợi</text>
+<text class="ts" x="840.0" y="96.5" font-size="11.5" text-anchor="middle">trong đặc tả use case</text>
+<polyline class="ar" points="220,75 316,75" marker-end="url(#ah)"/>
+<polyline class="ar" points="640,75 736,75" marker-end="url(#ah)"/>
+</svg><figcaption>Kiểm thử hộp đen: chỉ dựa vào đặc tả (&quot;nhập gì thì phải ra gì&quot;), không đọc mã nguồn khi thiết kế ca.</figcaption></figure>
+<p class="lead">Ngược lại là <b>hộp trắng</b>: đọc code để test từng nhánh if/else. Nhóm chọn hộp đen vì kiểm ở mức <b>hệ thống</b> (cả website đã ghép xong) và ca được viết từ đặc tả use case, người viết ca không cần là người viết code. Để không phải thử vô hạn trường hợp, nhóm dùng 4 kỹ thuật chọn ca:</p>
+<div class="kn">
+<div><h4>① Phân vùng tương đương</h4><p>Chia dữ liệu nhập thành các nhóm mà web <b>xử lý giống nhau</b>, mỗi nhóm thử 1 đại diện. Ví dụ ô SĐT: hợp lệ <code>0912345678</code> · sai đầu số <code>0212345678</code> · thiếu số <code>091234567</code> · có chữ <code>09abc45678</code> · để trống. 5 ca thay cho hàng nghìn số.</p></div>
+<div><h4>② Giá trị biên</h4><p>Thử ngay tại ranh giới và lệch 1 đơn vị: COD 10.000.000 / 10.000.001; miễn ship 1.999.999 / 2.000.000; số lượng mua đúng bằng tồn kho / tồn kho + 1; ngân sách chatbot "dưới 10.000.001".</p></div>
+<div><h4>③ Bảng quyết định</h4><p>Khi kết quả phụ thuộc <b>nhiều điều kiện cùng lúc</b>, liệt kê mọi tổ hợp thành bảng. Phí giao = loại hàng (nhỏ/lớn) × khu vực (nội thành/lân cận/xa) × có đạt ngưỡng miễn phí không × phương thức (thường/nhanh). Mỗi dòng bảng là một ca.</p></div>
+<div><h4>④ Chuyển trạng thái</h4><p>Dùng khi đối tượng có <b>trạng thái</b>. Thử cả chuyển hợp lệ và không hợp lệ: Confirmed → Packing (được) · Confirmed → Huỷ (được, hoàn kho) · Shipping → Huỷ (bị chặn) · chưa Delivered → đánh giá (bị chặn) · Delivered → đánh giá lần 2 (bị chặn).</p></div>
+</div>
+<div class="tw"><table class="map"><tr><th>Khu vực ↓ / Giỏ hàng →</th><th>Đồ nhỏ &lt; 2tr</th><th>Đồ nhỏ ≥ 2tr</th><th>Có đồ lớn &lt; 15tr</th><th>Có đồ lớn ≥ 15tr</th></tr><tr><td>Nội thành (HCM, HN, ĐN)</td><td>35.000 (nhanh: 80.000)</td><td>0 (nhanh: 80.000)</td><td>300.000</td><td>0</td></tr><tr><td>Tỉnh lân cận</td><td>50.000 · không giao nhanh</td><td>0</td><td>600.000</td><td>600.000</td></tr><tr><td>Tỉnh xa</td><td>50.000 · không giao nhanh</td><td>0</td><td>1.200.000</td><td>1.200.000</td></tr></table></div>
+<p class="small">Bảng quyết định phí giao: mỗi ô là một ca kiểm thử trong phiên s05.</p>
+</div>
+<div class="deep" id="gs-tool"><h3>6. Test case viết ở đâu, chạy bằng gì?</h3>
+<figure class="dg"><svg viewBox="0 0 960 118" role="img" aria-label="Bộ kiểm thử tự động viết bằng JavaScript, chạy bằng Node.js với thư viện Playwright điều khiển trình duyệt thật." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="24" width="172" height="72"/>
+<text class="tt" x="106.0" y="47.5" font-size="13" text-anchor="middle">Kế hoạch &amp; ca kiểm thử</text>
+<text class="ts" x="106.0" y="64.5" font-size="11.5" text-anchor="middle">KE-HOACH-TEST.md</text>
+<text class="ts" x="106.0" y="81.5" font-size="11.5" text-anchor="middle">15 cột / ca</text>
+<polyline class="ar" points="194,60 208,60" marker-end="url(#ah)"/>
+<rect class="bx" x="210" y="24" width="172" height="72"/>
+<text class="tt" x="296.0" y="47.5" font-size="13" text-anchor="middle">File phiên .js</text>
+<text class="ts" x="296.0" y="64.5" font-size="11.5" text-anchor="middle">tests/phien/sXX.js</text>
+<text class="ts" x="296.0" y="81.5" font-size="11.5" text-anchor="middle">mỗi ca: t.tc({…})</text>
+<polyline class="ar" points="384,60 398,60" marker-end="url(#ah)"/>
+<rect class="bx dark" x="400" y="24" width="172" height="72"/>
+<text class="tt inv" x="486.0" y="47.5" font-size="13" text-anchor="middle">Node.js + Playwright</text>
+<text class="ts inv" x="486.0" y="64.5" font-size="11.5" text-anchor="middle">mở 7 cấu hình</text>
+<text class="ts inv" x="486.0" y="81.5" font-size="11.5" text-anchor="middle">web ở cổng 5599</text>
+<polyline class="ar" points="574,60 588,60" marker-end="url(#ah)"/>
+<rect class="bx" x="590" y="24" width="172" height="72"/>
+<text class="tt" x="676.0" y="47.5" font-size="13" text-anchor="middle">Thực hiện các bước</text>
+<text class="ts" x="676.0" y="64.5" font-size="11.5" text-anchor="middle">kq.dat(điều kiện)</text>
+<text class="ts" x="676.0" y="81.5" font-size="11.5" text-anchor="middle">dữ liệu sạch, chặn mạng</text>
+<polyline class="ar" points="764,60 778,60" marker-end="url(#ah)"/>
+<rect class="bx acc" x="780" y="24" width="172" height="72"/>
+<text class="tt" x="866.0" y="47.5" font-size="13" text-anchor="middle">Kết quả</text>
+<text class="ts" x="866.0" y="64.5" font-size="11.5" text-anchor="middle">ảnh theo mã TC</text>
+<text class="ts" x="866.0" y="81.5" font-size="11.5" text-anchor="middle">.md · .tsv · .xlsx → Sheet</text>
+</svg><figcaption>Bộ kiểm thử tự động viết bằng JavaScript, chạy bằng Node.js với thư viện Playwright điều khiển trình duyệt thật.</figcaption></figure>
+<div class="two">
+<div class="card "><h4>Nạp và lưu test case</h4><ul><li><b>Kế hoạch</b> ở <code>tests/KE-HOACH-TEST.md</code>; phạm vi từng phiên ở <code>tools/pham-vi.json</code>.</li><li>Mỗi ca khai báo trong file phiên <code>tests/phien/sXX-….js</code> bằng <code>t.tc({…})</code> với các trường: mã TC, trang, chức năng, tiền điều kiện, các bước, dữ liệu nhập, kết quả mong đợi, mức độ nếu lỗi.</li><li>Kết quả ghi ra 15 cột giống tab "Test case" trên Google Sheet: file <code>.tsv</code>, <code>TONG-HOP.xlsx</code>, và (nếu có cấu hình) gửi thẳng lên Sheet qua Apps Script.</li><li>Ảnh minh chứng: <code>anh/&lt;Mã TC&gt;.jpg</code>, ảnh lỗi thêm đuôi <code>_loi</code>.</li></ul></div>
+<div class="card "><h4>Vì sao JavaScript + Playwright, không Python hay Java?</h4><ul><li>Website viết bằng JavaScript → test cùng ngôn ngữ, cả nhóm đọc được, không phải học thêm.</li><li><b>Playwright</b> (bản 1.48.2) điều khiển cả 3 nhân trình duyệt Chromium (Edge, Chrome), Firefox, WebKit (Safari) và <b>giả lập</b> iPhone, Pixel, iPad bằng một công cụ.</li><li>Playwright cũng có bản Python/Java, nhưng bản Node.js là bản gốc, cài bằng <code>npm install</code> là xong; Selenium + Java nặng hơn và phải cài driver riêng.</li><li>Kèm <b>axe-core</b> (khả năng tiếp cận, WCAG 2.2) và <b>exceljs</b> (xuất Excel).</li></ul></div>
+</div>
+<div class="card "><h4>Chạy thế nào?</h4><pre><code>cd tests
+npm install
+npx playwright install chromium
+node phien/s00-khoi-dong.js            # 1 phiên, mặc định Edge
+node tools/chay-cau-hinh.js iphone       # chạy theo 1 cấu hình</code></pre><p class="small">Khung test tự mở web ở cổng 5599 (không cần Live Server), xoá dữ liệu trình duyệt trước mỗi phiên, chặn Internet. Mọi ca "không đạt" được người xác minh lại (đọc code, tái hiện tay) trước khi chốt.</p></div>
+</div>
+<div class="deep" id="gs-hq"><h3>7. "0 hồi quy" nghĩa là gì?</h3>
+<figure class="dg"><svg viewBox="0 0 960 196" role="img" aria-label="Hồi quy (regression): một chức năng đang chạy đúng bị hỏng sau khi sửa code ở chỗ khác. &quot;0 hồi quy&quot; = không ca nào đang đạt ở P2 lại thành không đạt ở P3." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<text class="hd" x="150" y="18" text-anchor="middle">Ở P2</text>
+<text class="hd" x="560" y="18" text-anchor="middle">Ở P3 (sau khi sửa)</text>
+<rect class="bx" x="60" y="40" width="180" height="44"/>
+<text class="tt" x="150.0" y="66.5" font-size="13" text-anchor="middle">Ca ĐẠT</text>
+<rect class="bx warn" x="60" y="140" width="180" height="44"/>
+<text class="tt" x="150.0" y="166.6" font-size="13" text-anchor="middle">Ca KHÔNG ĐẠT</text>
+<rect class="bx" x="470" y="26" width="200" height="36"/>
+<text class="tt" x="570.0" y="48.2" font-size="12" text-anchor="middle">vẫn ĐẠT</text>
+<rect class="bx warn" x="470" y="76" width="200" height="36"/>
+<text class="tt" x="570.0" y="98.2" font-size="12" text-anchor="middle">KHÔNG ĐẠT = HỒI QUY</text>
+<rect class="bx acc" x="470" y="144" width="200" height="36"/>
+<text class="tt" x="570.0" y="166.2" font-size="12" text-anchor="middle">chuyển sang ĐẠT</text>
+<polyline class="ar" points="240,56 466,44" marker-end="url(#ah)"/>
+<text class="lbl" x="353" y="42" text-anchor="middle">bình thường</text>
+<polyline class="ar dash" points="240,70 466,94" marker-end="url(#ah)"/>
+<text class="lbl" x="353" y="98" text-anchor="middle">hỏng vì sửa chỗ khác</text>
+<polyline class="ar hl" points="240,162 466,162" marker-end="url(#ah2)"/>
+<text class="lbl" x="353" y="154" text-anchor="middle">198 ca</text>
+<text class="note" x="690" y="98" text-anchor="start">← nhóm đếm được 0 ca</text>
+</svg><figcaption>Hồi quy (regression): một chức năng đang chạy đúng bị hỏng sau khi sửa code ở chỗ khác. &quot;0 hồi quy&quot; = không ca nào đang đạt ở P2 lại thành không đạt ở P3.</figcaption></figure>
+<div class="two">
+<div class="card "><h4>Vì sao quan trọng?</h4><p>Sửa lỗi ở file dùng chung (store.js, auth.js, base.css) rất dễ làm hỏng trang khác mà người sửa không để ý. Vì vậy P3 chạy lại <b>toàn bộ 394 ca × 7 cấu hình</b> chứ không chỉ chạy lại những ca từng hỏng. Số hồi quy bằng 0 là điều kiện để coi vòng sửa lỗi là an toàn.</p></div>
+<div class="card warn"><h4>Ví dụ thật nhóm đã gặp</h4><p>Khi sửa BUG-02 (leo quyền), bản sửa giả định mã vai trò Admin là 1, trong khi dữ liệu thật dùng 2. Kết quả: admin bị đẩy khỏi trang quản trị, user thường lại vào được. Các ca leo quyền vẫn báo như cũ nên không ai thấy; lỗi chỉ lộ ra khi chạy lại cả bộ. Nhóm sửa lại, chạy lại lần nữa, chốt <b>0 hồi quy</b>.</p></div>
+</div>
+</div>
+<div class="deep" id="gs-sha"><h3>8. SHA-256 không salt là gì?</h3>
+<div class="two">
+<div class="card "><h4>SHA-256 là gì?</h4><ul><li>Hàm <b>băm một chiều</b>: biến mật khẩu thành chuỗi 64 ký tự; từ chuỗi đó không tính ngược ra mật khẩu.</li><li>RoomCraft lưu <code>password_hash = sha256(mật khẩu)</code> trong rc_users. Khi đăng nhập, băm mật khẩu vừa nhập rồi so với hash đã lưu, không lưu mật khẩu gốc.</li><li>Hàm sha256 viết bằng JavaScript thuần trong <code>js/core/utils.js</code>.</li></ul></div>
+<div class="card warn"><h4>Vì sao là hạn chế?</h4><ul><li><b>Không salt:</b> cùng mật khẩu → cùng hash. Mật khẩu phổ biến ("123456") đã có sẵn trong các <b>bảng tra ngược</b> → nhìn hash là biết.</li><li><b>SHA-256 quá nhanh:</b> máy tính thử được hàng tỉ mật khẩu mỗi giây → dò ra mật khẩu yếu rất dễ.</li><li><b>Hash nằm ngay trên trình duyệt:</b> ai mở DevTools cũng đọc được rc_users.</li></ul></div>
+</div>
+<figure class="dg"><svg viewBox="0 0 960 160" role="img" aria-label="Salt là chuỗi ngẫu nhiên riêng cho từng tài khoản, ghép vào mật khẩu trước khi băm. Không có salt thì hai mật khẩu giống nhau cho ra cùng một mã băm." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<text class="hd" x="20" y="22" text-anchor="start">KHÔNG SALT (RoomCraft hiện tại)</text>
+<rect class="bx" x="20" y="34" width="150" height="40"/>
+<text class="tt" x="95.0" y="58.5" font-size="13" text-anchor="middle">An: &quot;123456&quot;</text>
+<rect class="bx" x="20" y="84" width="150" height="40"/>
+<text class="tt" x="95.0" y="108.5" font-size="13" text-anchor="middle">Bình: &quot;123456&quot;</text>
+<rect class="bx dark" x="220" y="56" width="120" height="46"/>
+<text class="tt inv" x="280.0" y="83.5" font-size="13" text-anchor="middle">sha256()</text>
+<rect class="bx warn" x="390" y="34" width="160" height="40"/>
+<text class="tt" x="470.0" y="58.5" font-size="13" text-anchor="middle">8d969eef…c92</text>
+<rect class="bx warn" x="390" y="84" width="160" height="40"/>
+<text class="tt" x="470.0" y="108.5" font-size="13" text-anchor="middle">8d969eef…c92</text>
+<polyline class="ar" points="170,54 216,70" marker-end="url(#ah)"/>
+<polyline class="ar" points="170,104 216,88" marker-end="url(#ah)"/>
+<polyline class="ar" points="340,70 386,54" marker-end="url(#ah)"/>
+<polyline class="ar" points="340,88 386,104" marker-end="url(#ah)"/>
+<text class="note" x="470" y="146" text-anchor="middle">Giống hệt nhau → tra bảng có sẵn là ra</text>
+<text class="hd" x="600" y="22" text-anchor="start">CÓ SALT (cách làm đúng)</text>
+<rect class="bx" x="600" y="34" width="160" height="40"/>
+<text class="tt" x="680.0" y="58.5" font-size="13" text-anchor="middle">&quot;x7Q…&quot; + &quot;123456&quot;</text>
+<rect class="bx" x="600" y="84" width="160" height="40"/>
+<text class="tt" x="680.0" y="108.5" font-size="13" text-anchor="middle">&quot;p2R…&quot; + &quot;123456&quot;</text>
+<rect class="bx acc" x="790" y="34" width="150" height="40"/>
+<text class="tt" x="865.0" y="58.5" font-size="13" text-anchor="middle">a91f…07b</text>
+<rect class="bx acc" x="790" y="84" width="150" height="40"/>
+<text class="tt" x="865.0" y="108.5" font-size="13" text-anchor="middle">3c0e…d52</text>
+<polyline class="ar" points="760,54 786,54" marker-end="url(#ah)"/>
+<polyline class="ar" points="760,104 786,104" marker-end="url(#ah)"/>
+<text class="note" x="770" y="146" text-anchor="middle">Salt ngẫu nhiên mỗi người → kết quả khác nhau</text>
+</svg><figcaption>Salt là chuỗi ngẫu nhiên riêng cho từng tài khoản, ghép vào mật khẩu trước khi băm. Không có salt thì hai mật khẩu giống nhau cho ra cùng một mã băm.</figcaption></figure>
+<div class="two">
+<div class="card "><h4>Khắc phục ngay được không?</h4><p><b>Được một phần, không giải quyết gốc.</b> Có thể thêm salt ngay trong JS (sinh chuỗi ngẫu nhiên khi đăng ký, lưu cạnh hash, băm <code>salt + mật khẩu</code>; tài khoản cũ đổi sang cách mới ở lần đăng nhập kế tiếp). Nhưng salt, hash và code băm vẫn nằm hết trên máy người dùng, nên kẻ có quyền mở trình duyệt vẫn đọc được. Ngoài ra đang code freeze, đổi cách băm sát hạn nộp dễ làm hỏng đăng nhập của tài khoản mẫu.</p></div>
+<div class="card "><h4>Khắc phục đúng cách</h4><ul><li>Chuyển đăng nhập lên <b>server</b> (hướng phát triển ưu tiên 2).</li><li>Băm bằng <b>bcrypt</b> hoặc <b>Argon2</b>: tự có salt, cố tình chạy chậm để dò mật khẩu tốn công.</li><li>Hash lưu trong MySQL trên server (cột password_hash đã có trong thiết kế Chương 3), trình duyệt không bao giờ thấy.</li><li>Gửi mật khẩu qua HTTPS; server cấp token có chữ ký sau khi đăng nhập.</li></ul></div>
+</div>
+<p class="say"><span>Nói miệng</span>Web băm mật khẩu bằng SHA-256 nên không lưu mật khẩu gốc, nhưng không có salt và việc băm diễn ra ở trình duyệt, nên chỉ đủ cho mục đích học tập. Thêm salt ở client chỉ vá được một phần; cách đúng là đưa đăng nhập lên server và băm bằng bcrypt hoặc Argon2.</p>
+</div>
+<div class="deep" id="gs-bug02"><h3>9. BUG-02: Giả mạo phiên đăng nhập (Trung bình · chấp nhận rủi ro)</h3>
+<p class="lead">Khi đăng nhập, web lưu phiên vào localStorage ở khoá <code>rc_session</code>, dạng <code>{"user_id": 5, "role": "User"}</code>. Ai mở DevTools cũng sửa được khoá này. Phiên s12 có 2 ca kiểm đúng chuyện đó (TC-S12-01, TC-S12-02).</p>
+<figure class="dg"><svg viewBox="0 0 960 270" role="img" aria-label="BUG-02: sửa được nửa đầu (giả vai trò), nửa sau (giả mã tài khoản admin) không chặn được khi không có máy chủ xác thực." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<text class="hd" x="20" y="22" text-anchor="start">Kẻ tấn công: mở DevTools → Application → Local Storage → sửa khoá rc_session</text>
+<rect class="bx warn" x="20" y="40" width="210" height="56"/>
+<text class="tt" x="125.0" y="64.0" font-size="13" text-anchor="middle">TRƯỚC KHI SỬA</text>
+<text class="ts" x="125.0" y="81.0" font-size="11.5" text-anchor="middle">rc_session.role = &quot;Admin&quot;</text>
+<rect class="bx" x="270" y="40" width="250" height="56"/>
+<text class="tt" x="395.0" y="64.0" font-size="13" text-anchor="middle">requireAdmin tin chữ &quot;role&quot;</text>
+<text class="ts" x="395.0" y="81.0" font-size="11.5" text-anchor="middle">đọc thẳng từ phiên</text>
+<rect class="bx warn" x="560" y="40" width="180" height="56"/>
+<text class="tt" x="650.0" y="64.0" font-size="13" text-anchor="middle">Vào trang Admin</text>
+<text class="ts" x="650.0" y="81.0" font-size="11.5" text-anchor="middle">✗ leo quyền được</text>
+<polyline class="ar" points="230,68 266,68" marker-end="url(#ah)"/>
+<polyline class="ar" points="520,68 556,68" marker-end="url(#ah)"/>
+<rect class="bx acc" x="20" y="120" width="210" height="56"/>
+<text class="tt" x="125.0" y="144.1" font-size="13" text-anchor="middle">SAU KHI SỬA</text>
+<text class="ts" x="125.0" y="161.1" font-size="11.5" text-anchor="middle">sửa role = &quot;Admin&quot;</text>
+<rect class="bx" x="270" y="120" width="250" height="56"/>
+<text class="tt" x="395.0" y="144.1" font-size="13" text-anchor="middle">isAdmin(): bỏ qua role,</text>
+<text class="ts" x="395.0" y="161.1" font-size="11.5" text-anchor="middle">user_id → users → role_id → roles</text>
+<rect class="bx acc" x="560" y="120" width="180" height="56"/>
+<text class="tt" x="650.0" y="144.1" font-size="13" text-anchor="middle">Tên quyền thật = &quot;User&quot;</text>
+<text class="ts" x="650.0" y="161.1" font-size="11.5" text-anchor="middle">✓ bị chặn</text>
+<polyline class="ar" points="230,148 266,148" marker-end="url(#ah)"/>
+<polyline class="ar" points="520,148 556,148" marker-end="url(#ah)"/>
+<rect class="bx warn" x="20" y="200" width="210" height="56"/>
+<text class="tt" x="125.0" y="224.1" font-size="13" text-anchor="middle">LỖ CÒN LẠI</text>
+<text class="ts" x="125.0" y="241.1" font-size="11.5" text-anchor="middle">đổi user_id = id của admin</text>
+<rect class="bx" x="270" y="200" width="250" height="56"/>
+<text class="tt" x="395.0" y="224.1" font-size="13" text-anchor="middle">isAdmin() tra bảng thấy</text>
+<text class="ts" x="395.0" y="241.1" font-size="11.5" text-anchor="middle">đúng là tài khoản Admin</text>
+<rect class="bx warn" x="560" y="200" width="180" height="56"/>
+<text class="tt" x="650.0" y="224.1" font-size="13" text-anchor="middle">Vào trang Admin</text>
+<text class="ts" x="650.0" y="241.1" font-size="11.5" text-anchor="middle">✗ vẫn vượt được</text>
+<polyline class="ar" points="230,228 266,228" marker-end="url(#ah)"/>
+<polyline class="ar" points="520,228 556,228" marker-end="url(#ah)"/>
+<rect class="bx dark" x="780" y="120" width="164" height="136"/>
+<text class="tt inv" x="862.0" y="152.2" font-size="12" text-anchor="middle">Vì sao không chặn</text>
+<text class="ts inv" x="862.0" y="168.2" font-size="10.5" text-anchor="middle">hết được?</text>
+<text class="ts inv" x="862.0" y="184.2" font-size="10.5" text-anchor="middle">phiên, bảng users,</text>
+<text class="ts inv" x="862.0" y="200.2" font-size="10.5" text-anchor="middle">bảng roles và code</text>
+<text class="ts inv" x="862.0" y="216.2" font-size="10.5" text-anchor="middle">kiểm tra đều nằm</text>
+<text class="ts inv" x="862.0" y="232.2" font-size="10.5" text-anchor="middle">trong trình duyệt</text>
+<polyline class="ar" points="740,228 776,228" marker-end="url(#ah)"/>
+</svg><figcaption>BUG-02: sửa được nửa đầu (giả vai trò), nửa sau (giả mã tài khoản admin) không chặn được khi không có máy chủ xác thực.</figcaption></figure>
+<div class="two">
+<div class="card "><h4>Nhóm đã sửa được gì?</h4><p>Trước đây chỉ cần đổi <code>"role": "User"</code> thành <code>"Admin"</code> là vào được trang quản trị. Sau khi sửa, hàm <code>isAdmin()</code> trong <code>auth.js</code> <b>không tin chữ role trong phiên</b> nữa: nó lấy <code>user_id</code>, tìm tài khoản trong bảng users, rồi tra tên quyền thật trong bảng roles. Sửa chữ role giờ không còn tác dụng. Tài khoản bị khoá cũng bị coi như đã đăng xuất.</p></div>
+<div class="card warn"><h4>Vì sao không sửa hết được?</h4><p>Người đó vẫn có thể đổi <code>user_id</code> thành mã của tài khoản admin thật, web tra bảng thấy đúng là admin nên cho vào. Mọi thứ đều nằm trong trình duyệt của chính người dùng: phiên, bảng users, bảng roles và cả đoạn code kiểm tra quyền. Không có bên thứ ba đáng tin để xác nhận "đây đúng là admin", nên ở client sửa kiểu gì người rành kỹ thuật cũng vượt được. Đây là <b>giới hạn kiến trúc</b>, không phải lỗi code.</p></div>
+</div>
+<figure class="dg"><svg viewBox="0 0 960 130" role="img" aria-label="Cách khắc phục khi có backend (hướng phát triển ưu tiên 2)." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="30" width="170" height="56"/>
+<text class="tt" x="105.0" y="54.0" font-size="13" text-anchor="middle">Đăng nhập</text>
+<text class="ts" x="105.0" y="71.0" font-size="11.5" text-anchor="middle">gửi email + mật khẩu</text>
+<rect class="bx dark" x="230" y="30" width="220" height="56"/>
+<text class="tt inv" x="340.0" y="54.0" font-size="13" text-anchor="middle">Server kiểm mật khẩu</text>
+<text class="ts inv" x="340.0" y="71.0" font-size="11.5" text-anchor="middle">cấp TOKEN CÓ CHỮ KÝ</text>
+<rect class="bx" x="490" y="30" width="200" height="56"/>
+<text class="tt" x="590.0" y="54.0" font-size="13" text-anchor="middle">Trình duyệt giữ token</text>
+<text class="ts" x="590.0" y="71.0" font-size="11.5" text-anchor="middle">{user_id, role, hạn} + chữ ký</text>
+<rect class="bx acc" x="730" y="30" width="214" height="56"/>
+<text class="tt" x="837.0" y="54.0" font-size="13" text-anchor="middle">Mỗi thao tác gửi kèm token</text>
+<text class="ts" x="837.0" y="71.0" font-size="11.5" text-anchor="middle">server kiểm chữ ký + tra CSDL</text>
+<polyline class="ar" points="190,58 226,58" marker-end="url(#ah)"/>
+<polyline class="ar" points="450,58 486,58" marker-end="url(#ah)"/>
+<polyline class="ar" points="690,58 726,58" marker-end="url(#ah)"/>
+<text class="note" x="480" y="116" text-anchor="middle">Người dùng sửa token → chữ ký không khớp → server từ chối. Trình duyệt không còn là nơi quyết định quyền.</text>
+</svg><figcaption>Cách khắc phục khi có backend (hướng phát triển ưu tiên 2).</figcaption></figure>
+<p class="say"><span>Nói miệng</span>Nhóm đã chặn được việc sửa vai trò trong phiên vì quyền được tra lại từ bảng roles. Nhưng giả mạo mã tài khoản admin thì không chặn được khi chưa có máy chủ, vì mọi dữ liệu lẫn code kiểm tra đều nằm ở trình duyệt. Hướng xử lý là xác thực phía server bằng token có chữ ký.</p>
+</div>
+<div class="deep" id="gs-bug07"><h3>10. BUG-07: Ảnh phòng dung lượng lớn (Nhẹ · chấp nhận rủi ro)</h3>
+<p class="lead">Phiên audit s12 đặt 3 tiêu chí cho trang chủ: mở dưới 3 giây, tổng dưới 5MB, không ảnh nào quá 500KB (TC-S12-16, TC-S12-17). Trang chủ có 5 ảnh phòng, mỗi ảnh 539–585KB, cộng thêm video nền nên tổng vượt 5MB.</p>
+<figure class="dg"><svg viewBox="0 0 960 236" role="img" aria-label="BUG-07: đánh đổi có chủ ý giữa độ nét ảnh (cốt lõi của Shop the Room) và tốc độ tải trên một số môi trường." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<text class="hd" x="20" y="22" text-anchor="start">Trang chủ lần đầu mở (ngưỡng audit s12: &lt; 3 giây · tổng &lt; 5MB · không ảnh nào &gt; 500KB)</text>
+<rect class="bx" x="20" y="40" width="150" height="56"/>
+<text class="tt" x="95.0" y="64.0" font-size="13" text-anchor="middle">HTML, CSS, JS</text>
+<text class="ts" x="95.0" y="81.0" font-size="11.5" text-anchor="middle">nhẹ</text>
+<rect class="bx warn" x="200" y="40" width="180" height="56"/>
+<text class="tt" x="290.0" y="64.0" font-size="13" text-anchor="middle">Video nền</text>
+<text class="ts" x="290.0" y="81.0" font-size="11.5" text-anchor="middle">phát ở đầu trang</text>
+<rect class="bx warn" x="410" y="40" width="260" height="56"/>
+<text class="tt" x="540.0" y="64.0" font-size="13" text-anchor="middle">5 ảnh phòng · 539–585KB/ảnh</text>
+<text class="ts" x="540.0" y="81.0" font-size="11.5" text-anchor="middle">mỗi ảnh vượt 500KB</text>
+<rect class="bx dark" x="700" y="40" width="244" height="56"/>
+<text class="tt inv" x="822.0" y="64.0" font-size="13" text-anchor="middle">Tổng &gt; 5MB</text>
+<text class="ts inv" x="822.0" y="81.0" font-size="11.5" text-anchor="middle">Safari 9,1s · iPhone giả lập 10,8s</text>
+<polyline class="ar" points="170,68 196,68" marker-end="url(#ah)"/>
+<polyline class="ar" points="380,68 406,68" marker-end="url(#ah)"/>
+<polyline class="ar" points="670,68 696,68" marker-end="url(#ah)"/>
+<rect class="bx acc" x="20" y="130" width="440" height="64"/>
+<text class="tt" x="240.0" y="149.6" font-size="13" text-anchor="middle">ĐÃ LÀM: loading=&quot;lazy&quot; (tải lười)</text>
+<text class="ts" x="240.0" y="166.6" font-size="11.5" text-anchor="middle">ảnh chỉ tải khi người dùng cuộn gần tới</text>
+<text class="ts" x="240.0" y="183.6" font-size="11.5" text-anchor="middle">→ không nén để giữ độ nét ảnh phòng</text>
+<rect class="bx" x="504" y="130" width="440" height="64"/>
+<text class="tt" x="724.0" y="149.6" font-size="13" text-anchor="middle">HƯỚNG SỬA: WebP/AVIF + srcset</text>
+<text class="ts" x="724.0" y="166.6" font-size="11.5" text-anchor="middle">mỗi ảnh 3 bản nhỏ / vừa / gốc</text>
+<text class="ts" x="724.0" y="183.6" font-size="11.5" text-anchor="middle">điện thoại tải bản nhỏ, màn lớn tải bản gốc</text>
+<text class="note" x="480" y="222" text-anchor="middle">Edge, Chrome, Firefox vẫn đạt ngưỡng thời gian → lỗi chỉ làm chậm trên WebKit/iPhone, không hỏng chức năng nào.</text>
+</svg><figcaption>BUG-07: đánh đổi có chủ ý giữa độ nét ảnh (cốt lõi của Shop the Room) và tốc độ tải trên một số môi trường.</figcaption></figure>
+<div class="two">
+<div class="card "><h4>Hậu quả đo được</h4><ul><li>Edge, Chrome, Firefox: vẫn đạt ngưỡng thời gian.</li><li>Safari/WebKit: lần đầu mất <b>9,1 giây</b>; iPhone giả lập <b>10,8 giây</b> (ngưỡng 5 giây). Mở lại 3,6 và 4,4 giây (ngưỡng 3 giây).</li><li>Không chức năng nào hỏng, chỉ chậm.</li></ul></div>
+<div class="card "><h4>Vì sao chấp nhận?</h4><p>Ảnh phòng là "kệ hàng" của Shop the Room: người dùng phải nhìn rõ từng món trong ảnh để bấm hotspot. Nén mạnh thì ảnh mờ, mất cảm giác cao cấp. Nhóm chọn ưu tiên độ nét và chỉ bật <b>tải lười</b> (<code>loading="lazy"</code>): ảnh nằm dưới chỉ tải khi cuộn tới.</p></div>
+</div>
+<p class="say"><span>Nói miệng</span>Ảnh phòng là nội dung chính của Shop the Room nên nhóm giữ độ nét, chỉ bật tải lười. Đổi lại trang chủ tải chậm trên Safari và iPhone giả lập; các trình duyệt khác vẫn đạt. Hướng xử lý là dùng WebP và srcset để điện thoại tải ảnh nhỏ hơn.</p>
+<div class="card"><h4>Điểm chung khi bị hỏi "sao không sửa hết?"</h4><p>Chấp nhận rủi ro không phải là bỏ qua lỗi. Hai ca này vẫn ghi <b>Không đạt</b> trong dữ liệu gốc, chỉ không tính vào mẫu số khi tính tỉ lệ đạt, và đều được ghi vào phần hạn chế + hướng phát triển của báo cáo.</p></div>
+</div>
+</section>
+<section id="kien-thuc-an">
+<p class="ov">Phần 14</p><h2>Những kỹ thuật đồ án đang dùng mà dễ "chưa thật hiểu"</h2>
+<div class="card"><h4>Cách đọc phần này</h4><p>Đây là những thứ đồ án <b>đang dùng thật</b> (đã đối chiếu code) nhưng vượt ngoài phần cơ bản đã học (HTML/CSS, form, DOM, sự kiện, JSON, localStorage). Có chỗ được viết với sự hỗ trợ của AI, nên dễ "có trong code mà không giải thích được". Mỗi mục có nhãn mức độ: <span class="lv lv1">Phải nắm</span> thầy dễ hỏi, phải nói được · <span class="lv lv2">Nên biết</span> nói được ý chính · <span class="lv lv3">Biết tên là đủ</span> biết nó là gì, dùng ở đâu.</p></div>
+<figure class="dg"><svg viewBox="0 0 960 334" role="img" aria-label="Bản đồ kiến thức: mỗi tầng của RoomCraft đang dùng những kỹ thuật nào ngoài phần cơ bản HTML/CSS/DOM/JSON." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<text class="hd" x="20" y="14" text-anchor="start">TRONG TRÌNH DUYỆT</text>
+<text class="hd" x="730" y="14" text-anchor="start">BÊN NGOÀI / CÔNG CỤ</text>
+<rect class="bx" x="20" y="24" width="190" height="48"/>
+<text class="tt" x="115.0" y="52.5" font-size="13" text-anchor="middle">HTML / CSS</text>
+<rect class="bx" x="220" y="24" width="480" height="48"/>
+<text class="ts" x="232" y="44" text-anchor="start" font-size="11.5">biến CSS var(--…) · clamp() · grid minmax · sticky</text>
+<text class="ts" x="232" y="62" text-anchor="start" font-size="11.5">scroll-snap · @media · keyframes · aria / role / tabindex</text>
+<polyline class="ar" points="115,72 115,84" marker-end="url(#ah)"/>
+<rect class="bx" x="20" y="86" width="190" height="48"/>
+<text class="tt" x="115.0" y="114.5" font-size="13" text-anchor="middle">JS trang + component</text>
+<rect class="bx" x="220" y="86" width="480" height="48"/>
+<text class="ts" x="232" y="106" text-anchor="start" font-size="11.5">loadData(initPage) callback · IntersectionObserver</text>
+<text class="ts" x="232" y="124" text-anchor="start" font-size="11.5">matchMedia · history.replaceState · dataset · createElement</text>
+<polyline class="ar" points="115,134 115,146" marker-end="url(#ah)"/>
+<rect class="bx" x="20" y="148" width="190" height="48"/>
+<text class="tt" x="115.0" y="176.6" font-size="13" text-anchor="middle">JS services</text>
+<rect class="bx" x="220" y="148" width="480" height="48"/>
+<text class="ts" x="232" y="168" text-anchor="start" font-size="11.5">luật nghiệp vụ · máy trạng thái đơn hàng · làm tròn cọc</text>
+<text class="ts" x="232" y="186" text-anchor="start" font-size="11.5">thuật toán Luhn · Levenshtein · chuẩn hoá NFD</text>
+<polyline class="ar" points="115,196 115,208" marker-end="url(#ah)"/>
+<rect class="bx acc" x="20" y="210" width="190" height="48"/>
+<text class="tt" x="115.0" y="238.6" font-size="13" text-anchor="middle">core: store · auth · utils</text>
+<rect class="bx" x="220" y="210" width="480" height="48"/>
+<text class="ts" x="232" y="230" text-anchor="start" font-size="11.5">Data Access Layer · cache bangDaDoc · migration DATA_VERSION</text>
+<text class="ts" x="232" y="248" text-anchor="start" font-size="11.5">SHA-256 · giải mã JWT · safeText chống XSS</text>
+<polyline class="ar" points="115,258 115,270" marker-end="url(#ah)"/>
+<rect class="bx dark" x="20" y="272" width="190" height="48"/>
+<text class="tt inv" x="115.0" y="300.6" font-size="13" text-anchor="middle">localStorage ← data/json</text>
+<rect class="bx" x="220" y="272" width="480" height="48"/>
+<text class="ts" x="232" y="292" text-anchor="start" font-size="11.5">key–value theo origin · phi chuẩn hoá (items[] lồng)</text>
+<text class="ts" x="232" y="310" text-anchor="start" font-size="11.5">xoá mềm is_active · XHR đọc tuần tự</text>
+<rect class="bx ext" x="730" y="24" width="214" height="70"/>
+<text class="tt" x="837.0" y="47.2" font-size="12" text-anchor="middle">server.js (Node.js)</text>
+<text class="ts" x="837.0" y="63.2" font-size="10.5" text-anchor="middle">proxy · biến môi trường .env</text>
+<text class="ts" x="837.0" y="79.2" font-size="10.5" text-anchor="middle">rate limit · RAG · async/await</text>
+<rect class="bx ext" x="730" y="110" width="214" height="56"/>
+<text class="tt" x="837.0" y="134.2" font-size="12" text-anchor="middle">Google Identity Services</text>
+<text class="ts" x="837.0" y="150.2" font-size="10.5" text-anchor="middle">OpenID Connect · JWT</text>
+<rect class="bx ext" x="730" y="182" width="214" height="56"/>
+<text class="tt" x="837.0" y="206.2" font-size="12" text-anchor="middle">&lt;model-viewer&gt;</text>
+<text class="ts" x="837.0" y="222.2" font-size="10.5" text-anchor="middle">Web Component · ES module · glTF</text>
+<rect class="bx ext" x="730" y="254" width="214" height="56"/>
+<text class="tt" x="837.0" y="278.2" font-size="12" text-anchor="middle">Playwright · Git/PR</text>
+<text class="ts" x="837.0" y="294.2" font-size="10.5" text-anchor="middle">kiểm thử tự động · CDP</text>
+</svg><figcaption>Bản đồ kiến thức: mỗi tầng của RoomCraft đang dùng những kỹ thuật nào ngoài phần cơ bản HTML/CSS/DOM/JSON.</figcaption></figure>
+<figure class="dg"><svg viewBox="0 0 960 136" role="img" aria-label="Một trang RoomCraft khởi động thế nào. Chỉ khi dữ liệu xong mới gọi initPage, vì đọc JSON là bất đồng bộ." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="24" width="172" height="70"/>
+<text class="tt" x="106.0" y="55.2" font-size="12" text-anchor="middle">1. Trình duyệt tải HTML</text>
+<text class="ts" x="106.0" y="71.2" font-size="10.5" text-anchor="middle">đọc &lt;script&gt; từ trên xuống</text>
+<polyline class="ar" points="194,59 208,59" marker-end="url(#ah)"/>
+<rect class="bx" x="210" y="24" width="172" height="70"/>
+<text class="tt" x="296.0" y="47.2" font-size="12" text-anchor="middle">2. Nạp script đúng thứ tự</text>
+<text class="ts" x="296.0" y="63.2" font-size="10.5" text-anchor="middle">utils → store → auth</text>
+<text class="ts" x="296.0" y="79.2" font-size="10.5" text-anchor="middle">→ components → trang</text>
+<polyline class="ar" points="384,59 398,59" marker-end="url(#ah)"/>
+<rect class="bx acc" x="400" y="24" width="172" height="70"/>
+<text class="tt" x="486.0" y="55.2" font-size="12" text-anchor="middle">3. loadData(initPage)</text>
+<text class="ts" x="486.0" y="71.2" font-size="10.5" text-anchor="middle">truyền hàm initPage làm callback</text>
+<polyline class="ar" points="574,59 588,59" marker-end="url(#ah)"/>
+<rect class="bx" x="590" y="24" width="172" height="70"/>
+<text class="tt" x="676.0" y="47.2" font-size="12" text-anchor="middle">4. Dữ liệu sẵn sàng</text>
+<text class="ts" x="676.0" y="63.2" font-size="10.5" text-anchor="middle">có sẵn trong localStorage</text>
+<text class="ts" x="676.0" y="79.2" font-size="10.5" text-anchor="middle">hoặc vừa nạp JSON</text>
+<polyline class="ar" points="764,59 778,59" marker-end="url(#ah)"/>
+<rect class="bx" x="780" y="24" width="172" height="70"/>
+<text class="tt" x="866.0" y="47.2" font-size="12" text-anchor="middle">5. initPage()</text>
+<text class="ts" x="866.0" y="63.2" font-size="10.5" text-anchor="middle">vẽ header, footer, chatbot</text>
+<text class="ts" x="866.0" y="79.2" font-size="10.5" text-anchor="middle">rồi vẽ nội dung trang</text>
+<text class="note" x="480" y="122" text-anchor="middle">Không dùng import/module: mọi hàm là biến toàn cục. Đặt sai thứ tự &lt;script&gt; → lỗi &quot;getTable is not defined&quot;.</text>
+</svg><figcaption>Một trang RoomCraft khởi động thế nào. Chỉ khi dữ liệu xong mới gọi initPage, vì đọc JSON là bất đồng bộ.</figcaption></figure>
+<h3>A. Kiến trúc tổng thể</h3><div class="kcs"><div class="kc"><div class="kc-h"><b>Web nhiều trang (MPA), không phải SPA</b><span class="lv lv1">Phải nắm</span></div><p>Mỗi trang là một file HTML riêng + một file JS riêng (25 trang). Bấm link là tải trang mới.</p><p class="kw"><code>scripts/*.html, js/pages/*.js</code></p><p>SPA (React, Vue) chỉ có 1 trang và tự vẽ lại nội dung. MPA đơn giản, đúng phạm vi môn, mỗi người làm trang riêng không giẫm chân nhau. Đổi lại: phần chung (header, footer, chatbot) phải vẽ lại bằng JS ở mọi trang.</p><p class="kq"><b>Nếu bị hỏi:</b> "Vì sao không làm SPA?" → MPA vừa sức, dễ chia việc, không cần framework.</p></div><div class="kc"><div class="kc-h"><b>Kiến trúc phân tầng (layered)</b><span class="lv lv1">Phải nắm</span></div><p>Code chia 4 tầng: trang (pages) → nghiệp vụ (services) → kho dữ liệu (core/store) → localStorage. Tầng trên chỉ gọi tầng ngay dưới.</p><p class="kw"><code>js/pages · js/services · js/core</code></p><p>Tách trách nhiệm (separation of concerns): trang lo giao diện, services lo luật (tính phí, tạo đơn), store lo lưu trữ. Đổi localStorage sang API server sau này chỉ phải sửa tầng store.</p><p class="kq"><b>Nếu bị hỏi:</b> "Nếu có backend thì sửa chỗ nào?" → chủ yếu tầng store.js, các tầng trên gần như giữ nguyên.</p></div><div class="kc"><div class="kc-h"><b>store.js là tầng truy cập dữ liệu (Data Access Layer)</b><span class="lv lv1">Phải nắm</span></div><p>Mọi trang đọc ghi qua getTable / saveTable / findById, không ai gọi localStorage trực tiếp.</p><p class="kw"><code>js/core/store.js</code></p><p>Giống mẫu Repository: một nơi duy nhất biết tiền tố rc_, tự parse/stringify, tự bắt lỗi đầy bộ nhớ.</p><p class="kq"><b>Nếu bị hỏi:</b> Xem phần 5.</p></div><div class="kc"><div class="kc-h"><b>Thứ tự nạp script và biến toàn cục</b><span class="lv lv2">Nên biết</span></div><p>Không dùng import/export. Mọi hàm khai báo ở phạm vi toàn cục, nên file sau dùng được hàm của file trước.</p><p class="kw"><code>thẻ &lt;script&gt; cuối mỗi trang HTML</code></p><p>Thứ tự bắt buộc: utils → store → auth → components → services → JS trang. Sai thứ tự sẽ báo "… is not defined". Hạn chế: dễ trùng tên hàm giữa các file.</p><p class="kq"><b>Nếu bị hỏi:</b> "Sao không dùng module?" → giữ đúng cách viết đã học, chạy được kể cả mở bằng Live Server đơn giản.</p></div><div class="kc"><div class="kc-h"><b>Proxy / máy chủ trung gian cho AI</b><span class="lv lv2">Nên biết</span></div><p>server.js đứng giữa trình duyệt và dịch vụ AI.</p><p class="kw"><code>server.js</code></p><p>Giữ khoá API bí mật trong biến môi trường (.env), giới hạn lượt gọi, gom dữ liệu thật cho AI (RAG), lọc câu trả lời. Không xử lý dữ liệu bán hàng.</p><p class="kq"><b>Nếu bị hỏi:</b> Xem phần 13.2.</p></div></div><h3>B. Dữ liệu & bất đồng bộ</h3><div class="kcs"><div class="kc"><div class="kc-h"><b>Callback: loadData(initPage)</b><span class="lv lv1">Phải nắm</span></div><p>Truyền tên hàm initPage làm tham số; loadData gọi lại (call back) hàm đó khi dữ liệu đã sẵn sàng.</p><p class="kw"><code>dòng &lt;script&gt;loadData(initPage)&lt;/script&gt; ở mọi trang</code></p><p>Đọc file JSON bằng XHR là bất đồng bộ: lệnh gửi đi xong chạy tiếp ngay, kết quả về sau. Nếu vẽ trang ngay thì chưa có dữ liệu → trang trống. Callback đảm bảo "có dữ liệu rồi mới vẽ".</p><p class="kq"><b>Nếu bị hỏi:</b> "Bất đồng bộ là gì?" → việc mất thời gian (tải file) chạy nền, xong thì gọi hàm xử lý, trang không bị đứng.</p></div><div class="kc"><div class="kc-h"><b>Đọc tuần tự bằng đệ quy (readFileAt)</b><span class="lv lv2">Nên biết</span></div><p>Đọc file thứ 0, xong mới gọi chính nó để đọc file thứ 1… đến file thứ 13 thì lưu tất cả.</p><p class="kw"><code>store.js: readFileAt(viTri, duLieu, hamTiepTheo)</code></p><p>Đảm bảo đủ 13 bảng rồi mới lưu một lần. Cách hiện đại hơn là Promise.all, nhưng callback giữ đúng kiến thức đã học.</p></div><div class="kc"><div class="kc-h"><b>Cache trong bộ nhớ (memoization)</b><span class="lv lv2">Nên biết</span></div><p>Biến bangDaDoc giữ bảng đã parse; findById dùng lại thay vì JSON.parse cả bảng products ~2MB mỗi lần.</p><p class="kw"><code>store.js: bangDaDoc, findById</code></p><p>Trang admin đơn hàng gọi findById hàng nghìn lần; không cache thì rất chậm. saveTable xoá cache bảng vừa ghi để không đọc dữ liệu cũ.</p></div><div class="kc"><div class="kc-h"><b>Phiên bản & di trú dữ liệu (migration)</b><span class="lv lv1">Phải nắm</span></div><p>DATA_VERSION + keepLocalData: đổi dữ liệu gốc mà vẫn giữ dữ liệu người dùng.</p><p class="kw"><code>store.js</code></p><p>Giống migration của CSDL thật: nâng cấp cấu trúc/dữ liệu mà không xoá dữ liệu đang dùng.</p><p class="kq"><b>Nếu bị hỏi:</b> Xem phần 13.1.</p></div><div class="kc"><div class="kc-h"><b>Phi chuẩn hoá (denormalization) và xoá mềm</b><span class="lv lv1">Phải nắm</span></div><p>Đơn hàng lưu sẵn tên, ảnh, đơn giá trong items[]; sản phẩm đã bán không xoá mà ẩn (is_active = false).</p><p class="kw"><code>orders.js: createOrder · products.is_active</code></p><p>Thiết kế CSDL chuẩn hoá tách bảng order_details; JSON lồng mảng cho gọn. Lưu bản chụp giá lúc mua để đơn cũ không đổi khi sản phẩm đổi giá. Xoá mềm thay cho ON DELETE RESTRICT.</p><p class="kq"><b>Nếu bị hỏi:</b> "Vì sao 953 mà chỉ 935 hiển thị?" → 18 sản phẩm ẩn, không xoá.</p></div><div class="kc"><div class="kc-h"><b>XHR vs fetch / Promise / async-await</b><span class="lv lv3">Biết tên là đủ</span></div><p>Nạp 13 file bằng XHR (callback); wards.json bằng fetch (Promise); checkout dùng await; server.js dùng async/await.</p><p class="kw"><code>store.js · shipping.js · checkout.js · server.js</code></p><p>Cùng mục đích tải dữ liệu không tải lại trang, khác cách viết. Promise/async gọn hơn khi có nhiều bước nối nhau.</p></div></div><h3>C. Giao diện nâng cao</h3><div class="kcs"><div class="kc"><div class="kc-h"><b>IntersectionObserver</b><span class="lv lv2">Nên biết</span></div><p>API của trình duyệt báo khi một phần tử lọt vào màn hình.</p><p class="kw"><code>index.js, about.js (khối hiện dần khi cuộn)</code></p><p>Thay cho việc nghe sự kiện scroll liên tục (tốn hiệu năng). Phần tử vào màn hình → thêm class is-visible → CSS chạy hiệu ứng.</p></div><div class="kc"><div class="kc-h"><b>matchMedia</b><span class="lv lv2">Nên biết</span></div><p>Đọc media query bằng JS.</p><p class="kw"><code>catalog-filter.js (≤ 900px thu bộ lọc vào nút), index.js (prefers-reduced-motion)</code></p><p>CSS @media đổi giao diện; matchMedia cho JS biết đang ở màn nào để đổi hành vi, ví dụ đóng mở bộ lọc.</p></div><div class="kc"><div class="kc-h"><b>history.replaceState</b><span class="lv lv2">Nên biết</span></div><p>Đổi URL trên thanh địa chỉ mà không tải lại trang.</p><p class="kw"><code>products.js, marketplace.js, rooms.js</code></p><p>Bộ lọc ghi lên URL (?style=…&price=…) nên F5 hoặc gửi link cho người khác vẫn đúng kết quả lọc.</p></div><div class="kc"><div class="kc-h"><b>Biến CSS, clamp(), sticky, scroll-snap</b><span class="lv lv2">Nên biết</span></div><p>var(--…) lưu màu/font dùng chung; clamp(min, giá-trị, max) cho chữ co giãn; position: sticky cho thanh dính; scroll-snap cho slider vuốt có nam châm.</p><p class="kw"><code>base.css, css/pages/index.css</code></p><p>Đổi 1 biến màu là cả web đổi theo; tiêu đề tự co theo màn hình mà không cần nhiều media query.</p></div><div class="kc"><div class="kc-h"><b>Web Component & ES module</b><span class="lv lv2">Nên biết</span></div><p>&lt;model-viewer&gt; là thẻ HTML tự định nghĩa; nạp bằng &lt;script type="module"&gt;. File 3D định dạng glTF nhị phân (.glb).</p><p class="kw"><code>product-detail.html, room-detail.html, libs/</code></p><p>Nhóm không tự viết trình xem 3D; dùng thư viện tự host, chỉ tạo thẻ bằng createElement và gán src.</p><p class="kq"><b>Nếu bị hỏi:</b> "Xoay 3D làm sao?" → thư viện model-viewer lo phần dựng hình (WebGL), nhóm chỉ cấp file .glb.</p></div><div class="kc"><div class="kc-h"><b>Khả năng tiếp cận (accessibility)</b><span class="lv lv3">Biết tên là đủ</span></div><p>Thuộc tính aria-*, role, tabindex; điều khiển bằng bàn phím; kiểm bằng axe-core theo WCAG 2.2.</p><p class="kw"><code>nhiều trang (hơn 100 chỗ aria-)</code></p><p>Người dùng trình đọc màn hình hoặc chỉ dùng bàn phím vẫn thao tác được. Phiên s13 kiểm focus bàn phím vào tấm ảnh.</p></div></div><h3>D. Bảo mật & thuật toán</h3><div class="kcs"><div class="kc"><div class="kc-h"><b>XSS và hàm safeText / escapeHtml</b><span class="lv lv1">Phải nắm</span></div><p>XSS: chèn mã &lt;script&gt; vào ô nhập (họ tên, địa chỉ) để chạy trên máy người khác.</p><p class="kw"><code>orders.js: safeText · chatbot.js: escapeHtml</code></p><p>Web dùng innerHTML rất nhiều (hơn 200 chỗ), nên dữ liệu người dùng nhập phải đổi &lt; &gt; &amp; " ' thành mã an toàn trước khi chèn. s12 kiểm XSS lưu trữ.</p><p class="kq"><b>Nếu bị hỏi:</b> "Chống XSS thế nào?" → escape ký tự đặc biệt trước khi hiển thị, ưu tiên textContent.</p></div><div class="kc"><div class="kc-h"><b>JWT & Google Identity Services</b><span class="lv lv1">Phải nắm</span></div><p>Google trả về token JWT gồm 3 phần header.payload.signature (mã base64).</p><p class="kw"><code>auth.js: readGoogleCredential, loginWithGoogle</code></p><p>Web giải mã phần payload bằng atob để lấy email, tên, ảnh. <b>Web không kiểm chữ ký</b> vì việc đó cần server — cũng là giới hạn kiến trúc như BUG-02.</p><p class="kq"><b>Nếu bị hỏi:</b> Nói rõ: đăng nhập Google là thật, nhưng tài khoản tạo ra lưu ở trình duyệt.</p></div><div class="kc"><div class="kc-h"><b>Hàm băm SHA-256 viết tay</b><span class="lv lv2">Nên biết</span></div><p>Hàm sha256 bằng JavaScript thuần (phép toán bit).</p><p class="kw"><code>js/core/utils.js</code></p><p>Chỉ cần hiểu: băm một chiều, không giải ngược; không có salt. Không cần giải thích từng dòng bên trong.</p><p class="kq"><b>Nếu bị hỏi:</b> Xem phần 13.8.</p></div><div class="kc"><div class="kc-h"><b>Levenshtein · chuẩn hoá NFD · Luhn</b><span class="lv lv2">Nên biết</span></div><p>Levenshtein: số ký tự phải sửa để biến từ này thành từ kia (chatbot sửa gõ sai). NFD: tách dấu khỏi chữ để tìm không dấu. Luhn: công thức kiểm tra số thẻ hợp lệ.</p><p class="kw"><code>chatbot.js · products.js · shipping.js: checkCardNumber</code></p><p>Đều là thuật toán có sẵn, nhóm áp dụng vào đúng chỗ cần.</p></div><div class="kc"><div class="kc-h"><b>Giới hạn lượt gọi (rate limit)</b><span class="lv lv3">Biết tên là đủ</span></div><p>server.js nhớ thời điểm các lần gọi của mỗi IP trong 60 giây; quá 30 lần → trả lỗi 429.</p><p class="kw"><code>server.js: checkRateLimit</code></p><p>Kiểu cửa sổ trượt (sliding window). Chống spam làm tốn tiền API.</p></div></div><h3>E. Quy trình & công cụ</h3><div class="kcs"><div class="kc"><div class="kc-h"><b>Kiểm thử tự động bằng Playwright</b><span class="lv lv2">Nên biết</span></div><p>Script JS điều khiển trình duyệt thật: mở trang, bấm, gõ, đọc kết quả, chụp ảnh.</p><p class="kw"><code>tests/</code></p><p>Chạy lại 394 ca × 7 cấu hình nhiều lần mà người làm tay không kịp; nhờ vậy mới phát hiện hồi quy.</p><p class="kq"><b>Nếu bị hỏi:</b> Xem phần 13.6.</p></div><div class="kc"><div class="kc-h"><b>CDP (Chrome DevTools Protocol)</b><span class="lv lv3">Biết tên là đủ</span></div><p>Cách điều khiển trình duyệt Chromium từ bên ngoài.</p><p class="kw"><code>tests/lib/khung-test.js</code></p><p>Dùng ở P3 khi Edge tự cập nhật lên bản Playwright không mở được.</p></div><div class="kc"><div class="kc-h"><b>Git: nhánh, Pull Request, xung đột</b><span class="lv lv2">Nên biết</span></div><p>Mỗi người một nhánh, gửi PR, trưởng nhóm duyệt rồi merge.</p><p class="kw"><code>GitHub</code></p><p>164 commit, 14 PR. Xung đột hay xảy ra ở file dùng chung.</p><p class="kq"><b>Nếu bị hỏi:</b> Xem phần 2.</p></div></div>
+<p class="say"><span>Nói miệng khi bị hỏi "phần này có dùng AI không?"</span>Nhóm có dùng AI hỗ trợ viết kịch bản kiểm thử, nháp tài liệu và đề xuất cách sửa lỗi, nhưng mỗi phần đều được thành viên đọc lại, chạy thử và kiểm bằng bộ test tự động. Ví dụ một bản sửa do AI đề xuất từng làm đảo quyền admin và chỉ bị phát hiện nhờ chạy lại toàn bộ kiểm thử hồi quy, nên nhóm không nhận kết quả của AI mà không kiểm.</p>
+</section>
 <section id="cau-hoi">
-<p class="ov">Phần 13</p><h2>Ngân hàng câu hỏi</h2>
+<p class="ov">Phần 15</p><h2>Ngân hàng câu hỏi</h2>
 <p class="lead">Tự trả lời trước rồi mới mở. <button type="button" class="mini" id="btnAll">Mở / đóng tất cả</button></p>
 <h3>Câu hỏi bẫy — Thừa nhận → Lý do → Hướng phát triển</h3>
 <div class="qa"><details><summary>Không có backend thì bảo mật thế nào?</summary><div class="ans"><b>Thừa nhận:</b> phân quyền chạy ở trình duyệt nên người rành kỹ thuật vẫn vượt được. <b>Đã giảm:</b> quyền tra từ bảng roles, không tin trường role trong phiên. <b>Hướng phát triển:</b> backend + session/JWT, kiểm quyền ở server.</div></details><details><summary>Có server.js sao nói không backend?</summary><div class="ans">server.js chỉ là proxy chatbot để giấu API key và giới hạn lượt gọi. Nó không lưu tài khoản, giỏ hay đơn hàng — dữ liệu và nghiệp vụ đều ở trình duyệt.</div></details><details><summary>Xoá localStorage thì sao?</summary><div class="ans">Mất dữ liệu người dùng tự tạo (giỏ, đơn, tài khoản đăng ký). Dữ liệu gốc tự nạp lại từ JSON nhờ kiểm tra rc_version. Admin có nút Xuất JSON để sao lưu.</div></details><details><summary>Mật khẩu lưu thế nào?</summary><div class="ans">Lưu password_hash = SHA-256, băm ở trình duyệt, không salt. Thiết kế MySQL chỉ ghi "đã mã hoá". Làm thật: bcrypt/argon2 ở server.</div></details><details><summary>Mở DevTools sửa giá được không?</summary><div class="ans">Được, vì dữ liệu nằm ở client. createOrder có tính lại tiền từ dữ liệu sản phẩm, nhưng dữ liệu đó cũng ở client. Cần server kiểm giá khi đặt.</div></details><details><summary>2 người cùng mua món cuối cùng?</summary><div class="ans">Hai tab cùng máy: chỉ 1 đơn thành công vì kiểm tồn kho lúc đặt (ca s11). Hai máy khác nhau: không chặn được vì không có dữ liệu chung — đúng giới hạn đã nêu.</div></details><details><summary>OTP giả lập thì có ý nghĩa gì?</summary><div class="ans">Mô phỏng đúng nghiệp vụ: sinh mã, hết hạn 5 phút, dùng 1 lần, gửi lại sau 60 giây. Chỉ thay bước gửi email bằng hiện mã trên trang. Làm thật: SMTP/dịch vụ email.</div></details><details><summary>Mô hình 3D do AI tạo có chính xác không?</summary><div class="ans">Không hoàn toàn: sinh từ 1 ảnh chính diện nên mặt sau có thể sai. Nhóm xem từng model, loại 23 lỗi hình + 13 sai màu, giữ 202. Đồ trang trí (thảm, tranh, gối) không làm 3D.</div></details><details><summary>Vì sao không dùng React/Vue?</summary><div class="ans">Môn học tập trung HTML/CSS/JS/DOM/JSON; web tĩnh thì cả 5 người đọc được toàn bộ code, deploy GitHub Pages dễ. Đổi lại phải viết tay nhiều; mở rộng sau này sẽ cân nhắc framework.</div></details><details><summary>Dữ liệu crawl có vấn đề bản quyền?</summary><div class="ans">Có rủi ro: lấy từ website bán lẻ nội thất nước ngoài, dùng cho học tập, đã việt hoá và đổi giá. Làm thật: xin phép, ghi nguồn hoặc tự tạo dữ liệu.</div></details><details><summary>Vì sao 953 sản phẩm mà chỉ 935 hiển thị?</summary><div class="ans">18 sản phẩm bị ẩn (is_active = false) thay vì xoá, để đơn hàng cũ vẫn trỏ đúng sản phẩm — tương đương ON DELETE RESTRICT trong thiết kế. 1 trong số đó có model 3D nên 202 model, 201 hiển thị.</div></details><details><summary>Nếu làm thật, nâng cấp gì trước?</summary><div class="ans">Backend + CSDL MySQL theo thiết kế Chương 3 + xác thực phía server — vì mọi hạn chế bảo mật đều gốc từ đây. Sau đó thanh toán thật, email thật, đồng bộ đa thiết bị.</div></details></div>
