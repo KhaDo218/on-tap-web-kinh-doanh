@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoomCraft — Ôn bảo vệ bằng sơ đồ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>:root{--bg:#F7F7F5;--card:#FFFFFF;--ink:#202020;--mut:#686868;--line:#DADAD7;--acc:#B18A52;--accbg:#F4ECDF;--errbg:#F6E9E5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans",system-ui,sans-serif;font-size:15px;line-height:1.6}
+h1,h2,h3,.brand{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;letter-spacing:.01em}
+h1{font-size:44px;line-height:1.1;margin:0 0 12px}
+h2{font-size:34px;line-height:1.15;margin:4px 0 20px}
+h3{font-size:24px;margin:36px 0 12px}
+h4{font-size:15px;margin:0 0 8px}
+h5{font-size:12.5px;margin:0 0 4px;text-transform:uppercase;letter-spacing:.06em;color:var(--acc)}
+code{font-family:ui-monospace,Consolas,monospace;font-size:13px;background:#EEEEEC;padding:1px 5px}
+.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:24px;padding:14px 32px;background:rgba(247,247,245,.95);border-bottom:1px solid var(--line)}
+.top p{margin:0;color:var(--mut);font-size:13px}
+.brand{font-size:24px;letter-spacing:.32em}
+.wrap{display:grid;grid-template-columns:240px minmax(0,1fr);max-width:1320px;margin:0 auto}
+.side{position:sticky;top:64px;align-self:start;display:flex;flex-direction:column;padding:28px 12px 28px 32px;gap:2px}
+.side a{color:var(--ink);text-decoration:none;font-size:13.5px;padding:7px 10px;border-left:2px solid transparent}
+.side a:hover{border-left-color:var(--acc);background:#EFEDE8}
+main{padding:28px 32px 80px;min-width:0}
+.intro{padding:24px 0 8px}.intro p{max-width:760px;color:var(--mut)}
+section{padding:40px 0 24px;border-top:1px solid var(--line)}
+.ov{margin:0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:600}
+.lead{max-width:860px;color:#3a3a3a}
+.pitch{background:var(--ink);color:#F7F7F5;padding:22px 26px;margin-bottom:22px}
+.pitch .ov{color:#D9BC8C}.pitch p{margin:6px 0 0}
+figure.dg{margin:22px 0;background:var(--card);border:1px solid var(--line);padding:18px 18px 12px}
+figure.dg svg{width:100%;height:auto;display:block}
+figcaption{margin-top:10px;font-size:13px;color:var(--mut);border-top:1px solid #EEEEEC;padding-top:8px}
+svg .bx{fill:#FFFFFF;stroke:#202020;stroke-width:1.2}
+svg .bx.acc{fill:#F4ECDF;stroke:#B18A52;stroke-width:1.6}
+svg .bx.dark{fill:#202020;stroke:#202020}
+svg .bx.ext{fill:#FFFFFF;stroke:#686868;stroke-dasharray:5 4}
+svg .bx.warn{fill:#F6E9E5;stroke:#8C3B2D}
+svg .zone{fill:#FBFAF7;stroke:#B18A52;stroke-dasharray:7 5;stroke-width:1.2}
+svg .tt{fill:#202020;font-weight:600;font-family:"Noto Sans",sans-serif}
+svg .ts{fill:#555;font-family:"Noto Sans",sans-serif}
+svg .inv{fill:#F7F7F5}
+svg .lbl{fill:#7A6038;font-size:11.5px;font-family:"Noto Sans",sans-serif}
+svg .note{fill:#686868;font-size:11.5px;font-style:italic;font-family:"Noto Sans",sans-serif}
+svg .hd{fill:#B18A52;font-size:11.5px;font-weight:600;letter-spacing:.08em;font-family:"Noto Sans",sans-serif}
+svg .ar{fill:none;stroke:#202020;stroke-width:1.3}
+svg .ar.thin{stroke:#9a9a9a;stroke-width:1}
+svg .ar.dash{stroke-dasharray:5 4}
+svg .ar.hl{stroke:#B18A52;stroke-width:1.8}
+svg .dot{fill:#B18A52;stroke:#202020}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:18px 0}
+.card{background:var(--card);border:1px solid var(--line);padding:18px 20px}
+.card.warn{border-color:#D9B5AD;background:var(--errbg);margin:18px 0}
+.card ul{margin:0;padding-left:18px}.card li{margin:4px 0}
+.card p{margin:0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:7px 10px;border-bottom:1px solid #EEEEEC}
+th{white-space:nowrap;font-weight:600}
+table.map{background:var(--card);border:1px solid var(--line);margin:12px 0}
+table.map tr:first-child th{background:#EEEEEC}
+.tf th{color:var(--acc)}
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0}
+.num{background:var(--card);padding:14px 16px}
+.num b{display:block;font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.1}
+.num span{font-size:12.5px;color:var(--mut)}
+.say{background:var(--accbg);border-left:3px solid var(--acc);padding:12px 16px;margin:18px 0}
+.say span{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);font-weight:600;margin-bottom:2px}
+.keys{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.keys>div{background:var(--card);border:1px solid var(--line);padding:14px 16px}
+.keys p{margin:0;font-size:13.5px}
+.ucg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
+.ucg>div{background:var(--card);border:1px solid var(--line);padding:12px 14px}
+.ucg>div>b{display:block;font-size:14px}.ucg span{font-size:13px;color:var(--mut)}
+.ucg .ucn{background:var(--accbg);border-color:#E3D2B5}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--card);border:1px solid var(--line);padding:6px 12px;font-size:13px}
+.chips .hi{background:var(--ink);color:#F7F7F5;border-color:var(--ink)}
+.sw{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12.5px;margin-bottom:10px}
+.sw i{display:inline-block;width:16px;height:16px;border:1px solid #bbb}
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}
+.rule{background:var(--card);border:1px solid var(--line);padding:16px 18px}
+.rule-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-bottom:1px solid #EEEEEC;margin-bottom:8px;padding-bottom:6px}
+.rule h4{margin:0}.tag{font-size:11.5px;color:var(--acc);font-family:ui-monospace,monospace}
+.rule ul{margin:0;padding-left:18px;font-size:14px}.rule li{margin:5px 0}
+.flows{display:grid;gap:16px}
+.flow{background:var(--card);border:1px solid var(--line);padding:14px 16px}
+.flow.hl{border-color:var(--acc);background:#FCF8F1}
+.flow h4{margin-bottom:10px}
+.flow ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 0;counter-reset:s}
+.flow li{counter-increment:s;position:relative;flex:1 1 140px;padding:8px 26px 8px 12px;border-left:2px solid var(--ink);margin-right:6px}
+.flow li::after{content:"→";position:absolute;right:6px;top:8px;color:var(--acc);font-weight:600}
+.flow li:last-child::after{content:""}
+.flow li b{display:block;font-size:13.5px}.flow li b::before{content:counter(s) ". ";color:var(--acc)}
+.flow li span{font-size:12.5px;color:var(--mut)}
+.kn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kn>div{background:var(--card);border:1px solid var(--line);padding:14px 18px}
+.kn p{margin:0;font-size:14px}
+.qa details{background:var(--card);border:1px solid var(--line);margin:8px 0}
+.qa summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::before{content:"+";display:inline-block;width:20px;color:var(--acc)}
+.qa details[open] summary::before{content:"–"}
+.qa .ans{padding:0 16px 14px 36px;color:#333}
+footer{margin-top:48px;color:var(--mut);font-size:12.5px}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr}.side{position:static;flex-direction:row;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--line)}.side a{white-space:nowrap;border-left:0;border-bottom:2px solid transparent}.ucg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){main{padding:16px 16px 60px}.two,.rules,.keys,.kn{grid-template-columns:1fr}.nums{grid-template-columns:repeat(2,minmax(0,1fr))}h1{font-size:34px}h2{font-size:28px}.top{padding:12px 16px}.top p{display:none}figure.dg{padding:10px;overflow-x:auto}figure.dg svg{min-width:640px}}
+pre{background:#202020;color:#F1EEE8;padding:14px 16px;overflow-x:auto;font-size:12.5px;line-height:1.55;margin:6px 0}
+pre code{background:none;padding:0;color:inherit;font-size:12.5px}
+pre.tree{background:#FBFAF7;color:#202020;border:1px solid #EEEEEC;font-size:12.5px}
+.small{font-size:13px;color:var(--mut);margin:4px 0 0}
+.tw{overflow-x:auto;margin:14px 0}
+.tw table{background:var(--card);border:1px solid var(--line)}
+.tw tr:first-child th{background:#EEEEEC}
+.tw td{font-size:13.5px}
+svg .lane{fill:#FFFFFF;stroke:#BDBDB8}
+svg .lanehd{fill:#EEEEEC;stroke:#BDBDB8}
+svg .ev{fill:#FFFFFF;stroke:#202020;stroke-width:1.5}
+svg .ev.end{stroke-width:3.5}
+svg .ev.err{stroke:#8C3B2D}
+.tcs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
+.tc{background:var(--card);border:1px solid var(--line);border-top:3px solid #999;padding:10px 12px}
+.tc b{font-family:ui-monospace,Consolas,monospace;font-size:13px}
+.tc ul{margin:6px 0 0;padding-left:16px;font-size:12.5px;color:#444}
+.tc.g1{border-top-color:#202020}.tc.g2{border-top-color:#B18A52}.tc.g3{border-top-color:#2C6B3F}
+.tc.g4{border-top-color:#6B5B8C}.tc.g5{border-top-color:#8C3B2D}.tc.g6{border-top-color:#9a9a9a}
+.draw{background:var(--ink);color:#F7F7F5;padding:20px 24px;margin:18px 0}
+.draw button,.mini{font:inherit;font-size:13.5px;font-weight:600;padding:8px 16px;border:1px solid var(--acc);background:var(--acc);color:#fff;cursor:pointer}
+.mini{padding:4px 12px;font-size:12.5px;margin-left:8px}
+.draw .muted{color:#BDB8AE;margin:12px 0 0}
+.draw .dq{font-size:18px;font-weight:600;margin:14px 0 10px}
+.draw .da{margin-top:10px;color:#E9E4DA;border-left:3px solid var(--acc);padding-left:12px}
+.qg h3{margin-top:28px}
+@media (max-width:1000px){.tcs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:700px){.tcs{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header class="top"><div class="brand">ROOMCRAFT</div><p>Tài liệu ôn bảo vệ — Nhóm 7 · Phát triển Web Kinh Doanh</p></header>
+<div class="wrap">
+<nav class="side"><a href="#cach-on">0. Cách ôn cả nhóm</a><a href="#tong-quan">1. Tổng quan & pain point</a><a href="#quy-trinh">2. Quy trình & làm việc nhóm</a><a href="#du-lieu-3d">3. Dữ liệu nguồn & 3D</a><a href="#kien-truc">4. Kiến trúc & cách chạy</a><a href="#local">5. localStorage chi tiết</a><a href="#thiet-ke">6. Thiết kế hệ thống</a><a href="#rang-buoc">7. Ràng buộc nghiệp vụ</a><a href="#luong">8. Các luồng chính</a><a href="#code">9. Code tiêu biểu</a><a href="#kiem-thu">10. Kiểm thử</a><a href="#ket-qua">11. Kết quả & hướng phát triển</a><a href="#kien-thuc">12. Kiến thức môn học</a><a href="#cau-hoi">13. Ngân hàng câu hỏi</a></nav>
+<main>
+<div class="intro"><h1>Hiểu cả đồ án qua sơ đồ</h1>
+<p>14 phần, 20 sơ đồ, 52 câu hỏi có gợi ý. Đọc theo thứ tự: vì sao làm → làm thế nào → dữ liệu → kiến trúc → thiết kế → luật → luồng → code → kiểm thử → kết quả → kiến thức môn → tự kiểm tra.</p></div>
+
+<section id="cach-on">
+<p class="ov">Phần 0</p><h2>Cách ôn cả nhóm</h2>
+<div class="two">
+<div class="card"><h4>Thầy bốc ai hỏi nấy → ai cũng phải nắm cả đồ án</h4><ul>
+<li><b>Lượt 1 (30 phút):</b> mỗi người đọc hết phần 1–8, chỉ xem sơ đồ và khung "Nói miệng".</li>
+<li><b>Lượt 2:</b> mỗi người nhận 2–3 phần để đọc kỹ, rồi giảng lại cho cả nhóm trong 3 phút.</li>
+<li><b>Lượt 3:</b> bấm "Bốc câu ngẫu nhiên" bên dưới, gọi tên một người trả lời trong 30 giây, người khác chấm.</li></ul></div>
+<div class="card"><h4>Công thức trả lời</h4><ul>
+<li><b>Câu thường:</b> trả lời 1 câu → nêu 1 ví dụ trong đồ án → chỉ chỗ trong báo cáo (chương/bảng).</li>
+<li><b>Câu bẫy:</b> Thừa nhận → Lý do chọn → Hướng phát triển. Không né, không chối.</li>
+<li><b>Không chắc số liệu:</b> nói "theo bảng … trong báo cáo", không tự cộng trừ.</li></ul></div>
+</div>
+<div class="draw" id="draw"><button type="button" id="btnDraw">Bốc câu ngẫu nhiên</button>
+<div id="drawOut"><p class="muted">Bấm nút để bốc một câu trong ngân hàng câu hỏi (phần 13).</p></div></div>
+</section>
+<section id="tong-quan">
+<p class="ov">Phần 1</p><h2>Tổng quan &amp; pain point</h2>
+<div class="pitch"><p class="ov">Nói trong 30 giây</p>
+<p>RoomCraft là website thương mại điện tử nội thất <b>lấy căn phòng làm điểm bắt đầu</b>. Người mua xem một phòng mẫu đẹp,
+bấm vào món đồ ngay trong ảnh, xoay mô hình 3D rồi thêm vào giỏ — cảm hứng và mua hàng trên cùng một màn hình.
+Nhóm chủ động làm web tĩnh (HTML/CSS/JS + JSON + localStorage), MySQL chỉ thiết kế, OTP và thanh toán mô phỏng,
+để dồn sức cho 3 tính năng đặc trưng trong một học kỳ.</p></div>
+<figure class="dg"><svg viewBox="0 0 960 110" role="img" aria-label="Hành trình chính của đồ án (Explore Room → Discover Furniture → View 3D → Get Recommendation → Buy). Bước 2–3 là điểm khác biệt so với web bán nội thất thông thường." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="20" width="172" height="70"/>
+<text class="tt" x="106.0" y="42.5" font-size="13" text-anchor="middle">1. Khám phá phòng</text>
+<text class="ts" x="106.0" y="59.5" font-size="11.5" text-anchor="middle">49 phòng · 7 phong cách</text>
+<text class="ts" x="106.0" y="76.5" font-size="11.5" text-anchor="middle">UC3.1–3.2</text>
+<polyline class="ar" points="194,55 208,55" marker-end="url(#ah)"/>
+<rect class="bx acc" x="210" y="20" width="172" height="70"/>
+<text class="tt" x="296.0" y="42.5" font-size="13" text-anchor="middle">2. Chọn đồ trong ảnh</text>
+<text class="ts" x="296.0" y="59.5" font-size="11.5" text-anchor="middle">bấm hotspot → popup</text>
+<text class="ts" x="296.0" y="76.5" font-size="11.5" text-anchor="middle">UC3.3</text>
+<polyline class="ar" points="384,55 398,55" marker-end="url(#ah)"/>
+<rect class="bx acc" x="400" y="20" width="172" height="70"/>
+<text class="tt" x="486.0" y="42.5" font-size="13" text-anchor="middle">3. Xem 3D</text>
+<text class="ts" x="486.0" y="59.5" font-size="11.5" text-anchor="middle">xoay · zoom · .glb</text>
+<text class="ts" x="486.0" y="76.5" font-size="11.5" text-anchor="middle">UC3.4</text>
+<polyline class="ar" points="574,55 588,55" marker-end="url(#ah)"/>
+<rect class="bx" x="590" y="20" width="172" height="70"/>
+<text class="tt" x="676.0" y="42.5" font-size="13" text-anchor="middle">4. Nhận gợi ý</text>
+<text class="ts" x="676.0" y="59.5" font-size="11.5" text-anchor="middle">Complete Your Room</text>
+<text class="ts" x="676.0" y="76.5" font-size="11.5" text-anchor="middle">UC3.5</text>
+<polyline class="ar" points="764,55 778,55" marker-end="url(#ah)"/>
+<rect class="bx dark" x="780" y="20" width="172" height="70"/>
+<text class="tt inv" x="866.0" y="42.5" font-size="13" text-anchor="middle">5. Mua</text>
+<text class="ts inv" x="866.0" y="59.5" font-size="11.5" text-anchor="middle">giỏ → thanh toán → đơn</text>
+<text class="ts inv" x="866.0" y="76.5" font-size="11.5" text-anchor="middle">UC4.1–4.5</text>
+</svg><figcaption>Hành trình chính của đồ án (Explore Room → Discover Furniture → View 3D → Get Recommendation → Buy). Bước 2–3 là điểm khác biệt so với web bán nội thất thông thường.</figcaption></figure>
+<figure class="dg"><svg viewBox="0 0 960 350" role="img" aria-label="Bốn pain point ở Chương 1 và tính năng trả lời trực tiếp từng cái. Bối cảnh: nội thất online tăng mạnh nhưng tỉ lệ bỏ giỏ ~90%." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<text class="hd" x="20" y="18" text-anchor="start">PAIN POINT (vấn đề của người mua)</text>
+<text class="hd" x="940" y="18" text-anchor="end">GIẢI PHÁP CỦA ROOMCRAFT</text>
+<rect class="bx warn" x="20" y="34" width="330" height="60"/>
+<text class="tt" x="185.0" y="60.0" font-size="13" text-anchor="middle">Khó hình dung đồ trong phòng</text>
+<text class="ts" x="185.0" y="77.0" font-size="11.5" text-anchor="middle">Ảnh nền trắng, mất ngữ cảnh</text>
+<rect class="bx acc" x="610" y="34" width="330" height="60"/>
+<text class="tt" x="775.0" y="60.0" font-size="13" text-anchor="middle">Shop the Room</text>
+<text class="ts" x="775.0" y="77.0" font-size="11.5" text-anchor="middle">Ảnh phòng thật + hotspot gắn sản phẩm</text>
+<polyline class="ar" points="352,64 606,64" marker-end="url(#ah)"/>
+<text class="lbl" x="479" y="58" text-anchor="middle">V1 → giải bằng</text>
+<rect class="bx warn" x="20" y="112" width="330" height="60"/>
+<text class="tt" x="185.0" y="138.1" font-size="13" text-anchor="middle">Cảm hứng không mua ngay được</text>
+<text class="ts" x="185.0" y="155.1" font-size="11.5" text-anchor="middle">Xem Pinterest rồi phải đi tìm từng món</text>
+<rect class="bx acc" x="610" y="112" width="330" height="60"/>
+<text class="tt" x="775.0" y="138.1" font-size="13" text-anchor="middle">Mua ngay trong ảnh</text>
+<text class="ts" x="775.0" y="155.1" font-size="11.5" text-anchor="middle">Popup: chi tiết · thêm giỏ · thêm cả phòng</text>
+<polyline class="ar" points="352,142 606,142" marker-end="url(#ah)"/>
+<text class="lbl" x="479" y="136" text-anchor="middle">V2 → giải bằng</text>
+<rect class="bx warn" x="20" y="190" width="330" height="60"/>
+<text class="tt" x="185.0" y="216.1" font-size="13" text-anchor="middle">Không xem được 3D</text>
+<text class="ts" x="185.0" y="233.1" font-size="11.5" text-anchor="middle">Sợ sai kích thước, màu, mặt sau</text>
+<rect class="bx acc" x="610" y="190" width="330" height="60"/>
+<text class="tt" x="775.0" y="216.1" font-size="13" text-anchor="middle">3D Product Viewer</text>
+<text class="ts" x="775.0" y="233.1" font-size="11.5" text-anchor="middle">202 model .glb, xoay / zoom</text>
+<polyline class="ar" points="352,220 606,220" marker-end="url(#ah)"/>
+<text class="lbl" x="479" y="214" text-anchor="middle">V3 → giải bằng</text>
+<rect class="bx warn" x="20" y="268" width="330" height="60"/>
+<text class="tt" x="185.0" y="294.1" font-size="13" text-anchor="middle">Không biết mua gì cho đồng bộ</text>
+<text class="ts" x="185.0" y="311.1" font-size="11.5" text-anchor="middle">Thiếu kiến thức phối đồ</text>
+<rect class="bx acc" x="610" y="268" width="330" height="60"/>
+<text class="tt" x="775.0" y="294.1" font-size="13" text-anchor="middle">Complete Your Room</text>
+<text class="ts" x="775.0" y="311.1" font-size="11.5" text-anchor="middle">Gợi ý cùng phong cách, khác danh mục</text>
+<polyline class="ar" points="352,298 606,298" marker-end="url(#ah)"/>
+<text class="lbl" x="479" y="292" text-anchor="middle">V4 → giải bằng</text>
+</svg><figcaption>Bốn pain point ở Chương 1 và tính năng trả lời trực tiếp từng cái. Bối cảnh: nội thất online tăng mạnh nhưng tỉ lệ bỏ giỏ ~90%.</figcaption></figure>
+<div class="nums"><div class="num"><b>953 / 935</b><span>sản phẩm / đang hiển thị</span></div><div class="num"><b>49</b><span>phòng mẫu · 7 phong cách</span></div><div class="num"><b>1.353</b><span>hotspot · 597 sản phẩm</span></div><div class="num"><b>202 / 201</b><span>model 3D / đang hiển thị</span></div><div class="num"><b>25</b><span>trang · 17 khách + 8 admin</span></div><div class="num"><b>33 · 14</b><span>use case (7 nhóm) · BPMN</span></div><div class="num"><b>19</b><span>bảng MySQL · 6 nhóm</span></div><div class="num"><b>97,4–98,5%</b><span>đạt sau P3 · 7 cấu hình</span></div></div>
+<h3>Bối cảnh (số liệu Chương 1)</h3>
+<div class="tw"><table class="map"><tr><th>Khía cạnh</th><th>Số liệu dẫn chứng</th></tr><tr><td>Mua nội thất online tăng</td><td>Nội thất ~11% giá trị hàng hoá giao dịch online; doanh thu online ngành nội thất 25–30% (2024)</td></tr><tr><td>Cảm hứng từ mạng xã hội</td><td>Pinterest 619 triệu người dùng/tháng, có Shop the Look → thói quen "xem phòng đẹp trước"</td></tr><tr><td>Khó hình dung → bỏ giỏ</td><td>Thêm giỏ chỉ 10,0–10,5%, bỏ giỏ 90,0–90,5% (nội thất online VN, 2024)</td></tr><tr><td>Nhu cầu 3D</td><td>3D/AR giúp giảm hoàn trả do kỳ vọng sai lệch; nội thất giá trị cao, khó đổi trả</td></tr></table></div>
+<h3>7 mục tiêu cụ thể</h3>
+<div class="tw"><table class="map"><tr><th>Nhóm</th><th>Mục tiêu</th><th>Ghi nhớ</th></tr><tr><td>Core E-commerce</td><td>MT1: tài khoản, catalog, tìm/lọc, chi tiết, wishlist, giỏ, checkout, theo dõi, đánh giá</td><td>đánh giá chỉ khi đã nhận hàng; huỷ chỉ khi Confirmed/Packing</td></tr><tr><td>Room Experience</td><td>MT2 Shop the Room · MT3 3D Viewer · MT4 Complete Your Room</td><td>3 điểm nhấn của đồ án</td></tr><tr><td>Mở rộng</td><td>MT5 Đồ cũ · MT6 Chatbot · MT7 Admin</td><td>đồ cũ do Admin đăng; chatbot góc phải</td></tr></table></div>
+<p class="lead"><b>Thứ tự phụ thuộc:</b> Dữ liệu &amp; Core E-commerce → Admin → Shop the Room → 3D → Complete Your Room → Đồ cũ → Chatbot.</p>
+<div class="two">
+<div class="card"><h4>MoSCoW</h4>
+<table><tr><th>Must</th><td>Core E-commerce, Admin cơ bản, Shop the Room</td></tr>
+<tr><th>Should</th><td>3D Viewer, Complete Your Room, Wishlist, Đồ cũ</td></tr>
+<tr><th>Could</th><td>Chatbot, Dashboard, mã giảm giá</td></tr>
+<tr><th>Won't</th><td>Người dùng tự đăng phòng/đồ cũ, Community, AR/VR tự làm, ML</td></tr></table></div>
+<div class="card"><h4>Phạm vi &amp; giới hạn (chủ động chọn)</h4><ul>
+<li>Web tĩnh, không backend; dữ liệu một máy, không đồng bộ.</li>
+<li>MySQL chỉ thiết kế; OTP, thanh toán mô phỏng; Google đăng nhập thật.</li>
+<li>Không ML: gợi ý theo luật (phong cách, danh mục, màu).</li>
+<li>Dữ liệu mẫu: việt hoá, quy đổi VND, không phải giá thị trường.</li></ul></div>
+</div>
+<p class="say"><span>Nói miệng</span>Thị trường lớn nhưng bỏ giỏ tới 90% vì cảm hứng không dẫn tới hành động. RoomCraft biến ảnh phòng thành kệ hàng. Web tĩnh là giới hạn chủ động chọn, không phải thiếu năng lực.</p>
+</section>
+<section id="quy-trinh">
+<p class="ov">Phần 2</p><h2>Quy trình &amp; làm việc nhóm</h2>
+<figure class="dg"><svg viewBox="0 0 960 145" role="img" aria-label="Quy trình triển khai: tuần tự nhưng có vòng lặp ở bước kiểm thử – sửa lỗi. Lập trình theo Scrum với 3 giai đoạn: Core E-commerce → Room Experience → mở rộng." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="30" width="122" height="56"/>
+<text class="tt" x="81.0" y="54.0" font-size="13" text-anchor="middle">Ý tưởng</text>
+<text class="ts" x="81.0" y="71.0" font-size="11.5" text-anchor="middle">chốt phạm vi</text>
+<polyline class="ar" points="143,58 153,58" marker-end="url(#ah)"/>
+<rect class="bx" x="154" y="30" width="122" height="56"/>
+<text class="tt" x="215.0" y="54.0" font-size="13" text-anchor="middle">Dữ liệu</text>
+<text class="ts" x="215.0" y="71.0" font-size="11.5" text-anchor="middle">crawl · làm sạch</text>
+<polyline class="ar" points="277,58 287,58" marker-end="url(#ah)"/>
+<rect class="bx" x="288" y="30" width="122" height="56"/>
+<text class="tt" x="349.0" y="54.0" font-size="13" text-anchor="middle">Phân tích–TK</text>
+<text class="ts" x="349.0" y="71.0" font-size="11.5" text-anchor="middle">UC · BPMN · ERD</text>
+<polyline class="ar" points="411,58 421,58" marker-end="url(#ah)"/>
+<rect class="bx" x="422" y="30" width="122" height="56"/>
+<text class="tt" x="483.0" y="54.0" font-size="13" text-anchor="middle">Tạo 3D</text>
+<text class="ts" x="483.0" y="71.0" font-size="11.5" text-anchor="middle">Hunyuan3D-2</text>
+<polyline class="ar" points="545,58 555,58" marker-end="url(#ah)"/>
+<rect class="bx acc" x="556" y="30" width="122" height="56"/>
+<text class="tt" x="617.0" y="54.0" font-size="13" text-anchor="middle">Lập trình</text>
+<text class="ts" x="617.0" y="71.0" font-size="11.5" text-anchor="middle">~3 tuần · 5 người</text>
+<polyline class="ar" points="679,58 689,58" marker-end="url(#ah)"/>
+<rect class="bx acc" x="690" y="30" width="122" height="56"/>
+<text class="tt" x="751.0" y="54.0" font-size="13" text-anchor="middle">Kiểm thử</text>
+<text class="ts" x="751.0" y="71.0" font-size="11.5" text-anchor="middle">P0 → P3</text>
+<polyline class="ar" points="813,58 823,58" marker-end="url(#ah)"/>
+<rect class="bx" x="824" y="30" width="122" height="56"/>
+<text class="tt" x="885.0" y="54.0" font-size="13" text-anchor="middle">Báo cáo</text>
+<text class="ts" x="885.0" y="71.0" font-size="11.5" text-anchor="middle">minh chứng</text>
+<polyline class="ar hl" points="751.0,86 751.0,116 617.0,116 617.0,90" marker-end="url(#ah2)"/>
+<text class="lbl" x="684.0" y="132" text-anchor="middle">lặp: sửa theo kết quả kiểm thử</text>
+</svg><figcaption>Quy trình triển khai: tuần tự nhưng có vòng lặp ở bước kiểm thử – sửa lỗi. Lập trình theo Scrum với 3 giai đoạn: Core E-commerce → Room Experience → mở rộng.</figcaption></figure>
+<div class="tw"><table class="map"><tr><th>Thành viên</th><th>Phạm vi chính</th></tr><tr><td>Quỳnh Kha</td><td>Khung dùng chung, xác thực, hồ sơ; duyệt Pull Request và tích hợp mã nguồn</td></tr><tr><td>Bảo Duy</td><td>Trang chủ, khám phá không gian, chi tiết phòng &amp; hotspot; quản trị phòng mẫu</td></tr><tr><td>Nguyên Khôi</td><td>Danh sách/chi tiết sản phẩm, Wishlist, thẻ sản phẩm dùng chung; quản trị sản phẩm, danh mục</td></tr><tr><td>Phương Anh</td><td>Giỏ hàng, thanh toán, đơn hàng; quản trị đơn hàng và Dashboard</td></tr><tr><td>Như Huyền</td><td>Đồ cũ, chatbot; quản trị người dùng và đánh giá</td></tr></table></div>
+<figure class="dg"><svg viewBox="0 0 960 236" role="img" aria-label="Làm việc nhóm bằng Git/GitHub: mỗi phân hệ một nhánh, gửi Pull Request, được xem xét rồi mới hợp nhất vào main." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<line class="ar" x1="30" y1="50" x2="930" y2="50"/>
+<text class="hd" x="30" y="36" text-anchor="start">main (nhánh chính — luôn chạy được)</text>
+<polyline class="ar dash" points="110,50 110,120 470,120 470,56" marker-end="url(#ah)"/>
+<polyline class="ar dash" points="300,50 300,165 720,165 720,56" marker-end="url(#ah)"/>
+<circle class="dot" cx="170" cy="120" r="6"/>
+<circle class="dot" cx="240" cy="120" r="6"/>
+<circle class="dot" cx="320" cy="120" r="6"/>
+<circle class="dot" cx="380" cy="165" r="6"/>
+<circle class="dot" cx="470" cy="165" r="6"/>
+<circle class="dot" cx="560" cy="165" r="6"/>
+<circle class="dot" cx="640" cy="165" r="6"/>
+<text class="lbl" x="120" y="112" text-anchor="start">nhánh trang của 1 thành viên</text>
+<text class="lbl" x="310" y="157" text-anchor="start">nhánh phân hệ khác</text>
+<rect class="bx acc" x="482" y="72" width="130" height="32"/>
+<text class="tt" x="547.0" y="92.2" font-size="12" text-anchor="middle">Pull Request</text>
+<rect class="bx acc" x="732" y="108" width="130" height="32"/>
+<text class="tt" x="797.0" y="128.2" font-size="12" text-anchor="middle">Pull Request</text>
+<rect class="bx dark" x="770" y="150" width="170" height="44"/>
+<text class="tt inv" x="855.0" y="168.2" font-size="12" text-anchor="middle">Trưởng nhóm xem xét</text>
+<text class="ts inv" x="855.0" y="184.2" font-size="10.5" text-anchor="middle">rồi mới merge</text>
+<text class="note" x="30" y="222" text-anchor="start">164 commit · 14 PR (đến 06/11). Quy ước: mỗi người sửa file trang mình; file dùng chung (store.js, base.css, header) phải qua trưởng nhóm duyệt.</text>
+</svg><figcaption>Làm việc nhóm bằng Git/GitHub: mỗi phân hệ một nhánh, gửi Pull Request, được xem xét rồi mới hợp nhất vào main.</figcaption></figure>
+<div class="card warn"><h4>3 vấn đề làm nhóm đã gặp (nói thật, kèm bài học)</h4><ul>
+<li><b>Ghi đè mã người khác:</b> commit 25/10 làm mất lệnh nạp dữ liệu ở 3 trang admin, đến kiểm thử chéo 27/10 mới phát hiện.</li>
+<li><b>Xung đột khi gộp nhánh</b> ở file dùng chung.</li>
+<li><b>Sửa file chung ảnh hưởng mọi người:</b> tăng DATA_VERSION từng làm mất tài khoản tự tạo → bổ sung keepLocalData.</li></ul></div>
+</section>
+<section id="du-lieu-3d">
+<p class="ov">Phần 3</p><h2>Dữ liệu nguồn &amp; mô hình 3D</h2>
+<figure class="dg"><svg viewBox="0 0 960 145" role="img" aria-label="Dữ liệu đi từ nguồn crawl đến trình duyệt. Sửa 23 sản phẩm trùng tên sau khi dịch, hạ tỉ lệ hết hàng từ 47% xuống 7,6%." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="16" y="40" width="136" height="58"/>
+<text class="tt" x="84.0" y="65.0" font-size="13" text-anchor="middle">Website bán lẻ</text>
+<text class="ts" x="84.0" y="82.0" font-size="11.5" text-anchor="middle">crawl HTML tự động</text>
+<polyline class="ar" points="154,69 174,69" marker-end="url(#ah)"/>
+<text class="lbl" x="164.0" y="30" text-anchor="middle">tải về</text>
+<rect class="bx" x="176" y="40" width="136" height="58"/>
+<text class="tt" x="244.0" y="65.0" font-size="13" text-anchor="middle">7 file CSV</text>
+<text class="ts" x="244.0" y="82.0" font-size="11.5" text-anchor="middle">raw · theo phong cách</text>
+<polyline class="ar" points="314,69 334,69" marker-end="url(#ah)"/>
+<text class="lbl" x="324.0" y="30" text-anchor="middle">vá lỗi</text>
+<rect class="bx" x="336" y="40" width="136" height="58"/>
+<text class="tt" x="404.0" y="65.0" font-size="13" text-anchor="middle">Bản vá</text>
+<text class="ts" x="404.0" y="82.0" font-size="11.5" text-anchor="middle">patched/</text>
+<polyline class="ar" points="474,69 494,69" marker-end="url(#ah)"/>
+<text class="lbl" x="484.0" y="30" text-anchor="middle">việt hoá · VND</text>
+<rect class="bx" x="496" y="40" width="136" height="58"/>
+<text class="tt" x="564.0" y="65.0" font-size="13" text-anchor="middle">masterdata_vi.csv</text>
+<text class="ts" x="564.0" y="82.0" font-size="11.5" text-anchor="middle">bảng đối chiếu</text>
+<polyline class="ar" points="634,69 654,69" marker-end="url(#ah)"/>
+<text class="lbl" x="644.0" y="30" text-anchor="middle">xuất JSON</text>
+<rect class="bx acc" x="656" y="40" width="136" height="58"/>
+<text class="tt" x="724.0" y="65.0" font-size="13" text-anchor="middle">data/json</text>
+<text class="ts" x="724.0" y="82.0" font-size="11.5" text-anchor="middle">13 file + wards</text>
+<polyline class="ar" points="794,69 814,69" marker-end="url(#ah)"/>
+<text class="lbl" x="804.0" y="30" text-anchor="middle">loadData()</text>
+<rect class="bx dark" x="816" y="40" width="136" height="58"/>
+<text class="tt inv" x="884.0" y="65.0" font-size="13" text-anchor="middle">localStorage</text>
+<text class="ts inv" x="884.0" y="82.0" font-size="11.5" text-anchor="middle">rc_* khi chạy</text>
+<text class="note" x="16" y="130" text-anchor="start">7 việc xử lý: rà thiếu/trùng · chuẩn hoá phong cách, danh mục · dịch tiếng Việt · đổi giá sang VND · gộp nhóm chất liệu/màu · thêm mã định danh · chọn &amp; nén ảnh</text>
+</svg><figcaption>Dữ liệu đi từ nguồn crawl đến trình duyệt. Sửa 23 sản phẩm trùng tên sau khi dịch, hạ tỉ lệ hết hàng từ 47% xuống 7,6%.</figcaption></figure>
+<div class="tw"><table class="map"><tr><th>Đối tượng</th><th>Số lượng</th><th>Nằm ở</th></tr><tr><td>Sản phẩm mới</td><td>953 (935 hiển thị, 18 ẩn)</td><td>data/json/products.json</td></tr><tr><td>Danh mục</td><td>25 = 3 cha + 22 con</td><td>categories.json</td></tr><tr><td>Phong cách</td><td>7: Bohemian, Coastal, Farmhouse, Glam, Mid-century Modern, Scandinavian, Traditional</td><td>styles.json</td></tr><tr><td>Đồ cũ</td><td>18</td><td>used_products.json → gộp vào products</td></tr><tr><td>Phòng mẫu · hotspot</td><td>49 phòng · 1.353 hotspot (597 sản phẩm)</td><td>rooms.json · room_hotspots.json</td></tr><tr><td>Model 3D</td><td>202 file .glb (201 hiển thị)</td><td>assets/models · trường model_3d_url</td></tr><tr><td>Đơn · đánh giá · tài khoản mẫu</td><td>150 · 194 (193 hiển thị) · 46 (45 user + 1 admin)</td><td>orders · reviews · users.json</td></tr></table></div>
+<figure class="dg"><svg viewBox="0 0 960 246" role="img" aria-label="Pipeline tạo mô hình 3D từ 1 ảnh sản phẩm. AI tiết kiệm chi phí nhưng bước kiểm tra bằng mắt từng model là bắt buộc." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="16" y="30" width="150" height="58"/>
+<text class="tt" x="91.0" y="55.0" font-size="13" text-anchor="middle">Chọn 235 món</text>
+<text class="ts" x="91.0" y="72.0" font-size="11.5" text-anchor="middle">nội thất (không decor)</text>
+<rect class="bx" x="196" y="30" width="150" height="58"/>
+<text class="tt" x="271.0" y="55.0" font-size="13" text-anchor="middle">Kaggle Dataset</text>
+<text class="ts" x="271.0" y="72.0" font-size="11.5" text-anchor="middle">ảnh nén theo phong cách</text>
+<rect class="bx acc" x="376" y="30" width="170" height="58"/>
+<text class="tt" x="461.0" y="55.0" font-size="13" text-anchor="middle">Hunyuan3D-2</text>
+<text class="ts" x="461.0" y="72.0" font-size="11.5" text-anchor="middle">GPU T4 ×2 · 2 worker</text>
+<rect class="bx" x="576" y="30" width="170" height="58"/>
+<text class="tt" x="661.0" y="55.0" font-size="13" text-anchor="middle">Tách nền → dựng hình</text>
+<text class="ts" x="661.0" y="72.0" font-size="11.5" text-anchor="middle">→ vẽ texture → .glb</text>
+<rect class="bx acc" x="776" y="30" width="168" height="58"/>
+<text class="tt" x="860.0" y="55.0" font-size="13" text-anchor="middle">Kiểm từng model</text>
+<text class="ts" x="860.0" y="72.0" font-size="11.5" text-anchor="middle">gltf-viewer, xoay đủ mặt</text>
+<polyline class="ar" points="166,59 192,59" marker-end="url(#ah)"/>
+<polyline class="ar" points="346,59 372,59" marker-end="url(#ah)"/>
+<polyline class="ar" points="546,59 572,59" marker-end="url(#ah)"/>
+<polyline class="ar" points="746,59 772,59" marker-end="url(#ah)"/>
+<rect class="bx dark" x="776" y="140" width="168" height="58"/>
+<text class="tt inv" x="860.0" y="165.1" font-size="13" text-anchor="middle">Đạt → assets/models</text>
+<text class="ts inv" x="860.0" y="182.1" font-size="11.5" text-anchor="middle">gắn model_3d_url · PR</text>
+<polyline class="ar" points="860,88 860,136" marker-end="url(#ah)"/>
+<text class="lbl" x="868" y="116" text-anchor="start">đạt</text>
+<rect class="bx warn" x="470" y="140" width="220" height="58"/>
+<text class="tt" x="580.0" y="165.1" font-size="13" text-anchor="middle">Sai màu → REDO_TEXTURE</text>
+<text class="ts" x="580.0" y="182.1" font-size="11.5" text-anchor="middle">Sai hình → IMAGE_OVERRIDE</text>
+<polyline class="ar" points="800,88 690,150" marker-end="url(#ah)"/>
+<text class="lbl" x="752" y="112" text-anchor="middle">lỗi</text>
+<polyline class="ar hl" points="560,140 560,112 461,112 461,92" marker-end="url(#ah2)"/>
+<text class="lbl" x="510" y="106" text-anchor="middle">chạy lại</text>
+<polyline class="ar" points="470,170 374,170" marker-end="url(#ah)"/>
+<text class="lbl" x="422" y="162" text-anchor="middle">vẫn hỏng</text>
+<rect class="bx warn" x="140" y="140" width="230" height="58"/>
+<text class="tt" x="255.0" y="165.1" font-size="13" text-anchor="middle">Thử 2–3 lần vẫn hỏng → loại</text>
+<text class="ts" x="255.0" y="182.1" font-size="11.5" text-anchor="middle">23 lỗi hình + 13 sai màu</text>
+<text class="note" x="560" y="232" text-anchor="middle">Kết quả: 202 model trên web (201 thuộc sản phẩm đang hiển thị). Thực đo 271–536 giây/món, trung bình ~5,4 phút; cài đặt ~8 phút.</text>
+</svg><figcaption>Pipeline tạo mô hình 3D từ 1 ảnh sản phẩm. AI tiết kiệm chi phí nhưng bước kiểm tra bằng mắt từng model là bắt buộc.</figcaption></figure>
+<div class="two">
+<div class="card"><h4>Câu chuẩn khi nói về số model</h4><p>"Nhóm chọn <b>235 món</b> nội thất để tạo model. Sau khi kiểm tra từng model, nhóm loại <b>23 model lỗi hình</b> và <b>13 model sai màu</b>, còn <b>202 model</b> đưa lên website." — nói đúng câu, không tự làm phép trừ.</p></div>
+<div class="card"><h4>Bản quyền dữ liệu — 3 ý</h4><ul>
+<li>Dùng cho học tập, không thương mại.</li>
+<li>Rủi ro: ảnh, nội dung thuộc website nguồn và thương hiệu.</li>
+<li>Làm thật: xin phép, ghi nguồn, hoặc dùng dữ liệu tự tạo/có giấy phép.</li></ul></div>
+</div>
+</section>
+<section id="kien-truc">
+<p class="ov">Phần 4</p><h2>Kiến trúc &amp; cách chạy</h2>
+<figure class="dg"><svg viewBox="0 0 960 480" role="img" aria-label="Kiến trúc: web tĩnh, không backend dữ liệu. JSON chỉ là nguồn nạp lần đầu, sau đó mọi đọc/ghi đi qua store.js vào localStorage. Ba dịch vụ bên ngoài: 3D, Google, proxy chatbot." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="zone" x="16" y="16" width="640" height="448"/>
+<text class="hd" x="30" y="40" text-anchor="start">TRÌNH DUYỆT CỦA NGƯỜI DÙNG — mọi nghiệp vụ chạy ở đây</text>
+<rect class="bx" x="40" y="56" width="590" height="50"/>
+<text class="tt" x="335.0" y="77.0" font-size="13" text-anchor="middle">25 trang HTML + CSS</text>
+<text class="ts" x="335.0" y="94.0" font-size="11.5" text-anchor="middle">17 trang khách + 8 trang admin · base.css + css/pages/*</text>
+<rect class="bx" x="40" y="134" width="590" height="50"/>
+<text class="tt" x="335.0" y="155.1" font-size="13" text-anchor="middle">JS của trang + component</text>
+<text class="ts" x="335.0" y="172.1" font-size="11.5" text-anchor="middle">js/pages/*.js · header, product-card, chatbot, catalog-filter</text>
+<rect class="bx" x="40" y="212" width="590" height="50"/>
+<text class="tt" x="335.0" y="233.1" font-size="13" text-anchor="middle">JS nghiệp vụ (services)</text>
+<text class="ts" x="335.0" y="250.1" font-size="11.5" text-anchor="middle">auth · cart · orders · shipping · products — nơi kiểm ràng buộc</text>
+<rect class="bx acc" x="40" y="290" width="590" height="50"/>
+<text class="tt" x="335.0" y="311.1" font-size="13" text-anchor="middle">store.js — cửa duy nhất vào dữ liệu</text>
+<text class="ts" x="335.0" y="328.1" font-size="11.5" text-anchor="middle">getTable / saveTable / findById · KHÔNG ai gọi localStorage trực tiếp</text>
+<rect class="bx dark" x="40" y="380" width="590" height="60"/>
+<text class="tt inv" x="335.0" y="406.1" font-size="13" text-anchor="middle">localStorage (~5MB / origin)</text>
+<text class="ts inv" x="335.0" y="423.1" font-size="11.5" text-anchor="middle">rc_products · rc_orders · rc_carts · rc_session · rc_users … (chỉ lưu chuỗi JSON)</text>
+<polyline class="ar" points="335,106 335,130" marker-end="url(#ah)"/>
+<polyline class="ar" points="335,184 335,208" marker-end="url(#ah)"/>
+<polyline class="ar" points="335,262 335,286" marker-end="url(#ah)"/>
+<polyline class="ar" points="335,340 335,376" marker-end="url(#ah)"/>
+<text class="lbl" x="345" y="362" text-anchor="start">đọc / ghi</text>
+<rect class="bx ext" x="720" y="40" width="224" height="56"/>
+<text class="tt" x="832.0" y="64.0" font-size="13" text-anchor="middle">File .glb + model-viewer</text>
+<text class="ts" x="832.0" y="81.0" font-size="11.5" text-anchor="middle">assets/models (tự host)</text>
+<rect class="bx ext" x="720" y="128" width="224" height="56"/>
+<text class="tt" x="832.0" y="152.1" font-size="13" text-anchor="middle">Google Identity Services</text>
+<text class="ts" x="832.0" y="169.1" font-size="11.5" text-anchor="middle">đăng nhập Google — THẬT</text>
+<rect class="bx ext" x="720" y="216" width="224" height="56"/>
+<text class="tt" x="832.0" y="240.1" font-size="13" text-anchor="middle">server.js (cổng 3000)</text>
+<text class="ts" x="832.0" y="257.1" font-size="11.5" text-anchor="middle">chỉ là proxy chatbot → AI</text>
+<rect class="bx" x="720" y="312" width="224" height="56"/>
+<text class="tt" x="832.0" y="336.1" font-size="13" text-anchor="middle">data/json/*.json</text>
+<text class="ts" x="832.0" y="353.1" font-size="11.5" text-anchor="middle">13 file dữ liệu gốc</text>
+<rect class="bx ext" x="720" y="400" width="224" height="56"/>
+<text class="tt" x="832.0" y="424.1" font-size="13" text-anchor="middle">RoomCraft_database.sql</text>
+<text class="ts" x="832.0" y="441.1" font-size="11.5" text-anchor="middle">MySQL 19 bảng — CHỈ THIẾT KẾ</text>
+<polyline class="ar" points="716,68 632,80" marker-end="url(#ah)"/>
+<text class="lbl" x="676" y="66" text-anchor="middle">tải 3D</text>
+<polyline class="ar" points="632,158 716,156" marker-end="url(#ah)"/>
+<text class="lbl" x="676" y="150" text-anchor="middle">token JWT</text>
+<polyline class="ar" points="632,166 680,166 680,240 716,244" marker-end="url(#ah)"/>
+<text class="lbl" x="684" y="206" text-anchor="start">POST /api/chat</text>
+<polyline class="ar" points="716,330 632,316" marker-end="url(#ah)"/>
+<text class="lbl" x="674" y="302" text-anchor="middle">nạp lần đầu</text>
+<polyline class="ar dash" points="832,400 832,372" marker-end="url(#ah)"/>
+<text class="lbl" x="840" y="392" text-anchor="start">tổ chức theo</text>
+</svg><figcaption>Kiến trúc: web tĩnh, không backend dữ liệu. JSON chỉ là nguồn nạp lần đầu, sau đó mọi đọc/ghi đi qua store.js vào localStorage. Ba dịch vụ bên ngoài: 3D, Google, proxy chatbot.</figcaption></figure>
+<div class="two">
+<div class="card"><h4>Cái gì THẬT, cái gì MÔ PHỎNG</h4>
+<table class="tf"><tr><th>Thật</th><td>Đăng nhập Google · mô hình 3D · chatbot AI (khi chạy server.js) · lọc / tìm / giỏ / đơn hàng chạy đầy đủ trong trình duyệt</td></tr>
+<tr><th>Mô phỏng</th><td>OTP (hiện mã trên trang) · thanh toán COD / chuyển khoản / ví chỉ ghi nhận, QR giả lập</td></tr>
+<tr><th>Chỉ thiết kế</th><td>MySQL 19 bảng (RoomCraft_database.sql)</td></tr></table></div>
+<div class="card"><h4>Cấu trúc thư mục</h4>
+<pre class="tree">index.html     → chuyển vào scripts/
+scripts/       → 17 trang + admin/ (8)
+  css/         base · pages · components
+  js/core/     store · auth · utils
+  js/services/ cart · orders · shipping…
+  js/pages/    1 file JS / trang
+  components/  header · product-card…
+  libs/        model-viewer · chart · qrcode
+data/json/     dữ liệu gốc
+assets/models/ 202 file .glb
+database/      RoomCraft_database.sql
+server.js      proxy chatbot :3000
+tests/         13 phiên Playwright</pre></div>
+</div>
+<figure class="dg"><svg viewBox="0 0 960 236" role="img" aria-label="Ba cách chạy dự án. Phải chạy qua HTTP (không mở file trực tiếp) vì trình duyệt cần tải JSON bằng XHR." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="20" width="200" height="52"/>
+<text class="tt" x="120.0" y="42.0" font-size="13" text-anchor="middle">Live Server (VS Code)</text>
+<text class="ts" x="120.0" y="59.0" font-size="11.5" text-anchor="middle">mở thư mục gốc repo</text>
+<rect class="bx" x="270" y="20" width="300" height="52"/>
+<text class="tt" x="420.0" y="42.0" font-size="13" text-anchor="middle">127.0.0.1:5500/scripts/index.html</text>
+<text class="ts" x="420.0" y="59.0" font-size="11.5" text-anchor="middle">mọi nghiệp vụ chạy đủ</text>
+<rect class="bx ext" x="620" y="20" width="320" height="52"/>
+<text class="tt" x="780.0" y="42.0" font-size="13" text-anchor="middle">Chatbot chỉ dùng FAQ + luật</text>
+<text class="ts" x="780.0" y="59.0" font-size="11.5" text-anchor="middle">(không có AI)</text>
+<rect class="bx acc" x="20" y="96" width="200" height="52"/>
+<text class="tt" x="120.0" y="118.0" font-size="13" text-anchor="middle">node server.js</text>
+<text class="ts" x="120.0" y="135.1" font-size="11.5" text-anchor="middle">cần khoá API trong .env</text>
+<rect class="bx acc" x="270" y="96" width="300" height="52"/>
+<text class="tt" x="420.0" y="118.0" font-size="13" text-anchor="middle">localhost:3000</text>
+<text class="ts" x="420.0" y="135.1" font-size="11.5" text-anchor="middle">phục vụ web + /api/chat</text>
+<rect class="bx dark" x="620" y="96" width="320" height="52"/>
+<text class="tt inv" x="780.0" y="118.0" font-size="13" text-anchor="middle">Đầy đủ + chatbot AI</text>
+<text class="ts inv" x="780.0" y="135.1" font-size="11.5" text-anchor="middle">rate limit · retry · lọc giá bịa</text>
+<rect class="bx" x="20" y="172" width="200" height="52"/>
+<text class="tt" x="120.0" y="194.1" font-size="13" text-anchor="middle">GitHub Pages</text>
+<text class="ts" x="120.0" y="211.1" font-size="11.5" text-anchor="middle">bản chạy thử online</text>
+<rect class="bx" x="270" y="172" width="300" height="52"/>
+<text class="tt" x="420.0" y="194.1" font-size="13" text-anchor="middle">khado218.github.io/…</text>
+<text class="ts" x="420.0" y="211.1" font-size="11.5" text-anchor="middle">đăng nhập Google cần khai tên miền</text>
+<rect class="bx ext" x="620" y="172" width="320" height="52"/>
+<text class="tt" x="780.0" y="194.1" font-size="13" text-anchor="middle">Như Live Server</text>
+<text class="ts" x="780.0" y="211.1" font-size="11.5" text-anchor="middle">chatbot chỉ FAQ + luật</text>
+<polyline class="ar" points="220,46 266,46" marker-end="url(#ah)"/>
+<polyline class="ar" points="570,46 616,46" marker-end="url(#ah)"/>
+<polyline class="ar" points="220,122 266,122" marker-end="url(#ah)"/>
+<polyline class="ar" points="570,122 616,122" marker-end="url(#ah)"/>
+<polyline class="ar" points="220,198 266,198" marker-end="url(#ah)"/>
+<polyline class="ar" points="570,198 616,198" marker-end="url(#ah)"/>
+</svg><figcaption>Ba cách chạy dự án. Phải chạy qua HTTP (không mở file trực tiếp) vì trình duyệt cần tải JSON bằng XHR.</figcaption></figure>
+<p class="say"><span>Nói miệng</span>Toàn bộ nghiệp vụ chạy ở trình duyệt. server.js chỉ là proxy để giấu API key của chatbot, nó không lưu và không xử lý dữ liệu bán hàng.</p>
+</section>
+<section id="local">
+<p class="ov">Phần 5</p><h2>localStorage chi tiết</h2>
+<div class="two">
+<div class="card"><h4>localStorage là gì</h4><ul>
+<li>Thuộc <b>Web Storage API</b>: kho <b>key – value</b> của trình duyệt, theo <b>origin</b> (giao thức + tên miền + cổng). <code>localhost:5500</code> và <code>127.0.0.1:5500</code> là 2 kho khác nhau.</li>
+<li><b>Chỉ lưu chuỗi</b> → <code>JSON.stringify</code> khi ghi, <code>JSON.parse</code> khi đọc.</li>
+<li>Sống mãi đến khi bị xoá; ~<b>5MB</b>; không tự gửi lên server.</li>
+<li>API: <code>setItem</code>, <code>getItem</code>, <code>removeItem</code>, <code>clear</code>, <code>key(i)</code>, <code>length</code>.</li></ul></div>
+<div class="card"><h4>Vì sao nhóm chọn</h4><ul>
+<li>Không có backend → là "CSDL" khả thi duy nhất trong trình duyệt.</li>
+<li>Dữ liệu phải còn sau F5 (giỏ, đơn, phiên) — sessionStorage mất khi đóng tab.</li>
+<li>Admin phải sửa được dữ liệu: JSON chỉ đọc, localStorage ghi được.</li>
+<li>Đơn giản, đồng bộ, không cần thư viện.</li></ul></div>
+</div>
+<figure class="dg"><svg viewBox="0 0 960 256" role="img" aria-label="Vòng đời dữ liệu: lần đầu (hoặc khi nhóm tăng DATA_VERSION) mới đọc JSON; các lần sau chỉ đọc localStorage. Xoá localStorage → tự nạp lại JSON, mất dữ liệu người dùng tự tạo." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="30" width="150" height="56"/>
+<text class="tt" x="95.0" y="54.0" font-size="13" text-anchor="middle">Mở một trang</text>
+<text class="ts" x="95.0" y="71.0" font-size="11.5" text-anchor="middle">store.js → loadData()</text>
+<rect class="bx acc" x="210" y="30" width="190" height="56"/>
+<text class="tt" x="305.0" y="54.0" font-size="13" text-anchor="middle">rc_version == &quot;16&quot;?</text>
+<text class="ts" x="305.0" y="71.0" font-size="11.5" text-anchor="middle">so với DATA_VERSION</text>
+<rect class="bx" x="480" y="30" width="200" height="56"/>
+<text class="tt" x="580.0" y="54.0" font-size="13" text-anchor="middle">Đọc từ localStorage</text>
+<text class="ts" x="580.0" y="71.0" font-size="11.5" text-anchor="middle">getTable(&quot;products&quot;)…</text>
+<rect class="bx dark" x="750" y="30" width="190" height="56"/>
+<text class="tt inv" x="845.0" y="54.0" font-size="13" text-anchor="middle">Trang hiển thị</text>
+<text class="ts inv" x="845.0" y="71.0" font-size="11.5" text-anchor="middle">render DOM từ mảng</text>
+<rect class="bx" x="210" y="176" width="190" height="64"/>
+<text class="tt" x="305.0" y="204.1" font-size="13" text-anchor="middle">Đọc 13 file JSON</text>
+<text class="ts" x="305.0" y="221.1" font-size="11.5" text-anchor="middle">readJsonFile (XHR) lần lượt</text>
+<rect class="bx" x="450" y="176" width="260" height="64"/>
+<text class="tt" x="580.0" y="204.1" font-size="13" text-anchor="middle">Gộp &amp; giữ dữ liệu máy</text>
+<text class="ts" x="580.0" y="221.1" font-size="11.5" text-anchor="middle">đồ cũ → products (USED) · keepLocalData</text>
+<polyline class="ar" points="170,58 206,58" marker-end="url(#ah)"/>
+<polyline class="ar" points="400,58 476,58" marker-end="url(#ah)"/>
+<text class="lbl" x="438" y="50" text-anchor="middle">Đúng</text>
+<polyline class="ar" points="680,58 746,58" marker-end="url(#ah)"/>
+<polyline class="ar" points="305,86 305,172" marker-end="url(#ah)"/>
+<text class="lbl" x="313" y="134" text-anchor="start">Sai / chưa có</text>
+<polyline class="ar" points="400,208 446,208" marker-end="url(#ah)"/>
+<polyline class="ar hl" points="580,176 580,90" marker-end="url(#ah2)"/>
+<text class="lbl" x="588" y="134" text-anchor="start">ghi rc_* + rc_version</text>
+<text class="note" x="730" y="196" text-anchor="start">Dòng tạo trên máy có created_at</text>
+<text class="note" x="730" y="212" text-anchor="start">kết thúc bằng &quot;Z&quot; → được giữ lại,</text>
+<text class="note" x="730" y="228" text-anchor="start">không bị JSON mới ghi đè.</text>
+</svg><figcaption>Vòng đời dữ liệu: lần đầu (hoặc khi nhóm tăng DATA_VERSION) mới đọc JSON; các lần sau chỉ đọc localStorage. Xoá localStorage → tự nạp lại JSON, mất dữ liệu người dùng tự tạo.</figcaption></figure>
+<div class="tw"><table class="map"><tr><th>Key</th><th>Lưu gì / mẫu</th><th>Ghi ở</th><th>Đọc ở</th><th>Bị xoá khi</th></tr><tr><td>rc_version</td><td>"16"</td><td>saveAllData()</td><td>loadData()</td><td>resetData()</td></tr><tr><td>rc_session</td><td>{"user_id":5,"role":"User"}</td><td>saveSession() (auth.js)</td><td>getSession(), getCurrentUser()</td><td>logout(); tài khoản bị khoá → coi như hết phiên</td></tr><tr><td>rc_carts</td><td>{"guest":[{product_id,quantity}], "5":[…]}</td><td>saveCart() (cart.js), mergeGuestData()</td><td>getCart()</td><td>resetData(); món đã đặt bị xoá trong createOrder()</td></tr><tr><td>rc_wishlists</td><td>{"guest":[3,9], "5":[3]}</td><td>toggleWishlistProduct(), mergeGuestData()</td><td>checkIsWishlist()</td><td>bấm tim lần 2; resetData()</td></tr><tr><td>rc_verification_codes</td><td>[{email, code 6 số, purpose, expires_at, is_used}]</td><td>createVerificationCode()</td><td>checkVerificationCode()</td><td>hết hạn 5 phút (vẫn còn dòng); mã mới vô hiệu mã cũ</td></tr><tr><td>rc_products</td><td>953 SP + đồ cũ (product_type USED)</td><td>saveAllData(); Admin sửa</td><td>getTable, findById</td><td>resetData()</td></tr><tr><td>rc_users</td><td>{email, password_hash (SHA-256), role_id, is_active…}</td><td>đăng ký, loginWithGoogle</td><td>login, findUserByEmail</td><td>resetData()</td></tr><tr><td>rc_orders</td><td>{user_id, status, items[]…}</td><td>createOrder()</td><td>getOrdersByUser, admin</td><td>resetData()</td></tr><tr><td>rc_reviews</td><td>{product_id, user_id, rating…}</td><td>addReview()</td><td>getRatingMap()</td><td>resetData()</td></tr><tr><td>rc_roles · rc_categories · rc_styles · rc_rooms · rc_room_hotspots · rc_shipping_methods · rc_coupons · rc_chatbot_faqs</td><td>dữ liệu gốc từ JSON</td><td>saveAllData(); Admin</td><td>getTable</td><td>resetData()</td></tr><tr><td>rc_chat_history</td><td>tối đa 40 tin chat</td><td>chatbot.js</td><td>chatbot.js</td><td>nút xoá hội thoại</td></tr></table></div>
+<h3>store.js — "cửa duy nhất"</h3>
+<div class="two">
+<div><pre><code>function getTable(ten){
+    var chuoi = localStorage.getItem(&quot;rc_&quot; + ten);
+    if(chuoi == null) return [];
+    return JSON.parse(chuoi);
+}
+
+function saveTable(ten, mang){
+    try{
+        localStorage.setItem(&quot;rc_&quot; + ten, JSON.stringify(mang));
+    }
+    catch(e){
+        // mỗi origin chỉ ~5MB
+        alert(&quot;Bộ nhớ trình duyệt đã đầy ...&quot;);
+    }
+    delete bangDaDoc[ten];   // xoá cache đọc
+}</code></pre></div>
+<div><pre><code>var DATA_VERSION = &quot;16&quot;;
+
+function loadData(hamTiepTheo){
+    if(localStorage.getItem(&quot;rc_version&quot;) == DATA_VERSION){
+        hamTiepTheo(); return;
+    }
+    readFileAt(0, {}, hamTiepTheo);  // đọc lần lượt JSON
+}
+
+// dòng tạo trên máy: created_at kiểu ISO kết thúc &quot;Z&quot;
+function isLocalRow(dong){
+    var t = String(dong.created_at || &quot;&quot;);
+    return t.charAt(t.length - 1) == &quot;Z&quot;;
+}</code></pre></div>
+</div>
+<figure class="dg"><svg viewBox="0 0 960 170" role="img" aria-label="Gộp giỏ khách vào tài khoản: trùng món thì cộng số lượng, rồi chặn không vượt tồn kho. Đây là ca kiểm thử s05 và kịch bản E2E số 10." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="26" width="270" height="104"/>
+<text class="tt" x="155.0" y="57.0" font-size="13" text-anchor="middle">rc_carts — TRƯỚC khi đăng nhập</text>
+<text class="ts" x="155.0" y="74.0" font-size="11.5" text-anchor="middle">&quot;guest&quot;: [ A × 2 , B × 1 ]</text>
+<text class="ts" x="155.0" y="91.0" font-size="11.5" text-anchor="middle">&quot;5&quot;:     [ A × 1 ]</text>
+<text class="ts" x="155.0" y="108.0" font-size="11.5" text-anchor="middle">(tồn kho A = 2)</text>
+<rect class="bx acc" x="660" y="26" width="280" height="104"/>
+<text class="tt" x="800.0" y="57.0" font-size="13" text-anchor="middle">rc_carts — SAU khi đăng nhập</text>
+<text class="ts" x="800.0" y="74.0" font-size="11.5" text-anchor="middle">&quot;5&quot;: [ A × 2 , B × 1 ]</text>
+<text class="ts" x="800.0" y="91.0" font-size="11.5" text-anchor="middle">khoá &quot;guest&quot; bị xoá</text>
+<text class="ts" x="800.0" y="108.0" font-size="11.5" text-anchor="middle">A: 1+2 = 3 → hạ về tồn kho 2</text>
+<rect class="bx dark" x="400" y="46" width="180" height="64"/>
+<text class="tt inv" x="490.0" y="74.0" font-size="13" text-anchor="middle">mergeGuestData(5)</text>
+<text class="ts inv" x="490.0" y="91.0" font-size="11.5" text-anchor="middle">gọi trong saveSession()</text>
+<polyline class="ar" points="290,78 396,78" marker-end="url(#ah)"/>
+<text class="lbl" x="343" y="70" text-anchor="middle">đăng nhập</text>
+<polyline class="ar" points="580,78 656,78" marker-end="url(#ah)"/>
+<text class="note" x="480" y="156" text-anchor="middle">Áp dụng tương tự cho rc_wishlists: thêm id chưa có vào danh sách của user rồi xoá &quot;guest&quot;.</text>
+</svg><figcaption>Gộp giỏ khách vào tài khoản: trùng món thì cộng số lượng, rồi chặn không vượt tồn kho. Đây là ca kiểm thử s05 và kịch bản E2E số 10.</figcaption></figure>
+<div class="tw"><table class="map"><tr><th>19 bảng MySQL</th><th>Khi chạy</th><th>Vì sao</th></tr><tr><td>order_details</td><td>mảng <code>items[]</code> lồng trong đơn (kèm tên, ảnh, đơn giá)</td><td>JSON lưu được cấu trúc lồng; đơn cũ không đổi khi SP đổi giá</td></tr><tr><td>product_images</td><td>mảng <code>images[]</code> trong sản phẩm</td><td>như trên</td></tr><tr><td>used_product_details</td><td>gộp vào rc_products, phân biệt bằng product_type</td><td>dùng chung giỏ, thanh toán, thẻ sản phẩm</td></tr><tr><td>carts + cart_items</td><td>rc_carts theo khoá guest / user_id</td><td>khách chưa đăng nhập cũng có giỏ</td></tr><tr><td>wishlists</td><td>rc_wishlists theo khoá guest / user_id</td><td>như trên</td></tr><tr><td>verification_codes</td><td>rc_verification_codes, sinh khi dùng</td><td>không có file JSON</td></tr><tr><td>Khoá ngoại</td><td><code>findById()</code></td><td>không có MySQL kiểm tra hộ</td></tr><tr><td>ON DELETE RESTRICT</td><td>ẩn bằng <code>is_active = false</code></td><td>953 SP nhưng 935 hiển thị</td></tr></table></div>
+<div class="card warn"><h4>Rủi ro (nói thẳng, đừng né)</h4><ul>
+<li>Xoá localStorage → mất dữ liệu tự tạo; dữ liệu gốc tự nạp lại; Admin có nút Xuất JSON.</li>
+<li>DevTools sửa được giá, giỏ, phiên → <code>isAdmin()</code> tra lại bảng roles nhưng vẫn ở client.</li>
+<li>Không đồng bộ giữa các máy; ~5MB, riêng products đã ~2MB.</li>
+<li>Ai mở DevTools cũng đọc được password_hash (SHA-256 không salt).</li></ul></div>
+<p class="say"><span>Nói miệng</span>Mọi trang đọc ghi qua store.js. Lần đầu mở web nạp 13 file JSON vào localStorage; từ đó chỉ đọc localStorage, trừ khi nhóm tăng DATA_VERSION thì nạp lại nhưng vẫn giữ dữ liệu người dùng đã tạo.</p>
+</section>
+<section id="thiet-ke">
+<p class="ov">Phần 6</p><h2>Thiết kế hệ thống</h2>
+<h3>Actor &amp; 33 use case</h3>
+<figure class="dg"><svg viewBox="0 0 960 240" role="img" aria-label="3 actor chính + 2 actor phụ. User là trường hợp đặc biệt của Guest; Admin tách riêng vì mục đích quản trị khác mua sắm." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="30" y="30" width="230" height="64"/>
+<text class="tt" x="145.0" y="49.5" font-size="13" text-anchor="middle">Guest (khách)</text>
+<text class="ts" x="145.0" y="66.5" font-size="11.5" text-anchor="middle">xem phòng, sản phẩm, đồ cũ, chatbot</text>
+<text class="ts" x="145.0" y="83.5" font-size="11.5" text-anchor="middle">giỏ/yêu thích tạm (khoá &quot;guest&quot;)</text>
+<rect class="bx acc" x="30" y="150" width="230" height="64"/>
+<text class="tt" x="145.0" y="169.6" font-size="13" text-anchor="middle">User (đã đăng nhập)</text>
+<text class="ts" x="145.0" y="186.6" font-size="11.5" text-anchor="middle">+ đặt hàng, theo dõi, huỷ đơn</text>
+<text class="ts" x="145.0" y="203.6" font-size="11.5" text-anchor="middle">+ đánh giá (khi đã nhận hàng)</text>
+<polyline class="ar" points="145,150 145,98" marker-end="url(#tri)"/>
+<text class="lbl" x="155" y="128" text-anchor="start">kế thừa (generalization)</text>
+<rect class="bx dark" x="350" y="90" width="230" height="64"/>
+<text class="tt inv" x="465.0" y="109.5" font-size="13" text-anchor="middle">Admin</text>
+<text class="ts inv" x="465.0" y="126.5" font-size="11.5" text-anchor="middle">8 trang quản trị, dashboard</text>
+<text class="ts inv" x="465.0" y="143.6" font-size="11.5" text-anchor="middle">KHÔNG kế thừa User</text>
+<rect class="bx ext" x="690" y="30" width="250" height="56"/>
+<text class="tt" x="815.0" y="54.0" font-size="13" text-anchor="middle">Google Identity Services</text>
+<text class="ts" x="815.0" y="71.0" font-size="11.5" text-anchor="middle">actor phụ — xác thực, trả email/tên</text>
+<rect class="bx ext" x="690" y="150" width="250" height="56"/>
+<text class="tt" x="815.0" y="174.1" font-size="13" text-anchor="middle">Chatbot API (qua server.js)</text>
+<text class="ts" x="815.0" y="191.1" font-size="11.5" text-anchor="middle">actor phụ — trả lời câu khó</text>
+<polyline class="ar dash" points="260,70 686,58" marker-end="url(#ah)"/>
+<text class="lbl" x="470" y="56" text-anchor="middle">đăng nhập Google</text>
+<polyline class="ar dash" points="260,190 686,178" marker-end="url(#ah)"/>
+<text class="lbl" x="470" y="196" text-anchor="middle">hỏi chatbot</text>
+</svg><figcaption>3 actor chính + 2 actor phụ. User là trường hợp đặc biệt của Guest; Admin tách riêng vì mục đích quản trị khác mua sắm.</figcaption></figure>
+<div class="tw"><table class="map"><tr><th>Nhóm</th><th>Use case</th><th>Quan hệ đáng nhớ</th></tr><tr><td>1. Tài khoản</td><td>UC1.1 Đăng ký · 1.2 Đăng nhập · 1.3 Quên mật khẩu · 1.4 Hồ sơ · 1.5 Wishlist</td><td>1.1 «include» Xác minh OTP; 1.2 «extend» Google, Quên MK</td></tr><tr><td>2. Catalog</td><td>UC2.1 Xem danh mục · 2.2 Tìm · 2.3 Lọc &amp; sắp xếp · 2.4 Chi tiết · 2.5 Đánh giá</td><td>2.5 chỉ khi có đơn Delivered</td></tr><tr><td>3. Trải nghiệm phòng</td><td>UC3.1 Khám phá phòng · 3.2 Chi tiết phòng · 3.3 Hotspot · 3.4 Xem 3D · 3.5 Complete Your Room</td><td>trái tim của đồ án</td></tr><tr><td>4. Giỏ &amp; đặt hàng</td><td>UC4.1 Giỏ · 4.2 Checkout · 4.3 Thanh toán (mô phỏng) · 4.4 Xác nhận · 4.5 Theo dõi</td><td>4.3 chỉ mô phỏng</td></tr><tr><td>5. Đồ cũ</td><td>UC5.1 Xem · 5.2 Lọc · 5.3 Chi tiết · 5.4 Mua</td><td>mua qua giỏ chung</td></tr><tr><td>6. Chatbot</td><td>UC6.1 Hỏi đáp trợ lý ảo</td><td>actor phụ Chatbot API</td></tr><tr><td>7. Quản trị</td><td>UC7.1 SP · 7.2 Phòng · 7.3 Gắn hotspot · 7.4 Đơn · 7.5 User · 7.6 Đánh giá · 7.7 Đồ cũ · 7.8 Dashboard</td><td>chỉ Admin</td></tr></table></div>
+<div class="two">
+<div class="card"><h4>Ký hiệu trên sơ đồ use case</h4><ul>
+<li><b>Association:</b> nét liền, không mũi tên (actor — use case).</li>
+<li><b>«include»:</b> nét đứt, từ UC gốc → UC bắt buộc.</li>
+<li><b>«extend»:</b> nét đứt, từ UC tuỳ chọn → UC gốc.</li>
+<li><b>Generalization:</b> nét liền, tam giác rỗng, từ con → cha.</li></ul></div>
+<div class="card"><h4>Ký hiệu BPMN</h4><ul>
+<li><b>Pool</b> = một bên tham gia; <b>Lane</b> = vai trò trong pool.</li>
+<li><b>Sequence flow</b> nét liền (trong pool); <b>Message flow</b> nét đứt (giữa pool).</li>
+<li><b>Gateway ×</b> = rẽ nhánh loại trừ (chỉ đi 1 nhánh).</li>
+<li>Vòng tròn mảnh = bắt đầu, vòng tròn đậm = kết thúc.</li></ul></div>
+</div>
+<h3>14 BPMN</h3>
+<div class="tw"><table class="map"><tr><th>#</th><th>BPMN</th><th>Pool / Lane</th><th>Bước</th></tr><tr><td>1</td><td>Đăng ký tài khoản</td><td>RoomCraft · User, System</td><td>9</td></tr><tr><td>2</td><td>Đăng nhập</td><td>+ pool Google · User, System, Google</td><td>11</td></tr><tr><td>3</td><td>Quên mật khẩu</td><td>User, System</td><td>8</td></tr><tr><td>4</td><td>Quản lý hồ sơ</td><td>User, System</td><td>8</td></tr><tr><td>5</td><td>Quản lý Wishlist</td><td>User, System</td><td>11</td></tr><tr><td>6</td><td>Duyệt &amp; tìm sản phẩm</td><td>User, System</td><td>10</td></tr><tr><td>7</td><td>Đánh giá sản phẩm</td><td>User, System</td><td>9</td></tr><tr><td>8</td><td><b>Shop the Room</b></td><td>User, System</td><td>12</td></tr><tr><td>9</td><td><b>Mua hàng</b></td><td>User, System</td><td>13</td></tr><tr><td>10</td><td>Theo dõi &amp; huỷ đơn</td><td>User, System</td><td>11</td></tr><tr><td>11</td><td>Đồ cũ</td><td>User, System, Admin</td><td>12</td></tr><tr><td>12</td><td>Chatbot AI</td><td>+ pool Chatbot API</td><td>10</td></tr><tr><td>13</td><td>Quản lý SP &amp; phòng</td><td>Admin, System</td><td>13</td></tr><tr><td>14</td><td>Quản lý đơn, user, đánh giá, Dashboard</td><td>Admin, System</td><td>13</td></tr></table></div>
+<figure class="dg"><svg viewBox="0 0 1140 310" role="img" aria-label="BPMN 9 – Mua hàng (rút gọn): làn trên là việc của khách, làn dưới là việc hệ thống kiểm. 3 gateway chính: thông tin hợp lệ, mã giảm giá hợp lệ, còn đủ hàng. Không có pool cổng thanh toán vì thanh toán mô phỏng." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="lane" x="10" y="20" width="1120" height="120"/>
+<rect class="lanehd" x="10" y="20" width="30" height="120"/>
+<text class="tt" x="29" y="80.0" font-size="12" text-anchor="middle" transform="rotate(-90 29 80.0)">Khách (User)</text>
+<rect class="lane" x="10" y="140" width="1120" height="160"/>
+<rect class="lanehd" x="10" y="140" width="30" height="160"/>
+<text class="tt" x="29" y="220.0" font-size="12" text-anchor="middle" transform="rotate(-90 29 220.0)">Hệ thống</text>
+<circle class="ev" cx="70" cy="80" r="12"/>
+<rect class="bx" x="100" y="55" width="140" height="50" rx="9"/>
+<text class="tt" x="170.0" y="76.2" font-size="12" text-anchor="middle">Nhập người nhận,</text>
+<text class="ts" x="170.0" y="92.2" font-size="11" text-anchor="middle">địa chỉ, SĐT</text>
+<polygon class="bx acc" points="285,190 305,210 285,230 265,210"/>
+<text class="tt" x="285" y="215" font-size="13" text-anchor="middle">×</text>
+<text class="lbl" x="285" y="244" text-anchor="middle">Hợp lệ?</text>
+<rect class="bx" x="330" y="185" width="160" height="50" rx="9"/>
+<text class="tt" x="410.0" y="206.2" font-size="12" text-anchor="middle">Tính phí giao,</text>
+<text class="ts" x="410.0" y="222.2" font-size="11" text-anchor="middle">hiện COD/trả trước/cọc</text>
+<rect class="bx" x="510" y="55" width="150" height="50" rx="9"/>
+<text class="tt" x="585.0" y="76.2" font-size="12" text-anchor="middle">Chọn thanh toán,</text>
+<text class="ts" x="585.0" y="92.2" font-size="11" text-anchor="middle">nhập mã, bấm Đặt</text>
+<polygon class="bx acc" points="705,190 725,210 705,230 685,210"/>
+<text class="tt" x="705" y="215" font-size="13" text-anchor="middle">×</text>
+<text class="lbl" x="705" y="244" text-anchor="middle">Mã hợp lệ?</text>
+<polygon class="bx acc" points="800,190 820,210 800,230 780,210"/>
+<text class="tt" x="800" y="215" font-size="13" text-anchor="middle">×</text>
+<text class="lbl" x="800" y="244" text-anchor="middle">Đủ hàng?</text>
+<rect class="bx dark" x="850" y="185" width="170" height="50" rx="9"/>
+<text class="tt inv" x="935.0" y="206.2" font-size="12" text-anchor="middle">Tạo đơn Confirmed</text>
+<text class="ts inv" x="935.0" y="222.2" font-size="11" text-anchor="middle">trừ kho · xoá giỏ</text>
+<circle class="ev end" cx="1050" cy="80" r="12"/>
+<text class="note" x="1050" y="108" text-anchor="middle">Trang đặt thành công</text>
+<circle class="ev end err" cx="800" cy="272" r="12"/>
+<polyline class="ar" points="82,80 96,80" marker-end="url(#ah)"/>
+<polyline class="ar" points="240,80 285,80 285,186" marker-end="url(#ah)"/>
+<polyline class="ar" points="305,210 326,210" marker-end="url(#ah)"/>
+<text class="lbl" x="316" y="202" text-anchor="middle">Đúng</text>
+<polyline class="ar" points="265,210 170,210 170,109" marker-end="url(#ah)"/>
+<text class="lbl" x="176" y="160" text-anchor="start">Sai: báo lỗi + focus</text>
+<polyline class="ar" points="490,210 585,210 585,109" marker-end="url(#ah)"/>
+<polyline class="ar" points="660,80 705,80 705,186" marker-end="url(#ah)"/>
+<polyline class="ar" points="685,210 640,210 640,109" marker-end="url(#ah)"/>
+<text class="lbl" x="646" y="160" text-anchor="start">Sai: bỏ mã</text>
+<polyline class="ar" points="725,210 776,210" marker-end="url(#ah)"/>
+<text class="lbl" x="750" y="202" text-anchor="middle">Đúng</text>
+<polyline class="ar" points="800,230 800,256" marker-end="url(#ah)"/>
+<text class="note" x="818" y="276" text-anchor="start">Thiếu hàng: báo hết, quay về giỏ</text>
+<polyline class="ar" points="820,210 846,210" marker-end="url(#ah)"/>
+<text class="lbl" x="833" y="202" text-anchor="middle">Đủ</text>
+<polyline class="ar" points="935,185 935,80 1034,80" marker-end="url(#ah)"/>
+</svg><figcaption>BPMN 9 – Mua hàng (rút gọn): làn trên là việc của khách, làn dưới là việc hệ thống kiểm. 3 gateway chính: thông tin hợp lệ, mã giảm giá hợp lệ, còn đủ hàng. Không có pool cổng thanh toán vì thanh toán mô phỏng.</figcaption></figure>
+<figure class="dg"><svg viewBox="0 0 1140 310" role="img" aria-label="BPMN 8 – Shop the Room (rút gọn). Toạ độ hotspot lưu theo % nên điểm không lệch khi ảnh co giãn. &quot;Xem 3D&quot; mở model-viewer ngay trong popup." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="lane" x="10" y="20" width="1120" height="120"/>
+<rect class="lanehd" x="10" y="20" width="30" height="120"/>
+<text class="tt" x="29" y="80.0" font-size="12" text-anchor="middle" transform="rotate(-90 29 80.0)">Khách</text>
+<rect class="lane" x="10" y="140" width="1120" height="160"/>
+<rect class="lanehd" x="10" y="140" width="30" height="160"/>
+<text class="tt" x="29" y="220.0" font-size="12" text-anchor="middle" transform="rotate(-90 29 220.0)">Hệ thống</text>
+<circle class="ev" cx="70" cy="80" r="12"/>
+<rect class="bx" x="100" y="55" width="130" height="50" rx="9"/>
+<text class="tt" x="165.0" y="76.2" font-size="12" text-anchor="middle">Chọn phòng mẫu</text>
+<text class="ts" x="165.0" y="92.2" font-size="11" text-anchor="middle">(lọc phong cách)</text>
+<rect class="bx" x="270" y="185" width="150" height="50" rx="9"/>
+<text class="tt" x="345.0" y="206.2" font-size="12" text-anchor="middle">Hiện ảnh phòng +</text>
+<text class="ts" x="345.0" y="222.2" font-size="11" text-anchor="middle">hotspot theo toạ độ %</text>
+<rect class="bx" x="440" y="55" width="130" height="50" rx="9"/>
+<text class="tt" x="505.0" y="84.2" font-size="12" text-anchor="middle">Bấm một hotspot</text>
+<rect class="bx" x="600" y="185" width="150" height="50" rx="9"/>
+<text class="tt" x="675.0" y="206.2" font-size="12" text-anchor="middle">Popup: tên, giá,</text>
+<text class="ts" x="675.0" y="222.2" font-size="11" text-anchor="middle">tồn kho, 3 nút</text>
+<rect class="bx" x="780" y="55" width="150" height="50" rx="9"/>
+<text class="tt" x="855.0" y="76.2" font-size="12" text-anchor="middle">Chọn: chi tiết / 3D /</text>
+<text class="ts" x="855.0" y="92.2" font-size="11" text-anchor="middle">thêm giỏ / cả phòng</text>
+<polygon class="bx acc" points="855,190 875,210 855,230 835,210"/>
+<text class="tt" x="855" y="215" font-size="13" text-anchor="middle">×</text>
+<text class="lbl" x="855" y="244" text-anchor="middle">Cần đăng nhập?</text>
+<rect class="bx dark" x="905" y="185" width="160" height="50" rx="9"/>
+<text class="tt inv" x="985.0" y="206.2" font-size="12" text-anchor="middle">Thêm vào rc_carts</text>
+<text class="ts inv" x="985.0" y="222.2" font-size="11" text-anchor="middle">bỏ món hết hàng</text>
+<circle class="ev end" cx="1100" cy="210" r="12"/>
+<circle class="ev end" cx="855" cy="272" r="12"/>
+<text class="note" x="872" y="276" text-anchor="start">Có: sang đăng nhập rồi quay lại</text>
+<polyline class="ar" points="82,80 96,80" marker-end="url(#ah)"/>
+<polyline class="ar" points="230,80 250,80 250,210 266,210" marker-end="url(#ah)"/>
+<polyline class="ar" points="420,210 505,210 505,109" marker-end="url(#ah)"/>
+<polyline class="ar" points="570,80 675,80 675,181" marker-end="url(#ah)"/>
+<polyline class="ar" points="750,210 765,210 765,80 776,80" marker-end="url(#ah)"/>
+<polyline class="ar" points="855,105 855,186" marker-end="url(#ah)"/>
+<polyline class="ar" points="875,210 901,210" marker-end="url(#ah)"/>
+<text class="lbl" x="888" y="202" text-anchor="middle">Không</text>
+<polyline class="ar" points="855,230 855,256" marker-end="url(#ah)"/>
+<polyline class="ar" points="1065,210 1084,210" marker-end="url(#ah)"/>
+</svg><figcaption>BPMN 8 – Shop the Room (rút gọn). Toạ độ hotspot lưu theo % nên điểm không lệch khi ảnh co giãn. &quot;Xem 3D&quot; mở model-viewer ngay trong popup.</figcaption></figure>
+<h3>Cơ sở dữ liệu — 19 bảng</h3>
+<figure class="dg"><svg viewBox="0 0 960 300" role="img" aria-label="CSDL thiết kế 19 bảng / 6 nhóm. products là bảng trung tâm; 5 bảng liên kết N–N dùng khoá chính kết hợp (product_images, wishlists, room_hotspots, cart_items, order_details)." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="20" width="280" height="80"/>
+<text class="tt" x="160.0" y="47.5" font-size="13" text-anchor="middle">Tài khoản</text>
+<text class="ts" x="160.0" y="64.5" font-size="11.5" text-anchor="middle">roles · users</text>
+<text class="ts" x="160.0" y="81.5" font-size="11.5" text-anchor="middle">verification_codes (OTP)</text>
+<rect class="bx acc" x="340" y="20" width="280" height="80"/>
+<text class="tt" x="480.0" y="47.5" font-size="13" text-anchor="middle">Catalog</text>
+<text class="ts" x="480.0" y="64.5" font-size="11.5" text-anchor="middle">categories · styles · products</text>
+<text class="ts" x="480.0" y="81.5" font-size="11.5" text-anchor="middle">product_images · used_product_details</text>
+<rect class="bx" x="660" y="20" width="280" height="80"/>
+<text class="tt" x="800.0" y="47.5" font-size="13" text-anchor="middle">Trải nghiệm phòng</text>
+<text class="ts" x="800.0" y="64.5" font-size="11.5" text-anchor="middle">rooms</text>
+<text class="ts" x="800.0" y="81.5" font-size="11.5" text-anchor="middle">room_hotspots (x,y theo %)</text>
+<rect class="bx" x="20" y="200" width="280" height="80"/>
+<text class="tt" x="160.0" y="227.6" font-size="13" text-anchor="middle">Tương tác</text>
+<text class="ts" x="160.0" y="244.6" font-size="11.5" text-anchor="middle">wishlists · reviews</text>
+<text class="ts" x="160.0" y="261.6" font-size="11.5" text-anchor="middle">carts · cart_items</text>
+<rect class="bx" x="340" y="200" width="280" height="80"/>
+<text class="tt" x="480.0" y="227.6" font-size="13" text-anchor="middle">Đặt hàng</text>
+<text class="ts" x="480.0" y="244.6" font-size="11.5" text-anchor="middle">orders · order_details</text>
+<text class="ts" x="480.0" y="261.6" font-size="11.5" text-anchor="middle">shipping_methods · coupons</text>
+<rect class="bx ext" x="660" y="200" width="280" height="80"/>
+<text class="tt" x="800.0" y="227.6" font-size="13" text-anchor="middle">Chatbot</text>
+<text class="ts" x="800.0" y="244.6" font-size="11.5" text-anchor="middle">chatbot_faqs</text>
+<text class="ts" x="800.0" y="261.6" font-size="11.5" text-anchor="middle">(độc lập)</text>
+<polyline class="ar" points="160,100 160,196" marker-end="url(#ah)"/>
+<text class="lbl" x="168" y="150" text-anchor="start">users 1–N</text>
+<polyline class="ar" points="250,100 400,196" marker-end="url(#ah)"/>
+<text class="lbl" x="392" y="186" text-anchor="end">users 1–N orders</text>
+<polyline class="ar" points="400,100 230,196" marker-end="url(#ah)"/>
+<text class="lbl" x="372" y="114" text-anchor="end">product_id</text>
+<polyline class="ar" points="480,100 480,196" marker-end="url(#ah)"/>
+<text class="lbl" x="488" y="150" text-anchor="start">order_details N–N</text>
+<polyline class="ar" points="620,60 656,60" marker-end="url(#ah)"/>
+<text class="lbl" x="638" y="52" text-anchor="middle">N–N</text>
+</svg><figcaption>CSDL thiết kế 19 bảng / 6 nhóm. products là bảng trung tâm; 5 bảng liên kết N–N dùng khoá chính kết hợp (product_images, wishlists, room_hotspots, cart_items, order_details).</figcaption></figure>
+<div class="tcs"><div class="tc g1"><b>roles</b><ul><li>id PK</li><li>name (UNIQUE): User / Admin</li></ul></div><div class="tc g1"><b>users</b><ul><li>id PK · role_id → roles</li><li>email, phone, google_id (UNIQUE)</li><li>password_hash hoặc google_id ≠ cùng NULL</li><li>is_active, is_verified</li></ul></div><div class="tc g1"><b>verification_codes</b><ul><li>id PK</li><li>email, code, purpose</li><li>expires_at, is_used</li></ul></div><div class="tc g2"><b>categories</b><ul><li>id PK · parent_id → categories</li><li>name (UNIQUE) · 3 cha + 22 con</li></ul></div><div class="tc g2"><b>styles</b><ul><li>id PK · name (UNIQUE) · 7 phong cách</li></ul></div><div class="tc g2"><b>products</b><ul><li>id PK · category_id, style_id</li><li>price ≥ 0, original_price ≥ price</li><li>stock_quantity, product_type NEW/USED</li><li>model_3d_url, is_active</li></ul></div><div class="tc g2"><b>product_images</b><ul><li>PK(product_id, image_url)</li></ul></div><div class="tc g2"><b>used_product_details</b><ul><li>1–1 với products</li><li>condition_grade: Like New / Good / Fair</li></ul></div><div class="tc g3"><b>rooms</b><ul><li>id PK · style_id → styles</li></ul></div><div class="tc g3"><b>room_hotspots</b><ul><li>PK(room_id, product_id)</li><li>position_x, position_y: 0–100 (%)</li></ul></div><div class="tc g4"><b>wishlists</b><ul><li>PK(user_id, product_id)</li></ul></div><div class="tc g4"><b>reviews</b><ul><li>UNIQUE(user_id, product_id)</li><li>rating 1–5</li></ul></div><div class="tc g4"><b>carts</b><ul><li>1–1 với users (tối đa 1 giỏ)</li></ul></div><div class="tc g4"><b>cart_items</b><ul><li>PK(cart_id, product_id)</li><li>quantity > 0</li></ul></div><div class="tc g5"><b>shipping_methods</b><ul><li>id PK · name (UNIQUE)</li></ul></div><div class="tc g5"><b>coupons</b><ul><li>code (UNIQUE) · discount_type</li><li>min_order_value, expires_at, is_active</li></ul></div><div class="tc g5"><b>orders</b><ul><li>user_id → users · → shipping_methods · → coupons</li><li>status, payment_method (CHECK)</li><li>total = subtotal + shipping_fee − discount</li></ul></div><div class="tc g5"><b>order_details</b><ul><li>PK(order_id, product_id)</li><li>giữ đơn giá lúc mua</li></ul></div><div class="tc g6"><b>chatbot_faqs</b><ul><li>id PK · topic, keywords</li></ul></div></div>
+<div class="card"><h4>Quy tắc nghiệp vụ không viết được bằng CHECK → kiểm ở JS</h4><ul>
+<li>Tạo đơn trừ <code>stock_quantity</code>; huỷ đơn hoàn kho. Số lượng trong giỏ không vượt tồn kho.</li>
+<li>Chỉ người có đơn Delivered chứa sản phẩm mới được đánh giá.</li>
+<li>Coupon chỉ dùng khi đang hoạt động, chưa hết hạn, đủ giá trị tối thiểu. OTP chỉ hợp lệ khi chưa dùng, chưa hết hạn.</li></ul></div>
+<h3>Sitemap &amp; giao diện</h3>
+<figure class="dg"><svg viewBox="0 0 960 240" role="img" aria-label="Sitemap 8 nhánh, 25 trang (17 khách + 8 admin). Mọi trang tới được từ trang chủ trong tối đa 3 lần bấm; chatbot là cửa sổ góc phải, không phải trang." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx dark" x="390" y="14" width="180" height="44"/>
+<text class="tt inv" x="480.0" y="32.0" font-size="13" text-anchor="middle">RoomCraft</text>
+<text class="ts inv" x="480.0" y="49.0" font-size="11.5" text-anchor="middle">header + chatbot nổi</text>
+<rect class="bx" x="20" y="96" width="108" height="36"/>
+<text class="tt" x="74.0" y="118.2" font-size="12" text-anchor="middle">Trang chủ</text>
+<polyline class="ar thin" points="480,58 480,76 74.0,76 74.0,92"/>
+<text class="ts" x="74.0" y="156" text-anchor="middle" font-size="11">Trang chủ</text>
+<text class="ts" x="74.0" y="173" text-anchor="middle" font-size="11">Về RoomCraft</text>
+<rect class="bx acc" x="137" y="96" width="108" height="36"/>
+<text class="tt" x="191.0" y="118.2" font-size="12" text-anchor="middle">Không gian mẫu</text>
+<polyline class="ar thin" points="480,58 480,76 191.0,76 191.0,92"/>
+<text class="ts" x="191.0" y="156" text-anchor="middle" font-size="11">Danh sách phòng</text>
+<text class="ts" x="191.0" y="173" text-anchor="middle" font-size="11">Chi tiết phòng</text>
+<text class="ts" x="191.0" y="190" text-anchor="middle" font-size="11">(Shop the Room)</text>
+<rect class="bx" x="254" y="96" width="108" height="36"/>
+<text class="tt" x="308.0" y="118.2" font-size="12" text-anchor="middle">Sản phẩm</text>
+<polyline class="ar thin" points="480,58 480,76 308.0,76 308.0,92"/>
+<text class="ts" x="308.0" y="156" text-anchor="middle" font-size="11">Danh sách</text>
+<text class="ts" x="308.0" y="173" text-anchor="middle" font-size="11">Chi tiết + 3D</text>
+<rect class="bx" x="371" y="96" width="108" height="36"/>
+<text class="tt" x="425.0" y="118.2" font-size="12" text-anchor="middle">Đồ cũ</text>
+<polyline class="ar thin" points="480,58 480,76 425.0,76 425.0,92"/>
+<text class="ts" x="425.0" y="156" text-anchor="middle" font-size="11">Danh sách</text>
+<text class="ts" x="425.0" y="173" text-anchor="middle" font-size="11">Chi tiết</text>
+<rect class="bx" x="488" y="96" width="108" height="36"/>
+<text class="tt" x="542.0" y="118.2" font-size="12" text-anchor="middle">Giỏ hàng</text>
+<polyline class="ar thin" points="480,58 480,76 542.0,76 542.0,92"/>
+<text class="ts" x="542.0" y="156" text-anchor="middle" font-size="11">Giỏ</text>
+<text class="ts" x="542.0" y="173" text-anchor="middle" font-size="11">Thanh toán</text>
+<text class="ts" x="542.0" y="190" text-anchor="middle" font-size="11">Đặt thành công</text>
+<rect class="bx" x="605" y="96" width="108" height="36"/>
+<text class="tt" x="659.0" y="118.2" font-size="12" text-anchor="middle">Đăng nhập</text>
+<polyline class="ar thin" points="480,58 480,76 659.0,76 659.0,92"/>
+<text class="ts" x="659.0" y="156" text-anchor="middle" font-size="11">Đăng nhập</text>
+<text class="ts" x="659.0" y="173" text-anchor="middle" font-size="11">Đăng ký + OTP</text>
+<text class="ts" x="659.0" y="190" text-anchor="middle" font-size="11">Quên mật khẩu</text>
+<rect class="bx" x="722" y="96" width="108" height="36"/>
+<text class="tt" x="776.0" y="118.2" font-size="12" text-anchor="middle">Tài khoản</text>
+<polyline class="ar thin" points="480,58 480,76 776.0,76 776.0,92"/>
+<text class="ts" x="776.0" y="156" text-anchor="middle" font-size="11">Hồ sơ</text>
+<text class="ts" x="776.0" y="173" text-anchor="middle" font-size="11">Yêu thích</text>
+<text class="ts" x="776.0" y="190" text-anchor="middle" font-size="11">Đơn của tôi</text>
+<text class="ts" x="776.0" y="207" text-anchor="middle" font-size="11">Chi tiết đơn</text>
+<rect class="bx dark" x="839" y="96" width="108" height="36"/>
+<text class="tt inv" x="893.0" y="118.2" font-size="12" text-anchor="middle">Quản trị</text>
+<polyline class="ar thin" points="480,58 480,76 893.0,76 893.0,92"/>
+<text class="ts" x="893.0" y="156" text-anchor="middle" font-size="11">Dashboard</text>
+<text class="ts" x="893.0" y="173" text-anchor="middle" font-size="11">SP · Danh mục</text>
+<text class="ts" x="893.0" y="190" text-anchor="middle" font-size="11">Phòng · Đồ cũ</text>
+<text class="ts" x="893.0" y="207" text-anchor="middle" font-size="11">Đơn · User · ĐG</text>
+</svg><figcaption>Sitemap 8 nhánh, 25 trang (17 khách + 8 admin). Mọi trang tới được từ trang chủ trong tối đa 3 lần bấm; chatbot là cửa sổ góc phải, không phải trang.</figcaption></figure>
+<div class="two">
+<div class="card"><h4>Hệ thống thiết kế</h4>
+<div class="sw"><i style="background:#F7F7F5"></i>Nền #F7F7F5 <i style="background:#202020"></i>Chữ #202020 <i style="background:#B18A52"></i>Nhấn #B18A52 <i style="background:#8C3B2D"></i>Lỗi #8C3B2D <i style="background:#2C6B3F"></i>Còn hàng #2C6B3F</div>
+<ul><li>11 vai trò màu, 2 font: <b>Cormorant Garamond</b> (tiêu đề) + <b>Noto Sans</b> (nội dung).</li>
+<li><code>border-radius: 0</code> toàn cục; chỉ 3 chỗ bo góc.</li>
+<li><code>.container</code> tối đa 1440px, đệm 64px → 40px (1024) → 20px (768).</li>
+<li>Điểm ngắt: 1440 / 1024 / 768 / 480px + giảm chuyển động.</li></ul></div>
+<div class="card"><h4>Bài học responsive</h4><p>BUG-01: trang chủ tràn ngang trên điện thoại. Sửa: <code>position: relative</code> cho dải cuộn ngang, <code>minmax(0,1fr)</code> cho lưới, media query đổi số cột trên màn nhỏ. Trên mobile, bộ lọc thu vào nút "Bộ lọc".</p></div>
+</div>
+</section>
+<section id="rang-buoc">
+<p class="ov">Phần 7</p><h2>Ràng buộc nghiệp vụ</h2>
+<p class="lead">Không có backend nên luật được kiểm trong <b>JS (services)</b>; CSDL thiết kế thêm UNIQUE/CHECK/khoá ngoại làm lớp thứ hai khi có server thật.</p>
+<figure class="dg"><svg viewBox="0 0 960 240" role="img" aria-label="Vòng đời đơn hàng theo code. Không còn trạng thái Pending: đặt xong là Confirmed. Từ Shipping trở đi không huỷ được." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="40" width="160" height="56"/>
+<text class="tt" x="100.0" y="72.5" font-size="13" text-anchor="middle">Giỏ hàng</text>
+<rect class="bx acc" x="210" y="40" width="160" height="56"/>
+<text class="tt" x="290.0" y="72.5" font-size="13" text-anchor="middle">Confirmed</text>
+<rect class="bx" x="400" y="40" width="160" height="56"/>
+<text class="tt" x="480.0" y="72.5" font-size="13" text-anchor="middle">Packing</text>
+<rect class="bx" x="590" y="40" width="160" height="56"/>
+<text class="tt" x="670.0" y="72.5" font-size="13" text-anchor="middle">Shipping</text>
+<rect class="bx dark" x="780" y="40" width="160" height="56"/>
+<text class="tt inv" x="860.0" y="64.0" font-size="13" text-anchor="middle">Delivered</text>
+<text class="ts inv" x="860.0" y="81.0" font-size="11.5" text-anchor="middle">đã nhận hàng</text>
+<polyline class="ar" points="180,68 206,68" marker-end="url(#ah)"/>
+<text class="lbl" x="193" y="30" text-anchor="middle">đặt hàng</text>
+<polyline class="ar" points="370,68 396,68" marker-end="url(#ah)"/>
+<polyline class="ar" points="560,68 586,68" marker-end="url(#ah)"/>
+<polyline class="ar" points="750,68 776,68" marker-end="url(#ah)"/>
+<text class="note" x="560" y="118" text-anchor="start">Admin chuyển từng bước (getNextStatus)</text>
+<text class="note" x="560" y="134" text-anchor="start">không nhảy cóc, không lùi</text>
+<rect class="bx warn" x="300" y="170" width="200" height="56"/>
+<text class="tt" x="400.0" y="194.1" font-size="13" text-anchor="middle">Cancelled</text>
+<text class="ts" x="400.0" y="211.1" font-size="11.5" text-anchor="middle">hoàn lại tồn kho</text>
+<polyline class="ar" points="290,96 330,166" marker-end="url(#ah)"/>
+<text class="lbl" x="296" y="140" text-anchor="middle">huỷ</text>
+<polyline class="ar" points="480,96 450,166" marker-end="url(#ah)"/>
+<text class="lbl" x="476" y="140" text-anchor="middle">huỷ</text>
+<text class="note" x="520" y="192" text-anchor="start">Chỉ chủ đơn hoặc Admin, chỉ khi</text>
+<text class="note" x="520" y="208" text-anchor="start">Confirmed / Packing (canCancelOrder)</text>
+<text class="note" x="860" y="116" text-anchor="middle">→ doanh thu được tính</text>
+<text class="note" x="860" y="132" text-anchor="middle">→ được viết đánh giá</text>
+<text class="note" x="100" y="116" text-anchor="middle">trừ kho · xoá giỏ</text>
+</svg><figcaption>Vòng đời đơn hàng theo code. Không còn trạng thái Pending: đặt xong là Confirmed. Từ Shipping trở đi không huỷ được.</figcaption></figure>
+<figure class="dg"><svg viewBox="0 0 960 266" role="img" aria-label="Thanh toán (BPMN 9 Mua hàng): mỗi ô là một ràng buộc nghiệp vụ được kiểm trong JS. Thanh toán chỉ mô phỏng; chuyển khoản hiện QR giả lập." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="30" width="150" height="60"/>
+<text class="tt" x="95.0" y="56.0" font-size="13" text-anchor="middle">Giỏ hàng</text>
+<text class="ts" x="95.0" y="73.0" font-size="11.5" text-anchor="middle">chặn món hết hàng</text>
+<rect class="bx" x="210" y="30" width="170" height="60"/>
+<text class="tt" x="295.0" y="56.0" font-size="13" text-anchor="middle">Kiểm form</text>
+<text class="ts" x="295.0" y="73.0" font-size="11.5" text-anchor="middle">lỗi → báo + focus ô sai</text>
+<rect class="bx" x="420" y="30" width="230" height="60"/>
+<text class="tt" x="535.0" y="56.0" font-size="13" text-anchor="middle">Tính phí giao</text>
+<text class="ts" x="535.0" y="73.0" font-size="11.5" text-anchor="middle">đồ lớn/nhỏ × nội thành/gần/xa</text>
+<rect class="bx acc" x="690" y="30" width="250" height="60"/>
+<text class="tt" x="815.0" y="56.0" font-size="13" text-anchor="middle">Tổng ≤ 10 triệu?</text>
+<text class="ts" x="815.0" y="73.0" font-size="11.5" text-anchor="middle">canUseCOD (COD_LIMIT)</text>
+<rect class="bx" x="690" y="150" width="250" height="56"/>
+<text class="tt" x="815.0" y="174.1" font-size="13" text-anchor="middle">Có: COD</text>
+<text class="ts" x="815.0" y="191.1" font-size="11.5" text-anchor="middle">hoặc trả trước 100%</text>
+<rect class="bx" x="420" y="150" width="230" height="56"/>
+<text class="tt" x="535.0" y="174.1" font-size="13" text-anchor="middle">Không: trả trước 100%</text>
+<text class="ts" x="535.0" y="191.1" font-size="11.5" text-anchor="middle">hoặc đặt cọc 30%</text>
+<rect class="bx" x="210" y="150" width="170" height="56"/>
+<text class="tt" x="295.0" y="174.1" font-size="13" text-anchor="middle">Mã giảm giá</text>
+<text class="ts" x="295.0" y="191.1" font-size="11.5" text-anchor="middle">còn hạn · đủ đơn tối thiểu</text>
+<rect class="bx dark" x="20" y="150" width="150" height="56"/>
+<text class="tt inv" x="95.0" y="174.1" font-size="13" text-anchor="middle">createOrder()</text>
+<text class="ts inv" x="95.0" y="191.1" font-size="11.5" text-anchor="middle">tính lại tiền</text>
+<polyline class="ar" points="170,60 206,60" marker-end="url(#ah)"/>
+<polyline class="ar" points="380,60 416,60" marker-end="url(#ah)"/>
+<polyline class="ar" points="650,60 686,60" marker-end="url(#ah)"/>
+<polyline class="ar" points="815,90 815,146" marker-end="url(#ah)"/>
+<text class="lbl" x="823" y="122" text-anchor="start">Có</text>
+<polyline class="ar" points="690,90 600,146" marker-end="url(#ah)"/>
+<text class="lbl" x="636" y="112" text-anchor="end">Không</text>
+<polyline class="ar" points="815,206 815,224 295,224 295,210" marker-end="url(#ah)"/>
+<polyline class="ar" points="416,178 384,178" marker-end="url(#ah)"/>
+<polyline class="ar" points="206,178 174,178" marker-end="url(#ah)"/>
+<text class="note" x="20" y="252" text-anchor="start">Giao nhanh chỉ nội thành · miễn phí giao theo ngưỡng · createOrder không tin số tiền trang gửi lên, tự tính lại phí và tiền còn thu.</text>
+</svg><figcaption>Thanh toán (BPMN 9 Mua hàng): mỗi ô là một ràng buộc nghiệp vụ được kiểm trong JS. Thanh toán chỉ mô phỏng; chuyển khoản hiện QR giả lập.</figcaption></figure>
+<div class="tw"><table class="map"><tr><th>Ngưỡng (giá trị biên)</th><th>Đúng ngưỡng</th><th>Vượt 1 đồng</th></tr><tr><td>COD (so với tổng đã gồm phí giao, đã trừ giảm giá)</td><td>10.000.000 ₫ → được COD</td><td>10.000.001 ₫ → khoá COD</td></tr><tr><td>Miễn phí giao đồ nhỏ</td><td>2.000.000 ₫ → phí 0</td><td>thiếu 1 đồng → có phí</td></tr><tr><td>Miễn phí giao đồ lớn nội thành</td><td>15.000.000 ₫ → phí 0</td><td>thiếu 1 đồng → có phí</td></tr><tr><td>Đặt cọc</td><td>30% tổng, làm tròn lên nghìn</td><td><code>Math.ceil(tong*0.3/1000)*1000</code></td></tr><tr><td>OTP</td><td>6 số, 5 phút, dùng 1 lần</td><td>gửi lại sau 60 giây</td></tr><tr><td>Dashboard sắp hết hàng</td><td>tồn kho ≤ 3 (gồm cả 0)</td><td>—</td></tr></table></div>
+<div class="rules">
+<div class="rule"><div class="rule-h"><h4>Tài khoản &amp; OTP</h4><span class="tag">auth.js</span></div><ul><li>OTP 6 số, hết hạn <b>5 phút</b>, dùng 1 lần (<code>is_used</code>); mã mới vô hiệu mã cũ.</li><li>Email, SĐT không trùng; SĐT 10 số bắt đầu bằng 0; mật khẩu theo 6 quy tắc; phải đồng ý điều khoản.</li><li>Tài khoản bị khoá không đăng nhập được, đang đăng nhập thì mất phiên.</li><li>Tài khoản Google không có mật khẩu → không đăng nhập bằng mật khẩu.</li></ul></div>
+<div class="rule"><div class="rule-h"><h4>Giỏ hàng</h4><span class="tag">cart.js</span></div><ul><li>Chỉ thêm SP đang bán, còn hàng; số lượng nguyên ≥ 1, <b>không vượt tồn kho</b>.</li><li>Khách có giỏ riêng (guest); đăng nhập → gộp, cộng số lượng, chặn ở tồn kho.</li><li>Thêm cả bộ phòng: bắt đăng nhập, bỏ món hết hàng, báo số món.</li><li>Đồ cũ chỉ 1 món; bán rồi khoá nút mua.</li></ul></div>
+<div class="rule"><div class="rule-h"><h4>Thanh toán &amp; giao hàng</h4><span class="tag">checkout.js · shipping.js</span></div><ul><li>Họ tên ≥ 2 chữ; SĐT đầu 03/05/07/08/09; có đồ lớn phải chọn loại nhà.</li><li>Phí giao theo đồ lớn/nhỏ × nội thành/gần/xa; giao nhanh chỉ nội thành.</li><li>&gt; 10 triệu: không COD → trả trước 100% hoặc cọc 30%.</li><li>Coupon: còn hiệu lực, đủ đơn tối thiểu, giảm không vượt tạm tính; số thẻ kiểm Luhn.</li></ul></div>
+<div class="rule"><div class="rule-h"><h4>Đơn hàng</h4><span class="tag">orders.js</span></div><ul><li>Đặt → <b>Confirmed</b>, trừ kho, xoá giỏ; lưu sẵn tên, ảnh, đơn giá.</li><li>createOrder tự tính lại phí và tiền còn thu, không tin số trang gửi lên.</li><li>Chỉ tiến 1 bước Confirmed → Packing → Shipping → Delivered; Delivered thì paid = total.</li><li>Huỷ: chủ đơn hoặc Admin, khi Confirmed/Packing; hoàn kho; ghi hoàn tiền = số đã trả.</li></ul></div>
+<div class="rule"><div class="rule-h"><h4>Đánh giá</h4><span class="tag">orders.js</span></div><ul><li>Chỉ khi có đơn Delivered chứa sản phẩm.</li><li>1 người 1 đánh giá / sản phẩm; rating 1–5.</li><li>Admin ẩn được đánh giá.</li></ul></div>
+<div class="rule"><div class="rule-h"><h4>Quản trị &amp; dữ liệu</h4><span class="tag">auth.js · store.js</span></div><ul><li>8 trang admin gọi <code>requireAdmin()</code>; quyền tra lại bảng roles.</li><li>Không xoá cứng SP đã bán, chỉ ẩn.</li><li>Form admin chặn giá ≤ 0, ô bắt buộc trống.</li><li>Muốn mọi máy thấy thay đổi: Xuất JSON → chép vào data/json → tăng DATA_VERSION.</li></ul></div>
+</div>
+<p class="say"><span>Nói miệng</span>Luật nằm ở tầng services của JS, trang không tự tính tiền. Giới hạn là luật chạy ở client nên người rành DevTools vẫn vượt được; có backend thì chuyển các kiểm tra này lên server.</p>
+</section>
+<section id="luong">
+<p class="ov">Phần 8</p><h2>Các luồng chính</h2>
+<div class="flows">
+<div class="flow "><h4>Đăng ký + OTP (BPMN 1)</h4><ol><li><b>Điền form</b><span>họ tên, email, SĐT, mật khẩu</span></li><li><b>checkRegisterForm</b><span>trùng email/SĐT? mật khẩu đủ 6 quy tắc?</span></li><li><b>Sinh OTP 6 số</b><span>createVerificationCode, hiện trên trang</span></li><li><b>Nhập OTP</b><span>checkVerificationCode: đúng, ≤5 phút, chưa dùng</span></li><li><b>Tạo user</b><span>password_hash = sha256(mật khẩu)</span></li><li><b>Tự đăng nhập</b><span>saveSession → mergeGuestData → trang chủ</span></li></ol></div>
+<div class="flow "><h4>Đăng nhập (BPMN 2)</h4><ol><li><b>Email + mật khẩu</b><span>so SHA-256, kiểm is_active</span></li><li><b>hoặc Google</b><span>giải mã JWT lấy email, tên, sub</span></li><li><b>Chưa có user?</b><span>tự tạo, password_hash = null</span></li><li><b>saveSession</b><span>rc_session = {user_id, role}</span></li><li><b>mergeGuestData</b><span>gộp giỏ + yêu thích</span></li><li><b>Điều hướng</b><span>user → trang trước/chủ; admin → Dashboard</span></li></ol></div>
+<div class="flow "><h4>Duyệt / lọc / tìm (BPMN 6)</h4><ol><li><b>Mở trang sản phẩm</b><span>getActiveProducts</span></li><li><b>Lọc</b><span>filterProductList: phong cách, danh mục, giá, chất liệu, màu</span></li><li><b>Tìm không dấu</b><span>searchProducts chuẩn hoá NFD</span></li><li><b>Sắp xếp</b><span>sortProductList</span></li><li><b>Ghi lên URL</b><span>readFilterParams: F5 giữ lọc</span></li><li><b>Render</b><span>createProductCard → DOM</span></li></ol></div>
+<div class="flow "><h4>Theo dõi đơn &amp; đánh giá (BPMN 10, 7)</h4><ol><li><b>Đơn Confirmed</b><span>ngay khi đặt</span></li><li><b>Admin: Packing</b><span>getNextStatus</span></li><li><b>Shipping</b><span>hết được huỷ</span></li><li><b>Delivered</b><span>paid = total, doanh thu tăng</span></li><li><b>Khách đánh giá</b><span>hasReviewed chặn lần 2</span></li></ol></div>
+<div class="flow "><h4>Đồ cũ (BPMN 11)</h4><ol><li><b>Admin thêm món</b><span>Like New / Good / Fair</span></li><li><b>Lưu vào products</b><span>product_type = USED</span></li><li><b>Trang Đồ cũ</b><span>setConditionFilter</span></li><li><b>Mua qua giỏ chung</b><span>duy nhất 1 món</span></li><li><b>Bán xong</b><span>"Đã bán", khoá nút</span></li></ol></div>
+</div>
+<figure class="dg"><svg viewBox="0 0 960 250" role="img" aria-label="Chatbot 2 tầng: luật chạy ở trình duyệt, AI qua proxy. Đây là lý do có server.js mà vẫn nói &quot;không backend dữ liệu&quot;." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx" x="20" y="70" width="140" height="56"/>
+<text class="tt" x="90.0" y="94.0" font-size="13" text-anchor="middle">Người dùng</text>
+<text class="ts" x="90.0" y="111.0" font-size="11.5" text-anchor="middle">gõ câu hỏi</text>
+<rect class="bx acc" x="200" y="70" width="190" height="56"/>
+<text class="tt" x="295.0" y="94.0" font-size="13" text-anchor="middle">chatbot.js</text>
+<text class="ts" x="295.0" y="111.0" font-size="11.5" text-anchor="middle">FAQ + từ điển + sửa gõ sai</text>
+<rect class="bx" x="200" y="190" width="190" height="46"/>
+<text class="tt" x="295.0" y="209.1" font-size="13" text-anchor="middle">Trả lời ngay</text>
+<text class="ts" x="295.0" y="226.1" font-size="11.5" text-anchor="middle">20 câu mẫu, lọc SP theo luật</text>
+<rect class="bx" x="440" y="70" width="210" height="56"/>
+<text class="tt" x="545.0" y="94.0" font-size="13" text-anchor="middle">server.js (proxy)</text>
+<text class="ts" x="545.0" y="111.0" font-size="11.5" text-anchor="middle">giới hạn 30 lượt/phút/IP</text>
+<rect class="bx" x="440" y="190" width="210" height="46"/>
+<text class="tt" x="545.0" y="209.1" font-size="13" text-anchor="middle">Ghép ngữ cảnh</text>
+<text class="ts" x="545.0" y="226.1" font-size="11.5" text-anchor="middle">tìm SP + FAQ liên quan</text>
+<rect class="bx ext" x="700" y="70" width="240" height="56"/>
+<text class="tt" x="820.0" y="94.0" font-size="13" text-anchor="middle">Gateway AI</text>
+<text class="ts" x="820.0" y="111.0" font-size="11.5" text-anchor="middle">thử lại tối đa 2 lần × 30s</text>
+<rect class="bx dark" x="700" y="190" width="240" height="46"/>
+<text class="tt inv" x="820.0" y="209.1" font-size="13" text-anchor="middle">sanitizeReply()</text>
+<text class="ts inv" x="820.0" y="226.1" font-size="11.5" text-anchor="middle">giá lạ không có thật → câu chuẩn</text>
+<polyline class="ar" points="160,98 196,98" marker-end="url(#ah)"/>
+<polyline class="ar" points="295,126 295,186" marker-end="url(#ah)"/>
+<text class="lbl" x="303" y="160" text-anchor="start">câu đơn giản</text>
+<polyline class="ar" points="390,98 436,98" marker-end="url(#ah)"/>
+<text class="lbl" x="413" y="90" text-anchor="middle">câu khó</text>
+<polyline class="ar" points="545,126 545,186" marker-end="url(#ah)"/>
+<polyline class="ar" points="650,213 680,213 680,110 696,110" marker-end="url(#ah)"/>
+<polyline class="ar" points="820,126 820,186" marker-end="url(#ah)"/>
+<text class="lbl" x="828" y="160" text-anchor="start">trả lời</text>
+<text class="note" x="440" y="30" text-anchor="start">API key nằm trong .env của server.js → trình duyệt không bao giờ thấy key.</text>
+<text class="note" x="440" y="46" text-anchor="start">Server không chạy (GitHub Pages) → vẫn trả lời bằng phần FAQ/luật.</text>
+</svg><figcaption>Chatbot 2 tầng: luật chạy ở trình duyệt, AI qua proxy. Đây là lý do có server.js mà vẫn nói &quot;không backend dữ liệu&quot;.</figcaption></figure>
+</section>
+<section id="code">
+<p class="ov">Phần 9</p><h2>Code tiêu biểu (thầy bảo mở code thì mở chỗ này)</h2>
+<div class="two">
+<div><h4>Dựng DOM thẻ sản phẩm — product-card.js</h4><pre><code>function createProductCard(product){
+    var card = document.createElement(&quot;div&quot;);
+    card.className = &quot;product-card card&quot;;
+    var link = document.createElement(&quot;a&quot;);
+    link.href = &quot;product-detail.html?id=&quot; + product.id;
+    var img = document.createElement(&quot;img&quot;);
+    img.src = asset(product.images[0]);
+    img.alt = product.name;
+    img.loading = &quot;lazy&quot;;          // tải lười
+    link.appendChild(img);
+    // nhãn 3D chỉ khi có model_3d_url
+    ...
+}</code></pre><p class="small">Dựng từng phần tử bằng createElement/appendChild thay vì nối chuỗi HTML: an toàn hơn với dữ liệu người dùng, dễ gắn sự kiện.</p></div>
+<div><h4>Chặn nổi bọt ở nút tim</h4><pre><code>btnWish.onclick = function(e){
+    e.preventDefault();    // không mở link chi tiết
+    e.stopPropagation();   // không nổi lên thẻ cha
+    toggleWishlistProduct(product.id, btnWish);
+};
+
+function placeOrder(){
+    if(checkOrderForm() == false) return false;
+    ...
+    window.location.href = &quot;order-success.html?id=&quot; + maDon;
+    return false;          // form không tự gửi
+}</code></pre><p class="small">Nút tim nằm trong thẻ có link: không chặn thì bấm tim sẽ nhảy trang.</p></div>
+<div><h4>AJAX bằng XHR — store.js</h4><pre><code>function readJsonFile(ten, hamXuLy){
+    var xhr = new XMLHttpRequest();
+    xhr.open(&quot;GET&quot;, getRoot() + &quot;data/json/&quot; + ten + &quot;.json&quot;, true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200) hamXuLy(JSON.parse(xhr.responseText));
+            else hamXuLy(null);
+        }
+    };
+    xhr.send();
+}</code></pre></div>
+<div><h4>fetch + Promise — shipping.js</h4><pre><code>function loadWardsData(){
+    if(wardsDataPromise == null){
+        wardsDataPromise = fetch(&quot;../data/json/wards.json&quot;)
+            .then(function(res){
+                if(!res.ok) throw new Error(&quot;Không tải được&quot;);
+                return res.json();
+            });
+    }
+    return wardsDataPromise;   // cache, chỉ tải 1 lần
+}
+// checkout: await loadWardsData();</code></pre></div>
+<div><h4>Validate + focus ô sai — checkout.js</h4><pre><code>function baoLoi(cau, idO){
+    alert(cau);
+    if(idO != null) document.getElementById(idO).focus();
+    return false;
+}
+// SĐT: /^0(3|5|7|8|9)[0-9]{8}$/
+if(checkMobilePhone(sdt) == false)
+    return baoLoi(&quot;Số điện thoại phải gồm 10 chữ số ...&quot;, &quot;txtPhone&quot;);</code></pre></div>
+<div><h4>Tính tổng — checkout.js</h4><pre><code>function getOrderTotal(){
+    var tamTinh = getCartTotal();
+    return tamTinh + getShippingFee()
+           - calcDiscount(appliedCoupon, tamTinh);
+}
+// updateSummary(): vẽ lại tóm tắt mỗi khi đổi tỉnh,
+// phương thức, mã; gọi renderPlans(tong) để ẩn/hiện COD</code></pre></div>
+</div>
+<h3>Bản đồ tìm code nhanh</h3>
+<div class="tw"><table class="map"><tr><th>Tính năng</th><th>File</th><th>Hàm chính</th></tr><tr><td>Kho dữ liệu</td><td>js/core/store.js</td><td>loadData, getTable, saveTable, findById, getObject, saveObject, resetData</td></tr><tr><td>Xác thực, phân quyền</td><td>js/core/auth.js</td><td>login, loginWithGoogle, saveSession, mergeGuestData, createVerificationCode, checkVerificationCode, isAdmin, requireLogin, requireAdmin</td></tr><tr><td>Tiện ích, validate</td><td>js/core/utils.js</td><td>getRoot, asset, formatVND, checkEmail, checkPhone, checkPasswordRule, sha256</td></tr><tr><td>Đăng ký</td><td>js/pages/register.js</td><td>checkRegisterForm, doRegister, sendCode, countDown</td></tr><tr><td>Lọc, tìm</td><td>components/catalog-filter.js · services/products.js</td><td>filterProductList, sortProductList, readFilterParams · searchProducts, getActiveProducts</td></tr><tr><td>Thẻ sản phẩm</td><td>components/product-card.js</td><td>createProductCard, toggleWishlistProduct, checkIsWishlist</td></tr><tr><td>Chi tiết SP + 3D</td><td>js/pages/product-detail.js</td><td>renderMediaGallery, switchMediaMode, handleAddToCart, submitProductReview</td></tr><tr><td>Hotspot</td><td>js/pages/room-detail.js</td><td>toggleHotspot, openHotspot, showHotspotProducts, showSuggestions</td></tr><tr><td>Giỏ hàng</td><td>js/services/cart.js</td><td>getCartKey, addToCart, saveCart, updateQuantity, getCartTotal</td></tr><tr><td>Thanh toán, phí giao</td><td>js/pages/checkout.js · services/shipping.js</td><td>checkOrderForm, placeOrder, renderPlans · calcShippingFee, canUseCOD, calcDeposit, checkCardNumber</td></tr><tr><td>Đơn, coupon, đánh giá</td><td>js/services/orders.js</td><td>createOrder, checkStockForCart, getNextStatus, canCancelOrder, cancelOrder, checkCoupon, calcDiscount, addReview, hasReviewed</td></tr><tr><td>Đồ cũ</td><td>js/pages/marketplace.js · admin-marketplace.js</td><td>setConditionFilter, renderMarketplace · saveUsedProduct</td></tr><tr><td>Dashboard</td><td>js/pages/admin-index.js</td><td>getDeliveredOrders, showStats, drawRevenueChart</td></tr><tr><td>Chatbot</td><td>components/chatbot.js · server.js</td><td>renderChatbot, chatCallApi, chatLevenshtein · checkRateLimit, searchProducts, matchFaq, sanitizeReply</td></tr></table></div>
+</section>
+<section id="kiem-thu">
+<p class="ov">Phần 10</p><h2>Kiểm thử</h2>
+<figure class="dg"><svg viewBox="0 0 960 172" role="img" aria-label="Bốn đợt kiểm thử. Lỗi nghiêm trọng duy nhất (BUG-01) là bố cục tràn ngang trên điện thoại → sửa trước vì kéo theo hàng loạt ca mobile." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<line class="ar" x1="40" y1="70" x2="920" y2="70"/>
+<circle class="dot" cx="110" cy="70" r="9"/>
+<text class="tt" x="110" y="46" text-anchor="middle" font-size="13">P0 · 27/10</text>
+<text class="ts" x="110" y="102" text-anchor="middle" font-size="12">Kiểm thử chéo thủ công</text>
+<text class="lbl" x="110" y="120" text-anchor="middle" font-size="12">78 ghi nhận → 42 việc</text>
+<circle class="dot" cx="350" cy="70" r="9"/>
+<text class="tt" x="350" y="46" text-anchor="middle" font-size="13">P1 · 03/11</text>
+<text class="ts" x="350" y="102" text-anchor="middle" font-size="12">Tự động, 1 trình duyệt</text>
+<text class="lbl" x="350" y="120" text-anchor="middle" font-size="12">342 ca · 97,1%</text>
+<circle class="dot" cx="610" cy="70" r="9"/>
+<text class="tt" x="610" y="46" text-anchor="middle" font-size="13">P2 · 04–05/11</text>
+<text class="ts" x="610" y="102" text-anchor="middle" font-size="12">7 cấu hình, hồi quy</text>
+<text class="lbl" x="610" y="120" text-anchor="middle" font-size="12">394 × 7 = 2.758 lượt · 9 lỗi</text>
+<circle class="dot" cx="850" cy="70" r="9"/>
+<text class="tt" x="850" y="46" text-anchor="middle" font-size="13">P3 · 06/11</text>
+<text class="ts" x="850" y="102" text-anchor="middle" font-size="12">Xác nhận sau sửa</text>
+<text class="lbl" x="850" y="120" text-anchor="middle" font-size="12">97,4–98,5% · 0 hồi quy</text>
+<text class="note" x="480" y="158" text-anchor="middle">Hộp đen: phân vùng tương đương · giá trị biên · bảng quyết định · chuyển trạng thái</text>
+</svg><figcaption>Bốn đợt kiểm thử. Lỗi nghiêm trọng duy nhất (BUG-01) là bố cục tràn ngang trên điện thoại → sửa trước vì kéo theo hàng loạt ca mobile.</figcaption></figure>
+<div class="two">
+<div class="card"><h4>Căn cứ &amp; phương pháp</h4><ul>
+<li>Mức <b>kiểm thử hệ thống</b> (ISTQB); tài liệu theo <b>ISO/IEC/IEEE 29119</b>.</li>
+<li><b>Hộp đen</b>, 4 kỹ thuật: phân vùng tương đương · giá trị biên · bảng quyết định · chuyển trạng thái.</li>
+<li>Mỗi ca 15 cột, tách <b>kết quả mong đợi</b> và <b>thực tế</b>, có ảnh minh chứng theo mã ca.</li>
+<li>Công cụ: Playwright 1.48.2, axe-core (WCAG 2.2), máy chủ tĩnh cổng 5599, chặn Internet, dữ liệu sạch mỗi phiên.</li></ul></div>
+<div class="card"><h4>Công thức &amp; khái niệm</h4><ul>
+<li><b>Tỉ lệ đạt</b> = số ca Đạt / số ca áp dụng × 100.</li>
+<li><b>Chấp nhận rủi ro:</b> vẫn ghi Không đạt, chỉ loại khỏi mẫu số.</li>
+<li><b>Giới hạn đã biết:</b> do kiến trúc, ghi ở hạn chế.</li>
+<li><b>Mức lỗi:</b> Nghiêm trọng (chặn hành trình mua) · Trung bình · Nhẹ.</li>
+<li><b>Số hồi quy phải = 0</b> mới coi vòng sửa là an toàn.</li></ul></div>
+</div>
+<div class="tw"><table class="map"><tr><th>Phiên</th><th>Nội dung</th><th>Số ca</th></tr><tr><td>s00</td><td>Mở toàn bộ trang: không lỗi JS, không 404, không cuộn ngang ở 4 bề rộng</td><td>40</td></tr><tr><td>s01</td><td>Tài khoản: đăng ký, OTP, đăng nhập, quên MK, hồ sơ, đăng xuất</td><td>32</td></tr><tr><td>s02</td><td>Trang chủ, phòng, hotspot, thêm trọn bộ</td><td>30</td></tr><tr><td>s03</td><td>Sản phẩm, bộ lọc, tìm không dấu, chi tiết, yêu thích</td><td>30</td></tr><tr><td>s04</td><td>Đồ cũ</td><td>30</td></tr><tr><td>s05</td><td>Giỏ &amp; thanh toán: gộp giỏ, phí giao, COD 10tr, cọc 30%, coupon, Luhn</td><td>30</td></tr><tr><td>s06</td><td>Đơn hàng &amp; đánh giá: huỷ, hoàn kho, chỉ đánh giá khi Delivered</td><td>30</td></tr><tr><td>s07</td><td>Quản trị SP, danh mục, phòng, đồ cũ</td><td>30</td></tr><tr><td>s08</td><td>Quản trị đơn, Dashboard, khoá user, ẩn đánh giá</td><td>30</td></tr><tr><td>s09</td><td>Chatbot (AI chỉ khi chạy server.js)</td><td>30</td></tr><tr><td>s10</td><td>Phi chức năng: responsive, mất mạng, tăng DATA_VERSION giữ tài khoản</td><td>30</td></tr><tr><td>s11</td><td>22 kịch bản đầu–cuối (E2E) qua nhiều phân hệ</td><td>22</td></tr><tr><td>s12</td><td>Audit: leo quyền, XSS, khả năng tiếp cận, hiệu năng, SEO, toàn vẹn dữ liệu</td><td>30</td></tr></table></div>
+<div class="two">
+<div class="tw"><table class="map"><tr><th>Cấu hình</th><th>Kích thước</th></tr><tr><td>Edge · Chrome · Firefox · Safari (WebKit)</td><td>1.440 × 900</td></tr><tr><td>iPhone 14 (giả lập)</td><td>390 × 844</td></tr><tr><td>Pixel 7 (giả lập)</td><td>412 × 915</td></tr><tr><td>iPad thế hệ 7 (giả lập)</td><td>810 × 1.080</td></tr><tr><td>+ máy thật P3</td><td>1 iPhone Safari + 1 Android Chrome, 25 hạng mục</td></tr></table></div>
+<div class="card"><h4>E2E tiêu biểu (nhớ 4–5 cái)</h4><ul>
+<li>Đăng ký → mua COD → Admin chuyển tới Delivered → đánh giá; doanh thu chỉ tăng sau Delivered.</li>
+<li>Còn 1 món, 2 tab cùng thanh toán → chỉ 1 đơn thành công, tồn kho không âm.</li>
+<li>10.500.000 − 500.000 = 10.000.000 → được COD; thêm 1 đồng → khoá COD.</li>
+<li>Đơn cọc 30% huỷ ở Confirmed → hoàn kho, ghi hoàn đúng số cọc.</li>
+<li>Shop the Room thêm trọn bộ → thanh toán: phí giao theo đồ lớn, tồn kho từng món giảm đúng.</li></ul></div>
+</div>
+<div class="tw"><table class="map"><tr><th>Mã</th><th>Mức</th><th>Lỗi</th><th>Xử lý</th></tr><tr><td>BUG-01</td><td>Nghiêm trọng</td><td>Trang chủ tràn ngang (622px ở màn 390px)</td><td>Đã sửa</td></tr><tr><td>BUG-02</td><td>Trung bình</td><td>Leo quyền bằng sửa vai trò trong phiên</td><td>Chấp nhận rủi ro (giới hạn kiến trúc)</td></tr><tr><td>BUG-03</td><td>Trung bình</td><td>Dashboard không cảnh báo tồn kho = 0</td><td>Đã sửa</td></tr><tr><td>BUG-04</td><td>Trung bình</td><td>Lịch sử chat tải lại chỉ còn tin chào</td><td>Đã sửa</td></tr><tr><td>BUG-05</td><td>Trung bình</td><td>Chatbot không hiểu ngân sách viết đủ số</td><td>Đã sửa</td></tr><tr><td>BUG-06</td><td>Nhẹ</td><td>Bảng đơn admin tràn trên iPad</td><td>Đã sửa</td></tr><tr><td>BUG-07</td><td>Nhẹ</td><td>Ảnh trang chủ &gt; 5MB</td><td>Chấp nhận rủi ro (giữ độ nét)</td></tr><tr><td>BUG-08</td><td>Nhẹ</td><td>Thiếu thẻ mô tả trang</td><td>Đã sửa</td></tr><tr><td>BUG-09</td><td>Nhẹ</td><td>Huỷ đơn không kiểm chủ đơn</td><td>Đã sửa</td></tr></table></div>
+<figure class="dg"><svg viewBox="0 0 960 136" role="img" aria-label="Xác minh mọi kết quả không đạt trước khi kết luận. Không tự quy thành lỗi web, cũng không nới điều kiện để ca chuyển sang đạt." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx warn" x="20" y="24" width="200" height="52"/>
+<text class="tt" x="120.0" y="54.5" font-size="13" text-anchor="middle">Ca báo KHÔNG ĐẠT</text>
+<rect class="bx" x="270" y="24" width="200" height="52"/>
+<text class="tt" x="370.0" y="46.0" font-size="13" text-anchor="middle">1. Đọc lại mã nguồn</text>
+<text class="ts" x="370.0" y="63.0" font-size="11.5" text-anchor="middle">so với kết quả mong đợi</text>
+<rect class="bx" x="520" y="24" width="200" height="52"/>
+<text class="tt" x="620.0" y="46.0" font-size="13" text-anchor="middle">2. Tái hiện bằng tay</text>
+<text class="ts" x="620.0" y="63.0" font-size="11.5" text-anchor="middle">chụp ảnh, ghi giá trị</text>
+<rect class="bx dark" x="770" y="6" width="170" height="30"/>
+<text class="tt inv" x="855.0" y="24.9" font-size="11" text-anchor="middle">Lỗi website → sửa</text>
+<rect class="bx acc" x="770" y="40" width="170" height="30"/>
+<text class="tt" x="855.0" y="58.9" font-size="11" text-anchor="middle">Lỗi kịch bản → sửa script</text>
+<rect class="bx" x="770" y="74" width="170" height="30"/>
+<text class="tt" x="855.0" y="92.8" font-size="11" text-anchor="middle">Yêu cầu chưa rõ → chốt</text>
+<polyline class="ar" points="220,50 266,50" marker-end="url(#ah)"/>
+<polyline class="ar" points="470,50 516,50" marker-end="url(#ah)"/>
+<polyline class="ar" points="720,50 744,50 744,21 766,21" marker-end="url(#ah)"/>
+<polyline class="ar" points="744,50 766,55" marker-end="url(#ah)"/>
+<polyline class="ar" points="744,50 744,89 766,89" marker-end="url(#ah)"/>
+<text class="lbl" x="745" y="124" text-anchor="middle">3. Phân loại</text>
+</svg><figcaption>Xác minh mọi kết quả không đạt trước khi kết luận. Không tự quy thành lỗi web, cũng không nới điều kiện để ca chuyển sang đạt.</figcaption></figure>
+<div class="card"><h4>3 bài học</h4><ul>
+<li><b>Lỗi kịch bản ≠ lỗi web:</b> ~30 ca mobile báo sai vì script không bấm mở nút "Bộ lọc" → sửa script, không nới tiêu chí.</li>
+<li><b>Hồi quy phải chạy toàn bộ:</b> bản sửa leo quyền giả định sai mã vai trò Admin (1 thay vì 2) → đảo quyền, chỉ lộ khi chạy lại hết.</li>
+<li><b>Kiểm thử chéo</b> bắt lỗi người viết bỏ sót: mobile, form admin, nhất quán dữ liệu, chức năng thiếu so với đặc tả.</li></ul></div>
+</section>
+<section id="ket-qua">
+<p class="ov">Phần 11</p><h2>Kết quả, hạn chế &amp; hướng phát triển</h2>
+<div class="tw"><table class="map"><tr><th>Mục tiêu</th><th>Kết quả</th><th>Mức</th></tr><tr><td>MT1 Core E-commerce</td><td>Đủ luồng đăng ký → mua → theo dõi → đánh giá; thiếu đăng ảnh khi đánh giá</td><td>Đạt một phần</td></tr><tr><td>MT2 Shop the Room</td><td>49/49 phòng có hotspot, 1.353 điểm, trung bình 27,6/phòng; thêm cả phòng</td><td>Đạt, vượt</td></tr><tr><td>MT3 3D Viewer</td><td>202 model, có báo đang tải/lỗi; SP không có model vẫn mua bình thường</td><td>Đạt, vượt</td></tr><tr><td>MT4 Complete Your Room</td><td>Gợi ý 4 SP khác danh mục, cùng phong cách rồi cùng màu, chỉ còn hàng</td><td>Đạt</td></tr><tr><td>MT5 Đồ cũ</td><td>18 món, lọc tình trạng, dùng chung giỏ và thanh toán</td><td>Đạt</td></tr><tr><td>MT6 Chatbot</td><td>20 câu mẫu + luật lọc; AI qua server.js</td><td>Đạt</td></tr><tr><td>MT7 Admin</td><td>8 trang, gắn hotspot bằng bấm lên ảnh, Xuất JSON</td><td>Đạt</td></tr></table></div>
+<div class="two">
+<div class="card"><h4>Điểm mạnh</h4><ul>
+<li>3D khớp đúng sản phẩm đang bán, dung lượng trung vị 1,66MB.</li>
+<li>Shop the Room: mua sắm bắt đầu từ không gian.</li>
+<li>Kiểm thử 7 cấu hình, 97,4–98,5%, 0 hồi quy.</li>
+<li>Dữ liệu thật được chuẩn hoá; tìm không dấu; quy trình mua sát đặc thù nội thất (xe tải, lắp đặt, cọc).</li></ul></div>
+<div class="card warn" style="margin:0"><h4>Hạn chế</h4><ul>
+<li>Không máy chủ: dữ liệu theo trình duyệt, phân quyền ở client.</li>
+<li>SHA-256 không salt; OTP, thanh toán mô phỏng.</li>
+<li>7,6% hết hàng (71/935); 14 hotspot trỏ SP hết hàng.</li>
+<li>Trang chủ chậm trên WebKit/iPhone giả lập (9–11 giây lần đầu).</li>
+<li>Chưa kiểm thử với người dùng ngoài nhóm.</li></ul></div>
+</div>
+<figure class="dg"><svg viewBox="0 0 960 124" role="img" aria-label="Hướng phát triển theo thứ tự ưu tiên (Bảng 7.1)." xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#202020"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B18A52"/></marker><marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="11" markerHeight="11" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#FFFFFF" stroke="#202020"/></marker></defs>
+<rect class="bx dark" x="20" y="24" width="172" height="58"/>
+<text class="tt inv" x="106.0" y="49.0" font-size="13" text-anchor="middle">1. Backend + MySQL</text>
+<text class="ts inv" x="106.0" y="66.0" font-size="11.5" text-anchor="middle">API theo thiết kế Ch.3</text>
+<polyline class="ar" points="194,53 208,53" marker-end="url(#ah)"/>
+<rect class="bx acc" x="210" y="24" width="172" height="58"/>
+<text class="tt" x="296.0" y="49.0" font-size="13" text-anchor="middle">2. Xác thực server</text>
+<text class="ts" x="296.0" y="66.0" font-size="11.5" text-anchor="middle">token ký · bcrypt · email OTP</text>
+<polyline class="ar" points="384,53 398,53" marker-end="url(#ah)"/>
+<rect class="bx" x="400" y="24" width="172" height="58"/>
+<text class="tt" x="486.0" y="49.0" font-size="13" text-anchor="middle">3. Tối ưu ảnh</text>
+<text class="ts" x="486.0" y="66.0" font-size="11.5" text-anchor="middle">WebP/AVIF · srcset</text>
+<polyline class="ar" points="574,53 588,53" marker-end="url(#ah)"/>
+<rect class="bx" x="590" y="24" width="172" height="58"/>
+<text class="tt" x="676.0" y="49.0" font-size="13" text-anchor="middle">4. Thanh toán thật</text>
+<text class="ts" x="676.0" y="66.0" font-size="11.5" text-anchor="middle">sandbox trước</text>
+<polyline class="ar" points="764,53 778,53" marker-end="url(#ah)"/>
+<rect class="bx" x="780" y="24" width="172" height="58"/>
+<text class="tt" x="866.0" y="49.0" font-size="13" text-anchor="middle">5. Đồng bộ &amp; UGC</text>
+<text class="ts" x="866.0" y="66.0" font-size="11.5" text-anchor="middle">khách tự đăng đồ cũ</text>
+<text class="note" x="480" y="110" text-anchor="middle">Backend phải làm trước vì là nền cho xác thực thật, thanh toán thật, đồng bộ đa máy và gợi ý ML.</text>
+</svg><figcaption>Hướng phát triển theo thứ tự ưu tiên (Bảng 7.1).</figcaption></figure>
+</section>
+<section id="kien-thuc">
+<p class="ov">Phần 12</p><h2>Kiến thức môn học — mỗi khái niệm gắn một chỗ trong đồ án</h2>
+<div class="kn">
+<div><h4>DOM</h4><p>Cây đối tượng của trang. Thẻ sản phẩm dựng bằng <code>createElement</code> + <code>appendChild</code>; truy cập phần tử bằng <code>getElementById</code>, <code>querySelector</code>.</p></div>
+<div><h4>Sự kiện &amp; bubbling</h4><p>Sự kiện nổi từ con lên cha. Nút tim dùng <code>stopPropagation()</code> + <code>preventDefault()</code>. Gắn sự kiện bằng <code>onclick</code> hoặc <code>addEventListener</code>.</p></div>
+<div><h4>JSON</h4><p>Dữ liệu dạng chữ (object, mảng). <code>JSON.stringify</code> khi ghi localStorage, <code>JSON.parse</code> khi đọc.</p></div>
+<div><h4>Form &amp; validate</h4><p>Lấy giá trị <code>.value.trim()</code>, kiểm bằng regex, báo lỗi + <code>focus()</code> ô sai, <code>return false</code> để không gửi form. Control: input, select (tỉnh/phường), radio (phương thức), checkbox (điều khoản).</p></div>
+<div><h4>AJAX: XHR vs fetch</h4><p>XHR dùng callback <code>onreadystatechange</code> (readyState 4, status 200). fetch trả <b>Promise</b> với <code>.then</code> hoặc <code>await</code>. Cả hai tải dữ liệu không tải lại trang.</p></div>
+<div><h4>Web Storage</h4><p>localStorage (mãi) · sessionStorage (theo tab) · cookie (4KB, gửi kèm request). Phạm vi theo origin.</p></div>
+<div><h4>CSS layout &amp; responsive</h4><p>Grid/Flexbox; <code>minmax(0,1fr)</code> chống tràn; media query theo 1440/1024/768/480px; biến CSS cho màu, font.</p></div>
+<div><h4>URL &amp; tham số</h4><p><code>product-detail.html?id=12</code>: trang đọc tham số id trên URL để biết hiện sản phẩm nào; bộ lọc cũng ghi lên URL để F5 vẫn giữ.</p></div>
+<div><h4>Web component</h4><p><code>&lt;model-viewer&gt;</code> là thẻ HTML tự định nghĩa để hiển thị 3D, tạo động khi sản phẩm có model.</p></div>
+<div><h4>Hàm băm &amp; JWT</h4><p>SHA-256 một chiều, thiếu salt. Google trả JWT 3 phần (header.payload.signature); web giải mã base64 phần payload để lấy email, tên.</p></div>
+<div><h4>Chuẩn hoá Unicode</h4><p><code>normalize("NFD")</code> tách dấu rồi bỏ → tìm "ghe" ra "ghế".</p></div>
+<div><h4>Bảo mật cơ bản (XSS)</h4><p>Dữ liệu người dùng nhập (họ tên, địa chỉ, tên SP) không được chèn thẳng thành HTML; phiên s12 kiểm XSS lưu trữ qua các ô này. Nguyên tắc: ưu tiên <code>textContent</code> hơn <code>innerHTML</code>.</p></div>
+</div>
+</section>
+<section id="cau-hoi">
+<p class="ov">Phần 13</p><h2>Ngân hàng câu hỏi</h2>
+<p class="lead">Tự trả lời trước rồi mới mở. <button type="button" class="mini" id="btnAll">Mở / đóng tất cả</button></p>
+<h3>Câu hỏi bẫy — Thừa nhận → Lý do → Hướng phát triển</h3>
+<div class="qa"><details><summary>Không có backend thì bảo mật thế nào?</summary><div class="ans"><b>Thừa nhận:</b> phân quyền chạy ở trình duyệt nên người rành kỹ thuật vẫn vượt được. <b>Đã giảm:</b> quyền tra từ bảng roles, không tin trường role trong phiên. <b>Hướng phát triển:</b> backend + session/JWT, kiểm quyền ở server.</div></details><details><summary>Có server.js sao nói không backend?</summary><div class="ans">server.js chỉ là proxy chatbot để giấu API key và giới hạn lượt gọi. Nó không lưu tài khoản, giỏ hay đơn hàng — dữ liệu và nghiệp vụ đều ở trình duyệt.</div></details><details><summary>Xoá localStorage thì sao?</summary><div class="ans">Mất dữ liệu người dùng tự tạo (giỏ, đơn, tài khoản đăng ký). Dữ liệu gốc tự nạp lại từ JSON nhờ kiểm tra rc_version. Admin có nút Xuất JSON để sao lưu.</div></details><details><summary>Mật khẩu lưu thế nào?</summary><div class="ans">Lưu password_hash = SHA-256, băm ở trình duyệt, không salt. Thiết kế MySQL chỉ ghi "đã mã hoá". Làm thật: bcrypt/argon2 ở server.</div></details><details><summary>Mở DevTools sửa giá được không?</summary><div class="ans">Được, vì dữ liệu nằm ở client. createOrder có tính lại tiền từ dữ liệu sản phẩm, nhưng dữ liệu đó cũng ở client. Cần server kiểm giá khi đặt.</div></details><details><summary>2 người cùng mua món cuối cùng?</summary><div class="ans">Hai tab cùng máy: chỉ 1 đơn thành công vì kiểm tồn kho lúc đặt (ca s11). Hai máy khác nhau: không chặn được vì không có dữ liệu chung — đúng giới hạn đã nêu.</div></details><details><summary>OTP giả lập thì có ý nghĩa gì?</summary><div class="ans">Mô phỏng đúng nghiệp vụ: sinh mã, hết hạn 5 phút, dùng 1 lần, gửi lại sau 60 giây. Chỉ thay bước gửi email bằng hiện mã trên trang. Làm thật: SMTP/dịch vụ email.</div></details><details><summary>Mô hình 3D do AI tạo có chính xác không?</summary><div class="ans">Không hoàn toàn: sinh từ 1 ảnh chính diện nên mặt sau có thể sai. Nhóm xem từng model, loại 23 lỗi hình + 13 sai màu, giữ 202. Đồ trang trí (thảm, tranh, gối) không làm 3D.</div></details><details><summary>Vì sao không dùng React/Vue?</summary><div class="ans">Môn học tập trung HTML/CSS/JS/DOM/JSON; web tĩnh thì cả 5 người đọc được toàn bộ code, deploy GitHub Pages dễ. Đổi lại phải viết tay nhiều; mở rộng sau này sẽ cân nhắc framework.</div></details><details><summary>Dữ liệu crawl có vấn đề bản quyền?</summary><div class="ans">Có rủi ro: lấy từ website bán lẻ nội thất nước ngoài, dùng cho học tập, đã việt hoá và đổi giá. Làm thật: xin phép, ghi nguồn hoặc tự tạo dữ liệu.</div></details><details><summary>Vì sao 953 sản phẩm mà chỉ 935 hiển thị?</summary><div class="ans">18 sản phẩm bị ẩn (is_active = false) thay vì xoá, để đơn hàng cũ vẫn trỏ đúng sản phẩm — tương đương ON DELETE RESTRICT trong thiết kế. 1 trong số đó có model 3D nên 202 model, 201 hiển thị.</div></details><details><summary>Nếu làm thật, nâng cấp gì trước?</summary><div class="ans">Backend + CSDL MySQL theo thiết kế Chương 3 + xác thực phía server — vì mọi hạn chế bảo mật đều gốc từ đây. Sau đó thanh toán thật, email thật, đồng bộ đa thiết bị.</div></details></div>
+<div class="qg"><h3>Tổng quan (Ch.1)</h3><div class="qa"><details><summary>RoomCraft giải quyết bài toán gì?</summary><div class="ans">Người mua nội thất online khó hình dung đồ trong không gian, cảm hứng (ảnh phòng đẹp) không dẫn tới mua được ngay, thiếu 3D và không biết phối đồ. Tỉ lệ bỏ giỏ ~90%. RoomCraft cho mua ngay trong ảnh phòng (Shop the Room) + 3D + gợi ý.</div></details><details><summary>Điểm khác biệt so với web nội thất thông thường?</summary><div class="ans">Bắt đầu từ căn phòng chứ không từ danh mục: hotspot trên ảnh phòng → popup → thêm giỏ hoặc thêm cả phòng; xem 3D đúng món đang bán; gợi ý Complete Your Room.</div></details><details><summary>Vì sao chọn web tĩnh?</summary><div class="ans">Giới hạn chủ động: vừa sức một học kỳ, đúng trọng tâm môn (HTML/CSS/JS/DOM/JSON), dồn thời gian cho 3 tính năng đặc trưng. MySQL vẫn được thiết kế đầy đủ để làm nền phát triển sau.</div></details><details><summary>MoSCoW của nhóm là gì?</summary><div class="ans">Must: Core E-commerce, Admin cơ bản, Shop the Room. Should: 3D, Complete Your Room, Wishlist, Đồ cũ. Could: Chatbot, Dashboard, coupon. Won't: người dùng tự đăng phòng/đồ cũ, Community, AR/VR tự làm, ML.</div></details><details><summary>Đối tượng khách hàng?</summary><div class="ans">3 nhóm: sinh viên/người trẻ ở căn hộ nhỏ; người mới thuê/mua căn hộ; người yêu decor. 3 vai trò hệ thống: Guest, User, Admin.</div></details><details><summary>Phương pháp nghiên cứu?</summary><div class="ans">Phân tích đối thủ (IKEA, Houzz, Wayfair) + Thiết kế lấy người dùng làm trung tâm (mockup Stitch, rà luồng trước khi code) + Scrum lặp 3 giai đoạn.</div></details></div></div><div class="qg"><h3>Dữ liệu & localStorage (Ch.2)</h3><div class="qa"><details><summary>localStorage khác sessionStorage và cookie?</summary><div class="ans">localStorage sống đến khi bị xoá, ~5MB/origin, không gửi kèm request. sessionStorage mất khi đóng tab. Cookie ~4KB và tự gửi kèm mọi request lên server.</div></details><details><summary>Vì sao phải JSON.stringify khi lưu?</summary><div class="ans">localStorage chỉ lưu chuỗi. Object/mảng phải chuyển thành chuỗi JSON khi ghi và JSON.parse khi đọc. store.js làm việc này trong getTable/saveTable.</div></details><details><summary>DATA_VERSION dùng để làm gì?</summary><div class="ans">Khi nhóm sửa file JSON thì tăng số này (hiện là "16"). Máy nào có rc_version khác sẽ nạp lại JSON, nhưng keepLocalData giữ lại tài khoản, đơn, đánh giá tạo trên máy (nhận biết qua created_at kết thúc bằng "Z").</div></details><details><summary>Có key rc_used_products không?</summary><div class="ans">Không. Đồ cũ được gộp vào rc_products với product_type = "USED"; saveAllData bỏ qua used_products khi lưu.</div></details><details><summary>Nếu localStorage đầy thì sao?</summary><div class="ans">setItem ném lỗi QuotaExceededError. saveTable bọc try/catch, báo bảng nào chưa lưu và gợi ý dùng nút Xuất JSON.</div></details><details><summary>Vì sao không ai gọi localStorage trực tiếp?</summary><div class="ans">Quy ước nhóm: chỉ store.js biết tiền tố rc_, tự parse/stringify, tự bắt lỗi đầy bộ nhớ; resetData quét đúng các key rc_ mà không đụng key khác.</div></details><details><summary>findById để làm gì?</summary><div class="ans">Mô phỏng khoá ngoại: tìm bản ghi theo id trong một bảng. Có cache bangDaDoc để không parse lại bảng products ~2MB mỗi lần.</div></details></div></div><div class="qg"><h3>Thiết kế (Ch.3)</h3><div class="qa"><details><summary>Có mấy actor? Vì sao User kế thừa Guest?</summary><div class="ans">3 chính (Guest, User, Admin) + 2 phụ (Google Identity Services, Chatbot API). Mọi việc Guest làm được thì User cũng làm được nên User là trường hợp đặc biệt của Guest. Admin không kế thừa User vì mục đích quản trị khác.</div></details><details><summary>Phân biệt include và extend?</summary><div class="ans">include: hành vi bắt buộc, mũi tên từ UC gốc sang UC được bao gồm (Đăng ký include Xác minh OTP). extend: tuỳ chọn/có điều kiện, mũi tên từ UC mở rộng về UC gốc (Đăng nhập Google extend Đăng nhập).</div></details><details><summary>Vì sao tách 14 BPMN?</summary><div class="ans">Mỗi nhóm nghiệp vụ một quy trình, 8–13 bước, tối đa 3–4 gateway: dễ đọc, dễ bảo trì, đúng cách tiếp cận module hoá.</div></details><details><summary>Message flow khác sequence flow?</summary><div class="ans">Sequence flow (nét liền) nối các bước trong cùng một pool. Message flow (nét đứt) nối giữa 2 pool khác nhau, ví dụ RoomCraft với Google Identity Services.</div></details><details><summary>19 bảng chia mấy nhóm?</summary><div class="ans">6 nhóm: Tài khoản (roles, users, verification_codes), Catalog (categories, styles, products, product_images, used_product_details), Phòng (rooms, room_hotspots), Tương tác (wishlists, reviews, carts, cart_items), Đặt hàng (shipping_methods, coupons, orders, order_details), Chatbot (chatbot_faqs).</div></details><details><summary>ON DELETE RESTRICT dùng thế nào?</summary><div class="ans">Chặn xoá bản ghi đang được tham chiếu. Vì vậy sản phẩm đã bán không xoá cứng mà ẩn bằng is_active; tài khoản vi phạm thì khoá chứ không xoá.</div></details><details><summary>Khoá chính kết hợp ở đâu?</summary><div class="ans">5 bảng liên kết N–N: product_images, wishlists, room_hotspots, cart_items, order_details.</div></details><details><summary>Sitemap có mấy trang, quy tắc gì?</summary><div class="ans">8 nhánh, 25 trang (17 khách + 8 admin). Mọi trang tới được từ trang chủ trong tối đa 3 lần bấm. Chatbot là cửa sổ nổi, không phải trang.</div></details><details><summary>Vì sao không có DFD?</summary><div class="ans">Nhóm chọn Use case + BPMN + ERD + Sitemap đủ mô tả hệ thống; DFD được ghi ở hạn chế và hướng phát triển — quyết định có chủ đích.</div></details></div></div><div class="qg"><h3>Phương pháp & 3D (Ch.4)</h3><div class="qa"><details><summary>Phân công 5 thành viên thế nào?</summary><div class="ans">Chia theo trang/phân hệ: Quỳnh Kha – khung dùng chung, xác thực, duyệt PR; Bảo Duy – trang chủ, phòng, hotspot; Nguyên Khôi – sản phẩm, wishlist, thẻ SP; Phương Anh – giỏ, thanh toán, đơn, dashboard; Như Huyền – đồ cũ, chatbot, quản trị user/đánh giá.</div></details><details><summary>Dữ liệu lấy từ đâu, xử lý ra sao?</summary><div class="ans">Crawl từ một website bán lẻ nội thất (7 file CSV theo phong cách) → vá lỗi → việt hoá, đổi VND, chuẩn hoá danh mục/chất liệu/màu, thêm mã, chọn ảnh → xuất 13 file JSON.</div></details><details><summary>3D tạo thế nào, mất bao lâu?</summary><div class="ans">Hunyuan3D-2 trên Kaggle (2 GPU T4, 2 worker). Từ 1 ảnh: tách nền → dựng hình → vẽ texture → .glb. Thực đo ~5,4 phút/món, cài đặt ~8 phút. Chọn 235 món, loại 23 lỗi hình + 13 sai màu, còn 202 model.</div></details><details><summary>Vì sao tự host thư viện thay vì CDN?</summary><div class="ans">Chạy được khi mạng yếu/mất mạng, và bộ kiểm thử chặn Internet vẫn chạy được.</div></details><details><summary>AI được dùng thế nào trong đồ án?</summary><div class="ans">Là công cụ hỗ trợ (viết nháp script test, tài liệu); nhóm quyết định và xác minh. Ví dụ: một bản sửa do AI đề xuất đã đảo quyền admin, chỉ lộ ra nhờ chạy lại toàn bộ kiểm thử hồi quy.</div></details></div></div><div class="qg"><h3>Kết quả & kiểm thử (Ch.5)</h3><div class="qa"><details><summary>Bốn đợt kiểm thử là gì?</summary><div class="ans">P0 27/10 kiểm thử chéo thủ công (78 ghi nhận → 42 việc); P1 03/11 342 ca trên Edge, 97,1%; P2 04–05/11 394 ca × 7 cấu hình = 2.758 lượt, 9 lỗi; P3 06/11 chạy lại toàn bộ + 25 hạng mục máy thật, 97,4–98,5%, 0 hồi quy.</div></details><details><summary>Vì sao P0 không có tỉ lệ %?</summary><div class="ans">P0 là kiểm thử tự do, ghi nhận là hiện tượng quan sát, không có kết quả mong đợi định trước nên báo theo số ghi nhận và số việc.</div></details><details><summary>Tỉ lệ đạt tính thế nào?</summary><div class="ans">Số ca Đạt / số ca áp dụng × 100. Mẫu số là ca áp dụng cho cấu hình đó; ca chấp nhận rủi ro vẫn giữ Không đạt trong dữ liệu gốc nhưng không tính vào mẫu số.</div></details><details><summary>Lỗi nghiêm trọng duy nhất là gì?</summary><div class="ans">BUG-01: trang chủ tràn ngang trên điện thoại (622px ở màn 390px). Sửa bằng position: relative cho dải sản phẩm nổi bật và minmax(0,1fr) cho lưới số liệu.</div></details><details><summary>Kỹ thuật hộp đen nào đã dùng?</summary><div class="ans">Phân vùng tương đương (ô nhập, bộ lọc), giá trị biên (COD 10.000.000 / 10.000.001, miễn ship 2tr/15tr), bảng quyết định (phí giao), chuyển trạng thái (vòng đời đơn).</div></details><details><summary>3 cấu hình di động có phải máy thật?</summary><div class="ans">Không, là giả lập bằng Playwright (iPhone 14, Pixel 7, iPad). Vì vậy P3 thêm 25 hạng mục trên 1 iPhone Safari + 1 Android Chrome, ghi riêng.</div></details><details><summary>Doanh thu dashboard tính thế nào?</summary><div class="ans">Chỉ cộng đơn Delivered; đơn huỷ không cộng. Kiểm bằng ca s08 và kịch bản E2E.</div></details></div></div><div class="qg"><h3>Thảo luận & kết luận (Ch.6–7)</h3><div class="qa"><details><summary>Đạt bao nhiêu mục tiêu?</summary><div class="ans">6/7 mục tiêu đạt đủ chỉ báo; mục tiêu 1 (Core E-commerce) chỉ thiếu đăng ảnh khi đánh giá — chủ động bỏ để dồn sức sửa lỗi luồng mua.</div></details><details><summary>Điểm mạnh nhất?</summary><div class="ans">Shop the Room với 1.353 hotspot trên 49 phòng; 202 model 3D khớp đúng sản phẩm đang bán; kiểm thử 7 cấu hình đạt 97,4–98,5%; dữ liệu thật đã chuẩn hoá.</div></details><details><summary>Hạn chế lớn nhất?</summary><div class="ans">Không có máy chủ: dữ liệu theo từng trình duyệt, phân quyền chạy ở client (vẫn leo quyền được bằng cách sửa phiên), mật khẩu SHA-256 không salt, OTP và thanh toán mô phỏng.</div></details><details><summary>Phát hiện đáng chú ý?</summary><div class="ans">Dữ liệu thật tốn công hơn dự kiến (47% hết hàng, 23 SP trùng tên sau dịch); kiểm thử chéo bắt lỗi người viết bỏ sót; hồi quy phải chạy toàn bộ; phải tách lỗi kịch bản khỏi lỗi web.</div></details><details><summary>Hướng phát triển ưu tiên?</summary><div class="ans">1) Backend + MySQL theo thiết kế; 2) xác thực/phân quyền server (token ký, bcrypt/Argon2, email OTP thật); 3) tối ưu ảnh WebP/srcset; 4) thanh toán thật qua sandbox; 5) đồng bộ đa máy, cho khách tự đăng đồ cũ.</div></details><details><summary>Ý nghĩa thực tiễn?</summary><div class="ans">Người mua rút ngắn đường từ ảnh phòng tới giỏ hàng; cửa hàng nhỏ có thể biến ảnh phòng thành kênh bán theo bộ và có catalog 3D chi phí thấp (GPU miễn phí) nếu kiểm tra kỹ.</div></details></div></div>
+</section>
+<footer>Tổng hợp từ báo cáo, tài liệu phân tích thiết kế và mã nguồn RoomCraft — Nhóm 7.</footer>
+</main></div>
+
+<script>
+(function(){
+  var all = Array.prototype.slice.call(document.querySelectorAll('#cau-hoi details'));
+  var out = document.getElementById('drawOut');
+  document.getElementById('btnDraw').addEventListener('click', function(){
+    var d = all[Math.floor(Math.random() * all.length)];
+    var q = d.querySelector('summary').textContent;
+    var a = d.querySelector('.ans').innerHTML;
+    out.innerHTML = '<p class="dq">' + q + '</p><button type="button" class="mini" id="btnShow">Xem gợi ý</button><div class="da" hidden>' + a + '</div>';
+    document.getElementById('btnShow').addEventListener('click', function(){
+      out.querySelector('.da').hidden = false; this.remove();
+    });
+  });
+  var open = false;
+  document.getElementById('btnAll').addEventListener('click', function(){
+    open = !open; all.forEach(function(d){ d.open = open; });
+  });
+})();
+</script>
+</body></html>
